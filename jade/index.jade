@@ -1,0 +1,12 @@
+extends layouts/master
+
+block content
+  .input-container
+    .input-wrapper
+      input.text-input(type="text", placeholder="EMAIL", name="email")
+      input.text-input(type="password", placeholder="PASSWORD", name="password")
+      input(type="submit" value="Log In", name="login")
+      p Don't have an account? #[a(href="#") REGISTER]
+      p #[a(href="#") Forgot Password?]
+
+  //.promo

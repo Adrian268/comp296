@@ -1,0 +1,91 @@
+doctype html
+html(lang="en")
+  head
+    include mixins/mixins
+    title List App
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="stylesheet", href="bower_components/bootstap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="css/style.css")
+    link(rel="stylesheet", href="css/profile.css")
+    script(src="bower_components/jquery/dist/jquery.min.js")
+  body
+    .top-heading
+      #logo-link-container
+        #logo
+          a(href="#")
+            p ListApp
+        #new-shopping-list
+          input.text-input(type="text", placeholder='New Shopping List', name="new_shopping_list")
+          a(href="#")
+            img(src="img/add-list-icon.png")
+        #top-right
+          p Welcome
+          a(href="#") Log Out
+      #menu
+        a(href="#")
+          img(src="img/menu-icon.png")
+
+    #main-body
+      //.error-message Password fields do not match. Try again
+      //.confirm-message Your Password has been reset.
+      section
+        .lists-container
+          +listblock("Grocery List", "Me")
+          +listblock("School List", "Me")
+          +listblock("Car Project", "Bob")
+
+          .list-wrapper
+            .list-heading
+              h4.list-name Party List
+              a.edit-list.small(href="#") edit
+              input(type="text", placeholder="Add Item...", name="add_item")
+              .created-info
+                p.small.date-created 12/12/12 12:00pm
+                p.small.created-by by: Me
+
+            .list-body
+              .item-wrapper
+                .container
+                  input(type="checkbox")
+                  p.item-name Item 1
+                  .item-settings-wrapper
+                    img.item-settings(src="img/item-settings-icon.png")
+                .notes
+                  p this is a note
+                  p this is another note
+              .item-wrapper
+                .container
+                  input(type="checkbox")
+                  p.item-name Item 2 #[span.quantity (3)]
+                  .item-settings-wrapper
+                    img.item-settings(src="img/item-settings-icon.png")
+                .notes
+                  p hey its a note
+              .item-wrapper
+                .container
+                  input(type="checkbox")
+                  p.item-name Item 3
+                  .item-settings-wrapper
+                    img.item-settings(src="img/item-settings-icon.png")
+                .notes
+                  p this is a note
+              .item-wrapper
+                .container
+                  input(type="checkbox" checked)
+                  p.item-name.bought-item Item 4
+                  .item-settings-wrapper
+                    img.item-settings(src="img/item-settings-icon.png")
+                .notes
+                  p this is a note
+                  p this is another note
+                  p this is another note
+
+            .list-footer
+              .container
+                p.shared-with Shared With:
+                p.shared-with-names Bob, Jess, Michael
+              input.share-list-btn(type="submit", value="Share List", name="share_list")
+
+    footer
+      p &copy;2015 ListApp. All Rights Reserved

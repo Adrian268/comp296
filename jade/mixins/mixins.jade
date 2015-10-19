@@ -1,0 +1,9 @@
+mixin listblock(listname, creator)
+  .list-wrapper
+    .list-heading
+      h4.list-name #{listname}
+      a.edit-list.small(href="#") edit
+      input(type="text", placeholder="Add Item...", name="add_item")
+      .created-info
+        p.small.date-created 12/12/12 12:00pm
+        p.small.created-by by: #{creator}

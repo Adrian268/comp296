@@ -1,0 +1,12 @@
+extends layouts/master
+
+block content
+  .input-container
+    .input-wrapper
+      input.text-input(type="text", placeholder="NAME", name="name")
+      input.text-input(type="text", placeholder="EMAIL", name="email")
+      input.text-input(type="text", placeholder="PHONE NUMBER", name="phone_number")
+      input.text-input(type="password", placeholder="PASSWORD", name="password")
+      input.text-input(type="password", placeholder="CONFIRM PASSWORD", name="password_confirm")
+      input(type="submit" value="REGISTER", name="register")
+      p Already have an account? #[a(href="#") SIGN IN]

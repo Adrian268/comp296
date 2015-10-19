@@ -1,0 +1,192 @@
+$main-color: #131313;
+$text-color: #aee4ff;
+$button-color: #14adff;
+$border-radius: 2px;
+$logo-color: #008080;
+$confirm-green: #28ba52;
+$warning-red: #db2a2a;
+
+@font-face
+  font-family: oswald
+  src: url("../fonts/Oswald-Regular.ttf")
+
+@font-face
+  font-family: open-sans
+  src: url("../fonts/OpenSans-Regular.ttf")
+
+@font-face
+  font-family: fff-tusj
+  src: url("../fonts/FFF_Tusj.ttf")
+
+*
+  border: 0
+  margin: 0
+  padding: 0
+
+.small
+  font-size: 10px
+
+a
+  text-decoration: none
+  transition: all .5s
+  color: $text-color
+  outline: 0
+
+a:hover
+  color: #0030ff
+
+a:visited
+  color: $text-color
+
+.top-heading
+  font-family: Oswald
+  position: fixed
+  top: 0
+  width: 100%
+  height: auto
+  background-color: $main-color
+  color: white
+  z-index: 10
+
+.top-heading a
+  color: $text-color
+
+.top-heading a:hover
+  color: white
+
+#logo-link-container
+  height: 55px
+  width: 95%
+  margin: 20px auto
+  letter-spacing: 1px
+
+#logo
+  display: inline-block
+
+#logo p
+  font-family: fff-tusj
+  font-size: 45px
+  letter-spacing: 2px
+  color: $logo-color
+
+#top-right
+  font-size: 15px
+  margin-top: 15px
+  float: right
+
+.error-message
+  position: fixed
+  top: 95px
+  width: 100%
+  text-align: center
+  padding: 10px 0
+  background-color: #db2a2a
+  color: white
+
+.confirm-message
+  position: fixed
+  top: 95px
+  width: 100%
+  text-align: center
+  padding: 10px 0
+  background-color: $confirm-green
+  color: white
+
+
+//body styling
+
+body
+  font-family: oswald
+
+#main-body
+  position: relative
+  margin: 86px 0 59px
+  width: 100%
+  height: 100vh
+  background: url("../img/background-img.jpg") no-repeat fixed
+  background-size: cover
+
+section
+  width: 100%
+  margin: 0 auto
+  padding: 10px 0 0
+  text-align: center
+  font-size: 18px
+  z-index: 5
+
+//.promo
+//  width: 100%
+//  height: 300px
+  //background-color: #e8e8e8
+
+//footer styling
+
+footer
+  position: fixed
+  bottom: 0
+  width: 100%
+  background-color: $main-color
+  color: $text-color
+  font-size: 13px
+  padding: 20px 0
+  z-index: -1
+
+footer p
+  margin-left: 20px
+
+
+//input fields styling
+
+.input-container
+  width: 100%
+  height: auto
+  background-color: rgba(0, 0, 0, 0.17)
+  border-radius: $border-radius
+  margin: 50px auto
+  padding: 20px 0
+  text-align: center
+
+
+.input-wrapper
+  width: 300px
+  margin: 0 auto
+
+input //.input-container input
+  font-family: oswald
+  width: 100%
+  display: block
+  margin: 30px 0
+  background-color: white
+  padding: 8px 0
+  text-align: center
+  font-size: 20px
+  border-radius: $border-radius
+  color: gray
+
+.text-input:focus
+  box-shadow: 0 0 3px 0px $confirm-green
+
+.input-container input[type="submit"],
+  background-color: $button-color
+  border-top: 2px solid #06e6ff
+  border-left: 2px solid #06e6ff
+  border-right: 2px solid #0482ff
+  border-bottom: 2px solid #0482ff
+  color: white
+
+.input-container input[type="submit"]:active
+  border-right: 2px solid #06e6ff
+  border-bottom: 2px solid #06e6ff
+  border-top: 2px solid #0482ff
+  border-left: 2px solid #0482ff
+
+
+.input-container p
+  text-align: left
+  color: white
+  font-size: 13px
+
+
+
+
+

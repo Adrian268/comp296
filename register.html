@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>List App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="bower_components/jquery/dist/jquery.min.js "></script>
+  </head>
+  <body>
+    <div class="top-heading">
+      <div id="logo-link-container">
+        <div id="logo"><a href="#">
+            <p>ListApp</p></a></div>
+        <div id="top-right"><a href="#">SIGN IN</a> |<a href="#"> REGISTER</a></div>
+      </div>
+    </div>
+    <div id="main-body">
+      <!--.error-message This email doesn't exist. Try again-->
+      <!--.confirm-message Your Password has been reset-->
+      <section>
+        <div class="input-container">
+          <div class="input-wrapper">
+            <input type="text" placeholder="NAME" name="name" class="text-input">
+            <input type="text" placeholder="EMAIL" name="email" class="text-input">
+            <input type="text" placeholder="PHONE NUMBER" name="phone_number" class="text-input">
+            <input type="password" placeholder="PASSWORD" name="password" class="text-input">
+            <input type="password" placeholder="CONFIRM PASSWORD" name="password_confirm" class="text-input">
+            <input type="submit" value="REGISTER" name="register">
+            <p>Already have an account? <a href="#">SIGN IN</a></p>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <p>&copy;2015 ListApp</p>
+    </footer>
+  </body>
+</html>
