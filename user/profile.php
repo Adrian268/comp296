@@ -1,0 +1,140 @@
+<?php
+require_once '../Util/Session.php';
+require_once '../Util/View.php';
+
+if(!Session::isLoggedIn()) {
+    Session::setError("Access denied. Pleas Log In to view this page");
+    View::render('../index.php');
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>List App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--    <link rel="stylesheet" href="../Assets/bower_components/bootstrap/dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="../Assets/css/style.css">
+    <link rel="stylesheet" href="../Assets/css/profile.css">
+    <script src="../Assets/bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+<div class="top-heading">
+    <div id="logo-link-container">
+        <div id="logo"><a href="#">
+                <p>ListApp</p></a></div>
+        <div id="new-shopping-list">
+            <input type="text" placeholder="New Shopping List" name="new_shopping_list" class="text-input"><a href="#"><img src="../Assets/img/add-list-icon.png"></a>
+        </div>
+        <div id="top-right">
+            <p>Welcome</p>
+            <a href="../Controllers/LoginController.php?log_out=true">Log Out</a>
+        </div>
+    </div>
+    <div id="menu"><a href="#"><img src="../Assets/img/menu-icon.png"></a></div>
+</div>
+<div id="main-body">
+    <!--.error-message Password fields do not match. Try again-->
+    <!--.confirm-message Your Password has been reset.-->
+    <section>
+        <div class="lists-container">
+            <div class="list-wrapper">
+                <div class="list-heading">
+                    <h4 class="list-name">Grocery List</h4><a href="#" class="edit-list small">edit</a>
+                    <input type="text" placeholder="Add Item..." name="add_item">
+                    <div class="created-info">
+                        <p class="small date-created">12/12/12 12:00pm</p>
+                        <p class="small created-by">by: Me</p>
+                    </div>
+                </div>
+            </div>
+            <div class="list-wrapper">
+                <div class="list-heading">
+                    <h4 class="list-name">School List</h4><a href="#" class="edit-list small">edit</a>
+                    <input type="text" placeholder="Add Item..." name="add_item">
+                    <div class="created-info">
+                        <p class="small date-created">12/12/12 12:00pm</p>
+                        <p class="small created-by">by: Me</p>
+                    </div>
+                </div>
+            </div>
+            <div class="list-wrapper">
+                <div class="list-heading">
+                    <h4 class="list-name">Car Project</h4><a href="#" class="edit-list small">edit</a>
+                    <input type="text" placeholder="Add Item..." name="add_item">
+                    <div class="created-info">
+                        <p class="small date-created">12/12/12 12:00pm</p>
+                        <p class="small created-by">by: Bob</p>
+                    </div>
+                </div>
+            </div>
+            <div class="list-wrapper">
+                <div class="list-heading">
+                    <h4 class="list-name">Party List</h4><a href="#" class="edit-list small">edit</a>
+                    <input type="text" placeholder="Add Item..." name="add_item">
+                    <div class="created-info">
+                        <p class="small date-created">12/12/12 12:00pm</p>
+                        <p class="small created-by">by: Me</p>
+                    </div>
+                </div>
+                <div class="list-body">
+                    <div class="item-wrapper">
+                        <div class="container">
+                            <input type="checkbox">
+                            <p class="item-name">Item 1</p>
+                            <div class="item-settings-wrapper"><img src="../Assets/img/item-settings-icon.png" class="item-settings"></div>
+                        </div>
+                        <div class="notes">
+                            <p>this is a note</p>
+                            <p>this is another note</p>
+                        </div>
+                    </div>
+                    <div class="item-wrapper">
+                        <div class="container">
+                            <input type="checkbox">
+                            <p class="item-name">Item 2 <span class="quantity">(3)</span></p>
+                            <div class="item-settings-wrapper"><img src="../Assets/img/item-settings-icon.png" class="item-settings"></div>
+                        </div>
+                        <div class="notes">
+                            <p>hey its a note</p>
+                        </div>
+                    </div>
+                    <div class="item-wrapper">
+                        <div class="container">
+                            <input type="checkbox">
+                            <p class="item-name">Item 3</p>
+                            <div class="item-settings-wrapper"><img src="../Assets/img/item-settings-icon.png" class="item-settings"></div>
+                        </div>
+                        <div class="notes">
+                            <p>this is a note</p>
+                        </div>
+                    </div>
+                    <div class="item-wrapper">
+                        <div class="container">
+                            <input type="checkbox" checked>
+                            <p class="item-name bought-item">Item 4</p>
+                            <div class="item-settings-wrapper"><img src="../Assets/img/item-settings-icon.png" class="item-settings"></div>
+                        </div>
+                        <div class="notes">
+                            <p>this is a note</p>
+                            <p>this is another note</p>
+                            <p>this is another note</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-footer">
+                    <div class="container">
+                        <p class="shared-with">Shared With:</p>
+                        <p class="shared-with-names">Bob, Jess, Michael</p>
+                    </div>
+                    <input type="submit" value="Share List" name="share_list" class="share-list-btn">
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<footer>
+    <p>&copy;2015 ListApp. All Rights Reserved</p>
+</footer>
+</body>
+</html>

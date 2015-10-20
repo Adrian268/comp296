@@ -1,10 +1,11 @@
-$main-color: #131313;
-$text-color: #aee4ff;
-$button-color: #14adff;
-$border-radius: 2px;
-$logo-color: #008080;
-$confirm-green: #28ba52;
-$warning-red: #db2a2a;
+$main-color: #131313
+$text-color: #aee4ff
+$button-color: #14adff
+$border-radius: 2px
+$logo-color: #009d9d
+$confirm-green: #28ba52
+$input-green: #72ba5d
+$warning-red: #db2a2a
 
 @font-face
   font-family: oswald
@@ -74,23 +75,37 @@ a:visited
   margin-top: 15px
   float: right
 
-.error-message
-  position: fixed
-  top: 95px
-  width: 100%
-  text-align: center
-  padding: 10px 0
-  background-color: #db2a2a
-  color: white
 
-.confirm-message
+
+.flash-message
   position: fixed
   top: 95px
   width: 100%
   text-align: center
-  padding: 10px 0
-  background-color: $confirm-green
+  padding: 0
+  opacity: 0
+  font-size: 15px
   color: white
+  transition: all .5s
+
+.flash-message.active
+  padding: 10px 0
+  opacity: 1
+
+.flash-message.error
+  background-color: $warning-red
+
+.flash-message.confirm
+  background-color: $confirm-green
+
+//.confirm-message
+//  position: fixed
+//  top: 95px
+//  width: 100%
+//  text-align: center
+//  padding: 10px 0
+//  background-color: $confirm-green
+//  color: white
 
 
 //body styling
@@ -163,10 +178,13 @@ input //.input-container input
   border-radius: $border-radius
   color: gray
 
-.text-input:focus
-  box-shadow: 0 0 3px 0px $confirm-green
+input.required
+  border: 1px solid red
 
-.input-container input[type="submit"],
+.text-input:focus
+  box-shadow: 0 0 5px 0px $input-green
+
+.input-container input[type="submit"]
   background-color: $button-color
   border-top: 2px solid #06e6ff
   border-left: 2px solid #06e6ff
@@ -185,7 +203,6 @@ input //.input-container input
   text-align: left
   color: white
   font-size: 13px
-
 
 
 

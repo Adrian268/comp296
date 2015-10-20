@@ -4,9 +4,9 @@
     <title>List App</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="bower_components/bootstap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="../bower_components/bootstap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
     <div class="top-heading">
@@ -17,18 +17,18 @@
       </div>
     </div>
     <div id="main-body">
-      <!--.error-message This email doesn't exist. Try again-->
-      <!--.confirm-message Your Password has been reset-->
+      <div class="flash-message error active">Log In Failed</div>
       <section>
         <div class="input-container">
           <div class="input-wrapper">
-            <p>Confirm your email and set your new password</p>
             <input type="text" placeholder="EMAIL" name="email" class="text-input">
-            <input type="password" placeholder="NEW PASSWORD" name="new_password" class="text-input">
-            <input type="password" placeholder="CONFIRM NEW PASSWORD" name="new_password_cf" class="text-input">
-            <input type="submit" value="Reset Password" name="reset_password_submit">
+            <input type="password" placeholder="PASSWORD" name="password" class="text-input">
+            <input type="submit" value="Log In" name="login">
+            <p>Don't have an account? <a href="#">REGISTER</a></p>
+            <p><a href="#">Forgot Password?</a></p>
           </div>
         </div>
+        <!--.promo-->
       </section>
     </div>
     <footer>
