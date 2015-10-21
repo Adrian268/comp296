@@ -8,8 +8,6 @@ class User extends Model{
 
     public $name = "", $email = "", $phone_number = "", $password = "";
 
-    public $this_is_an_entry = "testing if this variable works";
-
     function __construct($name, $email, $phone_number, $password){
         parent::__construct();
 

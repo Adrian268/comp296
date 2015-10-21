@@ -31,7 +31,7 @@ else if(Session::isLoggedIn()){
     <div id="logo-link-container">
         <div id="logo"><a href="index.php">
                 <p>ListApp</p></a></div>
-        <div id="top-right"><a href="index.php">SIGN IN</a> |<a href="register.php"> REGISTER</a></div>
+        <div id="top-right"><a href="index.php">LOG IN</a> |<a href="register.php"> REGISTER</a></div>
     </div>
 </div>
 <div id="main-body">

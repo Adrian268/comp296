@@ -3,7 +3,7 @@ require_once '../Util/Session.php';
 require_once '../Util/View.php';
 
 if(!Session::isLoggedIn()) {
-    Session::setError("Access denied. Pleas Log In to view this page");
+    Session::setError("Access denied. Please Log In to view this page");
     View::render('../index.php');
 }
 ?>
@@ -134,7 +134,7 @@ if(!Session::isLoggedIn()) {
     </section>
 </div>
 <footer>
-    <p>&copy;2015 ListApp. All Rights Reserved</p>
+    <p>&copy;2015 ListApp.</p>
 </footer>
 </body>
 </html>

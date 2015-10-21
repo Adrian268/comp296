@@ -40,7 +40,7 @@ if(isset($_POST['log_in'])) {
 else if (isset($_GET['log_out'])) {
         $login->tryLogOut();
 }else{
-
+    $login->tryLogOut();
 }
 
 

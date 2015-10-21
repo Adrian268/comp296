@@ -27,7 +27,7 @@ else if(Session::isLoggedIn()){
     <div id="logo-link-container">
         <div id="logo"><a href="#">
                 <p>ListApp</p></a></div>
-        <div id="top-right"><a href="index.php">SIGN IN</a> |<a href="register.php"> REGISTER</a></div>
+        <div id="top-right"><a href="index.php">LOG IN</a> |<a href="register.php"> REGISTER</a></div>
     </div>
 </div>
 <div id="main-body">
@@ -46,7 +46,7 @@ else if(Session::isLoggedIn()){
                     <input type="password" placeholder="PASSWORD" name="password" class="text-input" required>
                     <input type="password" placeholder="CONFIRM PASSWORD" name="password_confirm" class="text-input" required>
                     <input type="submit" value="REGISTER" name="register_rqst">
-                    <p>Already have an account? <a href="index.php">SIGN IN</a></p>
+                    <p>Already have an account? <a href="index.php">LOG IN</a></p>
                 </div>
             </div>
         </form>
