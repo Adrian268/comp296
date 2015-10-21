@@ -1,3 +1,16 @@
+<?php
+//require_once 'Util/Session.php';
+require_once 'Util/View.php';
+
+if (Session::error()){
+    $er_msg = $_SESSION['error_message'];
+    Session::clear();
+}
+else if(Session::isLoggedIn()){
+    View::render('user/profile.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +31,9 @@
     </div>
 </div>
 <div id="main-body">
+    <?php if(isset($er_msg)) {
+        echo "<div class='flash-message error '> $er_msg </div>";
+    }?>
     <!--.error-message This email doesn't exist. Try again-->
     <!--.confirm-message Your Password has been reset-->
     <section>
@@ -29,7 +45,7 @@
                     <input type="text" placeholder="PHONE NUMBER" name="phone_number" class="text-input">
                     <input type="password" placeholder="PASSWORD" name="password" class="text-input" required>
                     <input type="password" placeholder="CONFIRM PASSWORD" name="password_confirm" class="text-input" required>
-                    <input type="submit" value="REGISTER" name="register">
+                    <input type="submit" value="REGISTER" name="register_rqst">
                     <p>Already have an account? <a href="index.php">SIGN IN</a></p>
                 </div>
             </div>
