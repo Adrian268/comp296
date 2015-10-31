@@ -1,12 +1,12 @@
 <?php
-require_once 'Session.php';
-require_once '../Models/UserModel.php';
-
-require_once '../Util/Connection.php';
+require_once 'Database.php';
+require_once 'Session.php' ;
 
 class Auth {
 
-    static function attempt($email, $password,$db){
+    static function attempt($email, $password){
+
+        $db = new Database();
 
         $email = strtolower($email);
 
@@ -14,9 +14,25 @@ class Auth {
         $query->setFetchMode(PDO::FETCH_OBJ);
 
         if($data = $query->fetch()){
-            if($email===$data->email && password_verify($password, $data->password))
+            if($email===$data->email && password_verify($password, $data->password)){
+                Session::set($data->user_id, $data->email, $data->name);
                 return true;
+            }
         }
+        return false;
+    }
+
+    static function check(){
+
+        if(Session::started()){
+
+            View::render('dashboard.php');
+
+            return true;
+        }
+
+        Session::clear();
+
         return false;
     }
 

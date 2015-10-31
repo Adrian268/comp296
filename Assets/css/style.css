@@ -17,6 +17,7 @@
   border: 0;
   margin: 0;
   padding: 0;
+  outline: none;
 }
 
 .small {
@@ -83,7 +84,6 @@ a:visited {
 
 .flash-message {
   position: fixed;
-  top: 95px;
   width: 100%;
   text-align: center;
   padding: 0;
@@ -91,6 +91,7 @@ a:visited {
   font-size: 15px;
   color: white;
   transition: all 0.5s;
+  z-index: 9;
 }
 
 .flash-message.active {
@@ -99,11 +100,11 @@ a:visited {
 }
 
 .flash-message.error {
-  background-color: #db2a2a;
+  background-color: #f72459;
 }
 
 .flash-message.confirm {
-  background-color: #28ba52;
+  background-color: #2dcc70;
 }
 
 body {
@@ -112,7 +113,7 @@ body {
 
 #main-body {
   position: relative;
-  margin: 86px 0 59px;
+  margin: 95px 0 59px;
   width: 100%;
   height: 100vh;
   background: url("../img/background-img.jpg") no-repeat fixed;
@@ -144,7 +145,7 @@ footer p {
 }
 
 .input-container {
-  width: 100%;
+  width: 50%;
   height: auto;
   background-color: rgba(0, 0, 0, 0.17);
   border-radius: 2px;
@@ -168,6 +169,7 @@ input {
   text-align: center;
   font-size: 20px;
   border-radius: 2px;
+  border: 1px solid white;
   color: gray;
 }
 
@@ -175,15 +177,11 @@ input.required {
   border: 1px solid red;
 }
 
-.text-input:focus {
-  box-shadow: 0 0 5px 0px #72ba5d;
-}
-
 .input-container input[type="submit"] {
   background-color: #14adff;
-  border-top: 2px solid #06e6ff;
+  border-top: 1px solid #06e6ff;
   border-left: 2px solid #06e6ff;
-  border-right: 2px solid #0482ff;
+  border-right: 1px solid #0482ff;
   border-bottom: 2px solid #0482ff;
   color: white;
 }
@@ -199,4 +197,33 @@ input.required {
   text-align: left;
   color: white;
   font-size: 13px;
+}
+
+label {
+  display: block;
+  position: absolute;
+  margin-top: -18px;
+  font-size: 10px;
+  color: #f72459;
+  text-transform: uppercase;
+}
+
+.valid {
+  border: 1px solid #2dcc70;
+  background-image: url("../img/check.png");
+  background-position: 98% 50%;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+select.error, textarea.error, input.error, input.error:focus {
+  border: 1px solid #f72459;
+  background-image: url("../img/x.png");
+  background-position: 98% 50%;
+  background-repeat: no-repeat;
+  z-index: 100;
+}
+
+.text-input:focus {
+  border: 1px solid #2dcc70;
 }

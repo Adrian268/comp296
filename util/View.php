@@ -1,11 +1,11 @@
 <?php
-require_once "Session.php";
+require_once 'Session.php';
 new Session();
 
 class View{
 
-    static function render($path){
-        header('Location: ' . $path);
+    static function render($view){
+        header('Location: http://localhost/listapp/' . $view);
     }
 
 }

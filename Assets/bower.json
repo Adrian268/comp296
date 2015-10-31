@@ -1,0 +1,22 @@
+{
+  "name": "ListApp",
+  "version": "0.0.0",
+  "authors": [
+    "Adrian Sanchez"
+  ],
+  "description": "List Web Application",
+  "main": "index.html",
+  "license": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.5",
+    "jquery-validation": "~1.14.0"
+  }
+}
