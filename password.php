@@ -11,11 +11,11 @@ require 'Templates/html_head.php';
 require 'Templates/page_header.php';
 ?>
 
-<div id="main-body">
+<section>
     <?php if(isset($er_msg)) {
         echo "<div class='flash-message error'>{$er_msg}</div>";
     }?>
-  <section>
+
     <form method="POST" action="Controllers/PasswordController.php" >
         <div class="input-container">
             <div class="input-wrapper">
@@ -25,7 +25,7 @@ require 'Templates/page_header.php';
             </div>
         </div>
     </form>
-  </section>
-</div>
+</section>
+
 
 <?php require_once 'Templates/html_footer.php' ?>

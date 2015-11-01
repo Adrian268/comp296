@@ -11,11 +11,11 @@ require_once 'Templates/html_head.php';
 require_once 'Templates/page_header.php';
 
 ?>
-    <div id="main-body">
+<section>
         <?php if(isset($er_msg)) {
             echo "<div class='flash-message error'>{$er_msg}</div>";
         }?>
-        <section>
+
             <div class="input-container">
             <form method="POST" action="controllers/RegisterController.php" id="RegisterForm">
                     <div class="input-wrapper">
@@ -29,8 +29,8 @@ require_once 'Templates/page_header.php';
                     </div>
             </form>
             </div>
-        </section>
-    </div>
+</section>
+
 
 <script>
     $('#RegisterForm').validate({

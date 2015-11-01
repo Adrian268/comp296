@@ -5,10 +5,10 @@ require_once '../Util/Email.php';
 class PasswordReset extends Model{
 
     public $token;
+    public $table = 'password_resets';
 
     function __construct(){
         parent::__construct();
-        $this->table = 'password_resets';
         $this->token = bin2hex(openssl_random_pseudo_bytes(20));
     }
 

@@ -14,7 +14,7 @@ require 'Templates/html_head.php';
 require 'Templates/page_header.php';
 ?>
 
-<div id="main-body">
+<section>
     <?php if(isset($er_msg)) {
         echo "<div class='flash-message error'>{$er_msg}</div>";
     }?>
@@ -22,7 +22,7 @@ require 'Templates/page_header.php';
     <?php if(isset($cf_msg)) {
         echo "<div class='flash-message confirm'>{$cf_msg}</div>";
     }?>
-    <section>
+
         <div class="input-container">
         <form method="POST" action="controllers/LoginController.php">
                 <div class="input-wrapper">
@@ -34,7 +34,7 @@ require 'Templates/page_header.php';
                 </div>
         </form>
         </div>
-    </section>
-</div>
+</section>
+
 
 <?php require_once 'Templates/html_footer.php' ?>

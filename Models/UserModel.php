@@ -3,8 +3,8 @@ require_once 'Model.php';
 
 class User extends Model{
 
+    public $table = 'users';
     public $name = "", $email = "", $phone_number = "", $password = "";
-    public $table = "users";
 
     function __construct(){
         parent::__construct();
@@ -47,5 +47,3 @@ class User extends Model{
     }
 
 }
-
-

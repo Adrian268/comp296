@@ -8,7 +8,7 @@ if(isset($_POST['register_rqst'])) {
 
     if($_POST['password'] === $_POST['password_confirm']){
 
-        $name = trim($_POST['name']);
+        $name = ucwords(strtolower(trim($_POST['name'])));
         $email = trim($_POST['email']);
         $phone_number = trim($_POST['phone_number']);
         $password = trim($_POST['password']);

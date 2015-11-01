@@ -1,61 +1,58 @@
+/*** page header styling ***/
 #logo-link-container {
-  position: relative;
   height: 55px;
 }
 
 #logo {
-  float: left;
+  margin-right: 20px;
+  display: inline-block;
 }
 
 #new-shopping-list {
-  position: relative;
-  display: inline-block;
   vertical-align: middle;
-  width: 70%;
-  margin: 10px 0 0 20px;
-  height: 45px;
+  display: inline-block;
+  width: 60%;
+  margin-bottom: 20px;
 }
 
-#new-shopping-list input {
+#new-shopping-list input[type='text'] {
+  width: 90%;
   margin: 0;
-  width: 92%;
   float: left;
 }
 
-#new-shopping-list a {
+#new-shopping-list input[type='submit'] {
+  background: url("../img/add-list-icon.png");
+  background-size: contain;
+  font-size: 30px;
+  padding: 0;
   float: right;
-  margin-top: 5px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  margin: 6px 0 0 0;
+  cursor: pointer;
 }
 
 #top-right {
-  margin-top: 10px;
+  margin-top: 5px;
+  width: 70px;
   text-align: right;
   font-size: 13px;
 }
 
-#top-right p {
+#top-right p.contact-name {
   display: inline-block;
+  width: 70px;
   font-size: 15px;
-}
-
-.contact-name {
-  padding: 3px 0 3px 30px;
   background: url("../img/contact-icon.png") no-repeat left center;
+  padding: 3px 0;
 }
 
-#menu {
-  width: 95%;
-  margin: 10px auto;
-}
-
-#main-body {
-  margin: 135px 0 59px;
-  width: 100%;
-  height: auto;
-}
-
+/*** pages body sections styling ***/
 section {
-  padding-bottom: 50px;
+  padding: 135px 0 60px 0;
+  height: 100vh;
 }
 
 .error-message, .confirm-message {
@@ -69,7 +66,7 @@ hr {
 }
 
 .lists-container {
-  width: 50%;
+  width: 460px;
   margin: 0 auto;
   text-align: left;
   margin-bottom: 50px;
@@ -109,6 +106,7 @@ h4.list-name {
   display: inline-block;
   width: auto;
   margin: 10px 5px 0 0;
+  font-weight: 100;
 }
 
 .date-created, .created-by, a.edit-list {
@@ -211,4 +209,60 @@ img.item-settings {
   border-bottom: 2px solid #06e6ff;
   border-top: 2px solid #0482ff;
   border-left: 2px solid #0482ff;
+}
+
+/*** navigation styling ***/
+#menu {
+  width: 95%;
+  margin: 10px auto;
+}
+
+#nav-toggle {
+  cursor: pointer;
+}
+
+.main-navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+  background-color: #101010;
+  z-index: 100;
+  margin-left: -200px;
+  transition: all 0.5s ease;
+}
+
+.top-heading, section, footer {
+  transition: transform 0.5s ease;
+}
+
+.site-wrapper {
+  overflow: hidden;
+}
+
+.main-navigation ul {
+  margin: 100px 0;
+  list-style: none;
+  font-size: 13px;
+  font-family: open-sans;
+}
+
+.main-navigation ul li a {
+  display: block;
+  margin: 10px 0;
+  padding: 10px 0 10px 25px;
+  color: white;
+}
+
+.main-navigation ul li a:hover {
+  background-color: gray;
+}
+
+.active {
+  transform: translateX(200px);
+}
+
+.main-navigation.active {
+  box-shadow: 20px 0 50px 0px black;
 }

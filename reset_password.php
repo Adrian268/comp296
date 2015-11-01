@@ -16,11 +16,11 @@ if(isset($_GET['token'])){
 require 'Templates/html_head.php';
 require 'Templates/page_header.php';
 ?>
-    <div id="main-body">
+    <section>
         <?php if(isset($er_msg)) {
             echo "<div class='flash-message error'>{$er_msg}</div>";
         }?>
-      <section>
+
         <div class="input-container">
         <form method="POST" action="Controllers/ResetPasswordController.php" id="ResetPasswordForm">
             <p style="margin-left:125px">Confirm your email and set your new password</p>
@@ -33,8 +33,8 @@ require 'Templates/page_header.php';
           </div>
         </form>
         </div>
-      </section>
-    </div>
+    </section>
+
     <script>
         $('#ResetPasswordForm').validate({
             rules:{
