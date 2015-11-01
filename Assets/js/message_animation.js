@@ -1,10 +1,10 @@
 $(function(){
 
-    $('.flash-message').addClass('active');
+    $('.flash-message').addClass('show');
 
     setInterval(function(){
 
-        $('.flash-message.confirm').removeClass('active');
+        $('.flash-message.remove').removeClass('show');
 
     }, 3000);
 

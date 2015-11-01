@@ -1,5 +1,3 @@
-<?php require_once 'cons.php';?>
-
 <div class="top-heading">
     <div id="logo-link-container">
         <div id="logo"><a href="<?php echo DIR_PATH?>index.php">

@@ -226,22 +226,23 @@ img.item-settings {
   left: 0;
   top: 0;
   height: 100%;
-  width: 200px;
-  background-color: #101010;
-  z-index: 100;
-  margin-left: -200px;
-  transition: all 0.5s ease;
+  width: 300px;
+  z-index: 0;
+  background: linear-gradient(90deg, #0a0a0a 52%, black 63%);
+  visibility: hidden;
+  margin-left: -100px;
+  transition: all 0.6s ease;
 }
 
 .top-heading, section, footer {
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .site-wrapper {
   overflow: hidden;
 }
 
-.main-navigation ul {
+.main-navigation ul:first-child {
   margin: 100px 0;
   list-style: none;
   font-size: 13px;
@@ -250,19 +251,34 @@ img.item-settings {
 
 .main-navigation ul li a {
   display: block;
-  margin: 10px 0;
+  margin: 0;
   padding: 10px 0 10px 25px;
   color: white;
 }
 
 .main-navigation ul li a:hover {
-  background-color: gray;
+  background-color: #696969;
 }
 
 .active {
-  transform: translateX(200px);
+  transform: translateX(180px);
 }
 
 .main-navigation.active {
-  box-shadow: 20px 0 50px 0px black;
+  visibility: visible;
+  transform: translateX(100px);
+}
+
+ul.sub-nav {
+  background-color: black;
+  list-style: none;
+  font-size: 11px;
+  margin: 0;
+  padding: 10px 0;
+  box-shadow: 0 0 10px 5px black inset;
+}
+
+ul.sub-nav li a {
+  margin: 0;
+  padding: 5px 0 5px 50px;
 }

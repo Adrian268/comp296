@@ -109,7 +109,7 @@ a:visited {
   z-index: 9;
 }
 
-.flash-message.active {
+.flash-message.show {
   padding: 10px 0;
   opacity: 1;
 }

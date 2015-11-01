@@ -1,5 +1,3 @@
-<?php require_once 'cons.php' ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

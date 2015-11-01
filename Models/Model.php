@@ -1,11 +1,10 @@
 <?php
-require_once '../Util/Database.php'; // DELETE AFTER TESTING
 
-class Model {
+abstract class Model {
 
     public $table;
-    public $fillables = [];
-    public $values = [];
+    protected  $fillables = [];
+    protected  $values = [];
 
     function __construct(){
         $this->db = new Database();
@@ -13,19 +12,25 @@ class Model {
 
     function save(){
         $query = $this->db->prepare("INSERT INTO $this->table (" . $this->getFillables() .  ") VALUES (" . $this->getValues() . ")");
-        echo "INSERT INTO $this->table (" . $this->getFillables() .  ") VALUES (" . $this->getValues() . ")";
 
         for($i = 0 ; $i < count($this->values) ; $i++ ){
-
             ${$this->fillables[$i]} = $this->values[$i];
             $query->bindValue(':' . $this->fillables[$i], ${$this->fillables[$i]});
-
-            echo "<br>" . ${$this->fillables[$i]}. "<br>";
         }
 
-        if($query->execute())
-            echo "saved";
-        else print_r($query->errorInfo());
+        return $query->execute();
+
+    }
+
+    function show($field, $value){
+        $stmnt = $this->db->prepare("SELECT * FROM $this->table WHERE $field=" . ':' . "$field");
+        $stmnt->bindValue(':'.$field, $value);
+        $stmnt->execute();
+        $data = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+//        return "SELECT * FROM $this->table WHERE $field=" . ':' . "$field";
+
     }
 
     function create(){
@@ -36,33 +41,21 @@ class Model {
     }
 
     function getFillables(){
-        $amount = count($this->fillables);
         $string = "";
 
-        for ($i = 0; $i < $amount; $i++){
-            if($amount - $i != 1)
-                $string .= $this->fillables[$i] . ", ";
-            else
-                $string .= $this->fillables[$i];
+        foreach($this->fillables as $key => $value)
+            $string .= $value . ",";
 
-        }
-
-        return $string;
+        return rtrim(trim($string), ',');
     }
 
     function getValues(){
-        $amount = count($this->fillables);
         $string = "";
 
-        for ($i = 0; $i < $amount; $i++){
-            if($amount - $i != 1)
-                $string .= " :" . $this->fillables[$i] . ", ";
-            else
-                $string .= " :" . $this->fillables[$i];
+        foreach($this->fillables as $key => $value)
+            $string .= " :" . $value . ",";
 
-        }
-
-        return $string;
+        return (rtrim(trim($string), ','));
     }
 }
 

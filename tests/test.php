@@ -22,7 +22,7 @@
 //strtolower($email);
 //
 //echo $email . "<br/>";
-require_once '../cons.php';
+require_once '../config.php';
 ?>
 
 <script src="<?php echo DIR_PATH?>Assets/bower_components/jquery/dist/jquery.min.js"></script>

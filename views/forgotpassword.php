@@ -16,11 +16,11 @@ require 'Templates/page_header.php';
         echo "<div class='flash-message error'>{$er_msg}</div>";
     }?>
 
-    <form method="POST" action="Controllers/PasswordController.php" >
+    <form method="POST" action="../controllers/PasswordController.php" >
         <div class="input-container">
             <div class="input-wrapper">
                 <p>Can't remember your password?</p>
-                <input type="email" placeholder="EMAIL" name="email" class="text-input focus" srequired>
+                <input type="email" placeholder="EMAIL" name="email" class="text-input focus" required>
                 <input type="submit" value="Send Password Reset Link" name="password_reset_email_rqst">
             </div>
         </div>
