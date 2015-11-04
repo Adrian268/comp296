@@ -15,7 +15,7 @@ class Token{
 
             $db->query("DELETE FROM password_resets where token = '$token'");
 
-            $_SESSION['error_message'] = "Sorry this link has expired. <a href='password.php'>CLICK HERE</a> for a new password reset link";
+            $_SESSION['error_message'] = "Sorry this link has expired. <a href='forgotpassword.php'>CLICK HERE</a> for a new password reset link";
             View::render('index.php');
         }
 

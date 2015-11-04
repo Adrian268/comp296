@@ -28,7 +28,7 @@ require_once '../Models/PasswordReset.php';
     } else {
 
         $_SESSION['error_message'] = $ERR_MSG;
-        View::render('password.php');
+        View::render('forgotpassword.php');
     }
 
 

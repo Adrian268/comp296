@@ -13,6 +13,10 @@ class Dashboard{
     public function view($data = []){
         require_once 'views/dashboard.php';
     }
+
+    public function sayHello(){
+        echo "hello";
+    }
 }
 
 if(!Session::started()) {

@@ -22,17 +22,6 @@ abstract class Model {
 
     }
 
-    function show($field, $value){
-        $stmnt = $this->db->prepare("SELECT * FROM $this->table WHERE $field=" . ':' . "$field");
-        $stmnt->bindValue(':'.$field, $value);
-        $stmnt->execute();
-        $data = $stmnt->fetchAll(PDO::FETCH_ASSOC);
-
-        return $data;
-//        return "SELECT * FROM $this->table WHERE $field=" . ':' . "$field";
-
-    }
-
     function create(){
         $args = func_num_args();
 
@@ -57,6 +46,16 @@ abstract class Model {
 
         return (rtrim(trim($string), ','));
     }
+
+    function show($field, $value){
+        $stmnt = $this->db->prepare("SELECT * FROM $this->table WHERE $field=" . ':' . "$field");
+        $stmnt->bindValue(':'.$field, $value);
+        $stmnt->execute();
+        $data = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
 }
 
 

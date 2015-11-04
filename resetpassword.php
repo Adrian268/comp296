@@ -8,4 +8,4 @@ class ResetPassword{
     }
 }
 
-new ForgotPassword();
+new ResetPassword();

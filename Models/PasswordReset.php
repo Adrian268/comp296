@@ -20,7 +20,7 @@ class PasswordReset extends Model{
 
         $subject = "Password Reset Link";
 
-        $body = $mailer->emailBody("ResetPassword", "http://localhost/listapp/reset_password.php?token=$this->token");
+        $body = $mailer->emailBody("ResetPassword", "http://localhost/listapp/resetpassword.php?token=$this->token");
 
         $mailer->sendEmail($email, $subject, $body);
 

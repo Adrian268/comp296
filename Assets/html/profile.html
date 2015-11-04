@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/bootstap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/profile.css">
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
   </head>
   <body>
     <div class="top-heading">
@@ -15,13 +15,13 @@
         <div id="logo"><a href="#">
             <p>ListApp</p></a></div>
         <div id="new-shopping-list">
-          <input type="text" placeholder="New Shopping List" name="new_shopping_list" class="text-input"><a href="#"><img src="../img/add-list-icon.png"></a>
+          <input type="text" placeholder="New Shopping List" name="new_shopping_list" class="text-input"><a href="#"><img src="img/add-list-icon.png"></a>
         </div>
         <div id="top-right">
           <p>Welcome</p><a href="#">Log Out</a>
         </div>
       </div>
-      <div id="menu"><a href="#"><img src="../img/menu-icon.png"></a></div>
+      <div id="menu"><a href="#"><img src="img/menu-icon.png"></a></div>
     </div>
     <div id="main-body">
       <!--.error-message Password fields do not match. Try again-->
@@ -69,14 +69,23 @@
             </div>
             <div class="list-body">
               <div class="item-wrapper">
-                <div class="container">
-                  <input type="checkbox">
-                  <p class="item-name">Item 1</p>
-                  <div class="item-settings-wrapper"><img src="../img/item-settings-icon.png" class="item-settings"></div>
+                <div class="item-container">
+                  <div class="container">
+                    <input type="checkbox">
+                    <p class="item-name">Item 1</p>
+                    <div class="item-settings-wrapper"><img src="../img/item-settings-icon.png" class="item-settings"></div>
+                  </div>
+                  <div class="notes">
+                    <p>this is a note</p>
+                    <p>this is another note</p>
+                  </div>
                 </div>
-                <div class="notes">
-                  <p>this is a note</p>
-                  <p>this is another note</p>
+                <div class="item-settings-nav">
+                  <ul>
+                    <li>Edit Name</li>
+                    <li>Delete Item</li>
+                    <li>Add Note</li>
+                  </ul>
                 </div>
               </div>
               <div class="item-wrapper">
@@ -93,7 +102,7 @@
                 <div class="container">
                   <input type="checkbox">
                   <p class="item-name">Item 3</p>
-                  <div class="item-settings-wrapper"><img src="../img/item-settings-icon.png" class="item-settings"></div>
+                  <div class="item-settings-wrapper"><img src="img/item-settings-icon.png" class="item-settings"></div>
                 </div>
                 <div class="notes">
                   <p>this is a note</p>
@@ -103,7 +112,7 @@
                 <div class="container">
                   <input type="checkbox" checked>
                   <p class="item-name bought-item">Item 4</p>
-                  <div class="item-settings-wrapper"><img src="../img/item-settings-icon.png" class="item-settings"></div>
+                  <div class="item-settings-wrapper"><img src="img/item-settings-icon.png" class="item-settings"></div>
                 </div>
                 <div class="notes">
                   <p>this is a note</p>

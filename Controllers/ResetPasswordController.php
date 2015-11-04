@@ -39,13 +39,13 @@ $data = $query->fetch(PDO::FETCH_ASSOC);
         }else {
 
             $_SESSION['error_message'] = $message['PasswordNoMatch'];
-            View::render("reset_password.php?token=$token");
+            View::render("resetpassword.php?token=$token");
         }
 
     } else {
 
         $_SESSION['error_message'] = $message['EmailNoMatch'];
-        View::render("reset_password.php?token=$token");
+        View::render("resetpassword.php?token=$token");
     }
 
 
