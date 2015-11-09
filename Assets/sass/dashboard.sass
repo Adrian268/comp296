@@ -15,6 +15,9 @@ $dark-warning-red: #e43550
 #logo-link-container
   height: 55px
 
+#logo-link-container input
+  border: 1px solid white
+
 #logo
   margin-right: 20px
   display: inline-block
@@ -46,25 +49,23 @@ $dark-warning-red: #e43550
   margin-top: 5px
   width: 70px
   text-align: right
-  font-size: 13px
+  font-size: 12px
 
 #top-right p.contact-name
   display: inline-block
   width: 70px
   font-size: 15px
-  background: url('../img/contact-icon.png') no-repeat left center
+  //background: url('../img/contact-icon.png') no-repeat left center
   padding: 3px 0
-
-
 
 /*** pages body sections styling ***/
 section
-  padding: 135px 0 60px 0
+  padding: 125px 0 60px 0
   height: 100vh
 
 .error-message, .confirm-message
   position: fixed
-  top: 135px
+  top: 0
 
 /*** list styling ***/
 hr
@@ -76,17 +77,20 @@ hr
   padding-top: 50px
   text-align: left
 
+.list-heading form
+  display: inline
 
 .list-heading input
   font-family: oswald
   width: 35%
   display: inline-block
   margin: 13px 100px 0 0
-  background-color: #bcbcbc
+  background-color: #d7d7d7
   padding: 2px 0
   text-align: center
   font-size: 13px
   border-radius: $border-radius
+  border: 1px solid white
   color: gray
   float: right
 
@@ -103,7 +107,7 @@ hr
 .list-heading
   position: relative
   height: 50px
-  margin: 5px
+  margin: 0 5px
 
 h4.list-name
   color: $main-color

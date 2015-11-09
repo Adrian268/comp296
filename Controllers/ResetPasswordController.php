@@ -1,7 +1,7 @@
 <?php
 require_once '../Util/Database.php';
 require_once '../Util/View.php';
-require_once '../Models/UserModel.php';
+require_once '../Models/User.php';
 require_once 'LoginController.php';
 require_once '../Models/PasswordReset.php';
 

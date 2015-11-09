@@ -1,14 +1,8 @@
 <?php
-require_once 'Util/View.php';
-require_once 'Util/Auth.php';
-
-if(isset($_SESSION['error_message']))
-    $er_msg = $_SESSION['error_message'];
-
-Auth::check();
 
 require 'Templates/html_head.php';
 require 'Templates/page_header.php';
+
 ?>
 
 <section>

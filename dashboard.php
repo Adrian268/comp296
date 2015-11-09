@@ -1,29 +1,40 @@
 <?php
 require_once 'init.php';
-require_once 'models/lists.php';
+require_once 'models/List.php';
+require_once 'models/Item.php';
 
 class Dashboard{
 
-    public function getData(){
-        $lists = new Lists();
-        return $lists->show('user_id', $_SESSION['id']);
+    public function __construct(){
 
-    }
+        // check for messages
+        if(isset($_SESSION['confirm_message'])){
+            $cf_msg = $_SESSION['confirm_message'];
+            $_SESSION['confirm_message'] = null;
+        }
 
-    public function view($data = []){
+        $list_data = $this->getData(new Lists());
+        $item_data = $this->getData(new Item());
+
         require_once 'views/dashboard.php';
     }
 
-    public function sayHello(){
-        echo "hello";
+    // takes a model class to retrieve data
+    public function getData(Model $model){
+
+        return $model->show('user_id', $_SESSION['id']);
+
     }
+
 }
 
-if(!Session::started()) {
-    $_SESSION['error_message'] = "Access denied. Please Log In to view this page";
-    View::render('index.php');
-}else{
-    $dashboard = new Dashboard();
-    $dashboard->view($dashboard->getData());
+// check if session is not started to restrict access to dashboard.php
+if(Auth::loggedIn()){
+
+    new Dashboard();
 }
+
+
+
+
 

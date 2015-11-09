@@ -1,14 +1,8 @@
 <?php
+
 $page = "dashboard";
-require_once 'util/Session.php';
-require_once 'util/View.php';
-
-if(isset($_SESSION['confirm_message'])){
-    $cf_msg = $_SESSION['confirm_message'];
-    $_SESSION['confirm_message'] = null;
-}
-
 require_once 'templates/html_head.php';
+
 ?>
 
     <div class="site-wrapper">
@@ -27,7 +21,7 @@ require_once 'templates/html_head.php';
                     <ul class="sub-nav" id="list-sub-nav">
 
                         <?php
-                        foreach($data as $list){
+                        foreach($list_data as $list){
                             echo  "<li rel='".$list['list_id']."'><a href='#'>".$list['list_name']."</a></li>";
                         }
                         ?>
@@ -39,6 +33,7 @@ require_once 'templates/html_head.php';
             </ul>
         </nav>
 
+<!--    BEGIN PAGE HEADER -->
         <div class="top-heading">
             <div id="logo-link-container">
                 <div id="logo">
@@ -62,10 +57,11 @@ require_once 'templates/html_head.php';
                     <div id="div3" class="menu-icon-bar">&nbsp;</div>
                 </div>
             </div>
-<!--            <img src="assets/img/menu-icon.png" id="nav-toggle" >-->
         </div>
+<!--    END PAGE HEADER-->
 
         <section id="#section">
+
             <?php if(isset($cf_msg)) {
                 echo "<div class='flash-message confirm remove'>{$cf_msg}</div>";
             }?>
@@ -74,35 +70,61 @@ require_once 'templates/html_head.php';
                 $_SESSION['error_message'] = null;
             }?>
 
-
-
             <div class="lists-container">
                 <?php
-                foreach($data as $list){
+                foreach($list_data as $list){
 
-            echo "    <div class='list-wrapper'>
+                echo "<div class='list-wrapper'>
                             <div class='list-heading'>
                                 <h4 class='list-name'>".$list['list_name']."</h4>
+                                <form method='POST' action='controllers/itemcontroller.php'>
                                 <input type='text' placeholder='Add Item...' name='add_item'/>
+                                <input type='hidden' name='list_id' value='".$list['list_id']."'>
+                                </form>
                                 <div class='created-info'>
-                                    <p class='small date-created'>".date("m/d/y h:i:s",strtotime($list['created_at']))."</p>
+                                    <p class='small date-created'>".date("m/d/y h:i a",strtotime($list['created_at']))."</p>
                                     <p class='small created-by'>by: Me</p>
                                 </div>
                             </div>
                             <div class='list-body'>";
-//            echo "
-//                                <div class='item-wrapper'>
-//                                    <div class='container'>
-//                                        <input type='checkbox'>
-//                                        <p class='item-name'></p>
-//                                        <div class='item-settings-wrapper'><img src='assets/img/item-settings-icon.png' class='item-settings'></div>
-//                                    </div>
-//                                    <div class='notes'>
-//                                        <p>this is a note</p>
-//                                        <p>this is another note</p>
-//                                    </div>
-//                                </div>
-//                            </div>";
+
+                foreach($item_data as $item){
+
+                    if($item['list_id'] === $list['list_id']){
+
+                    echo "
+                            <div class='item-wrapper'>
+                                <div class='item-container'>
+                                    <div class='container'>
+                                        <input type='checkbox'>
+                                        <p class='item-name'>".$item['item_name']." <span class='quantity'>";
+
+                                         if($item['quantity'] > 0){
+                                             echo "(".$item['quantity'].")";
+                                         }
+
+                                  echo "</span>
+                                        </p>
+                                        <div class='item-settings-wrapper'><img src='assets/img/item-settings-icon.png' class='item-settings'></div>
+                                    </div>
+                                    <div class='notes'>
+                                        <p>Donec luctus ex risus</p>
+                                        <p>Sed placerat dui odio</p>
+                                    </div>
+                                </div>
+                                <div class='item-settings-nav'>
+                                    <ul>
+                                        <li>Edit Name</li>
+                                        <li>Delete Item</li>
+                                        <li>Add Note</li>
+                                    </ul>
+                                </div>
+                            </div>";
+
+                    } // end if item
+
+                } // end item loop
+
 
             echo "          </div>
                             <div class='list-footer'>
@@ -113,8 +135,10 @@ require_once 'templates/html_head.php';
                                 <input type='submit' value='Share List' name='share_list' class='share-list-btn'>
                             </div>
 
-                      </div>";
-                }
+                   </div>";
+
+                } // end list loop
+
                 ?>
 
 
@@ -132,7 +156,7 @@ require_once 'templates/html_head.php';
 
                 <div class="list-wrapper">
                     <div class="list-heading">
-                        <h4 class="list-name">Party List</h4>
+                        <h4 class="list-name">Grocery List</h4>
                         <input type="text" placeholder="Add Item..." name="add_item">
                         <div class="created-info">
                             <p class="small date-created">12/12/12 12:00pm</p>
@@ -231,128 +255,13 @@ require_once 'templates/html_head.php';
                 </div>
             </div> <!--            end list container-->
 
-
-
-<!--        edit list pop up -->
-
         </section>
 
-        <div class="pop-up-wrapper">
-            <div class="edit-list-pop-up">
-                <div class="close-btn"><img src="assets/img/close-icon.png" width="25px" height="25px" alt=""/></div>
-                <form action="controllers/listcontroller.php" method="post">
-                    <p>Edit Name:</p>
-                    <input type="text" name="list_name" id="list_name"/>
-                    <input type="hidden" name="list_id" id="id_hidden"/>
-                    <input type="submit" name="save_list" class="save-btn" value="Save"/>
-                    <input type="submit" name="delete_list" class="delete-btn" value="Delete List"/>
-                </form>
-            </div>
-        </div>
-
-    <script>
-
-        $(function(){
-
-            var $nav = $('.main-navigation');
-            var $header = $('.top-heading');
-            var $section = $('section');
-            var $footer = $('footer');
-            var $nav_tgl = $('#nav-toggle');
-            var $sub_nav_tgl = $('.sub-nav-tgl');
-            var $sub_nav = $('.sub-nav');
-            var $sub_nav_op = $('#list-sub-nav li');
-
-            //            modal selectors
-            var $modal = $('.pop-up-wrapper');
-            var $edit_list_modal = $('.edit-list-pop-up');
-            var $close_btn = $modal.find('.close-btn');
-
-            //            list selectors
-            var $list = $('.list-name');
-            var $list_body = $('.list-body');
-            var $list_footer = $('.list-footer');
-
-            //            item settings selectors
-            var $item_container = $('.item-container');
-            var $item_settings = $item_container.find('.item-settings-wrapper');
-
-            //          menu toggle selectors
-            var $menu_icon = $nav_tgl.find('.menu-icon-bar');
-
-            function showNav(){
-                $nav.toggleClass('active');
-                $header.toggleClass('active');
-                $section.toggleClass('active');
-                $footer.toggleClass('active');
-            }
-
-            function closeModal(){
-                $modal.css({
-                    'transition':'none',
-                    'visibility':'hidden',
-                    'opacity':'0'});
-            }
-
-            function openModal(){
-                $modal.css({
-                    'transition': 'all .6s ease',
-                    'visibility':'visible',
-                    'opacity' : '1'});
-            }
-
-            $nav_tgl.on('click', function(){
-                showNav();
-                $menu_icon.toggleClass('active');
-            });
-
-            $($list).on('click', function(){
-                var $list_body = $(this).parent('div').next('.list-body');
-
-                $list_body.next('.list-footer').slideToggle();
-                $list_body.slideToggle();
-
-
-            });
-
-            $($sub_nav_tgl).on('click', function(){
-                var $sub_nav = $(this).next($sub_nav);
-                $sub_nav.slideToggle();
-            });
-
-            $($sub_nav_op).on('click', function(){
-                var $value = $(this).text();
-                var $id = $(this).attr('rel');
-                $('#id_hidden').val($id);
-                $('#list_name').val($value);
-                openModal()
-            });
-
-            $($close_btn).on('click', function(){
-                closeModal();
-            });
-
-            $($item_settings).on('click', function(){
-                $(this).closest($item_container).toggleClass('active');
-            });
-
-
-            $(window).load(function(){
-                var $list_body = $('.list-body');
-                var $list_footer = $('.list-footer');
-                $list_body.hide();
-                $list_footer.hide();
-                $sub_nav.hide();
-            });
-
-        });
-
-    </script>
-
+        <?php require_once 'views/templates/list_options_modal.php' ?>
 
         <footer>
             <p>&copy;2015 ListApp</p>
         </footer>
-    </div>
+    </div>  <!--    site wrapper end div-->
 </body>
 </html>

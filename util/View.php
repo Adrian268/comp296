@@ -5,7 +5,9 @@ new Session();
 class View{
 
     static function render($view){
-        header('Location: http://localhost/listapp/' . $view);
+
+        header('Location: http://localhost/listapp/'.$view);
+
     }
 
 }

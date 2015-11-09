@@ -1,37 +1,38 @@
 <?php
-require_once 'Database.php';
-require_once 'Session.php' ;
 
 class Token{
+
+    static $ER_MSG = "Sorry this link has expired. Click on forgot password for a new password reset link";
 
     static function validateToken($token){
 
         $db = new Database;
 
-        $query = $db->query("SElECT * FROM password_resets where token = '$token'");
+        $query = $db->prepare("SElECT * FROM password_resets where token = :token");
+        $query->bindParam(':token', $token);
+        $query->execute();
+
         $data = $query->fetch(PDO::FETCH_ASSOC);
 
-        if(!self::compareTokens(strtotime($data['created_at']))){
+        if(!self::checkTokenDate(strtotime($data['created_at']))){ // if self::checkExpirationDate returns 'false'
 
-            $db->query("DELETE FROM password_resets where token = '$token'");
+            $query = $db->prepare("DELETE FROM password_resets where token = :token");
+            $query->bindParam(':token', $token);
+            $query->execute();
 
-            $_SESSION['error_message'] = "Sorry this link has expired. <a href='forgotpassword.php'>CLICK HERE</a> for a new password reset link";
+            $_SESSION['error_message'] = self::$ER_MSG;
             View::render('index.php');
         }
 
     }
 
-    protected function compareTokens($created_at){
+    protected function checkTokenDate($created_at){
 
-        $minutes = 300; // 3600 seconds = 30 minutes
+        $minutes = 1200; // 3600 seconds = 30 minutes
 
         $expiration_time = $created_at + $minutes;
         $current_time = time();
 
-        if($expiration_time < $current_time)
-            return false;
-
-        return true;
-
+        return ($expiration_time < $current_time) ? false : true; // returns false if the token is invalid
     }
 }

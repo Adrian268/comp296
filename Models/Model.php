@@ -2,7 +2,7 @@
 
 abstract class Model {
 
-    public $table;
+    protected $table;
     protected  $fillables = [];
     protected  $values = [];
 
@@ -48,10 +48,10 @@ abstract class Model {
     }
 
     function show($field, $value){
-        $stmnt = $this->db->prepare("SELECT * FROM $this->table WHERE $field=" . ':' . "$field");
-        $stmnt->bindValue(':'.$field, $value);
-        $stmnt->execute();
-        $data = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->db->prepare("SELECT * FROM $this->table WHERE $field=" . ':' . "$field");
+        $query->bindValue(':'.$field, $value);
+        $query->execute();
+        $data = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $data;
     }

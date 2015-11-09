@@ -1,20 +1,8 @@
 <?php
-require_once 'Util/View.php';
-require_once 'Util/Auth.php';
-require_once 'Util/Token.php';
-
-if(isset($_SESSION['error_message']))
-    $er_msg = $_SESSION['error_message'];
-
-Auth::check();
-
-if(isset($_GET['token'])){
-    session_start();
-    Token::validateToken($_GET['token']);
-}
 
 require 'Templates/html_head.php';
 require 'Templates/page_header.php';
+
 ?>
     <section>
         <?php if(isset($er_msg)) {
@@ -25,7 +13,7 @@ require 'Templates/page_header.php';
         <form method="POST" action="Controllers/ResetPasswordController.php" id="ResetPasswordForm">
             <p style="margin-left:125px">Confirm your email and set your new password</p>
             <div class="input-wrapper">
-            <input type="email" placeholder="EMAIL" name="email" class="text-input focus" />
+            <input type="email" placeholder="EMAIL" name="email" id="email" class="text-input focus" required/>
             <input type="password" placeholder="NEW PASSWORD" name="new_password" id="new_password" class="text-input" minlength="6" required>
             <input type="password" placeholder="CONFIRM NEW PASSWORD" name="new_password_cf" id="new_password_cf" class="text-input" minlength="6" required>
             <input type="hidden" name="token" value="<?php if(isset($_GET['token'])) echo $_GET['token']?>">

@@ -19,11 +19,17 @@ require_once '../Models/PasswordReset.php';
     if ($data['email'] === $email) {
 
         $password = new PasswordReset;
-        $password->sendPasswordLink($email);
 
-        $_SESSION['confirm_message'] = $CF_MSG;
+        if($password->sendPasswordLink($email)){
 
-        View::render('index.php');
+            $_SESSION['confirm_message'] = $CF_MSG;
+            View::render('index.php');
+
+        }else{
+
+            $_SESSION['error_message'] = "Unable to process the request. Please try again later.";
+            View::render('forgotpassword.php');
+        }
 
     } else {
 

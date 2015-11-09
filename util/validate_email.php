@@ -4,10 +4,10 @@ require_once 'database.php';
 $db = new Database;
 $email = trim(strtolower($_GET['email']));
 
-$query = $db->query("SELECT email FROM users WHERE email='$email'");
+$query = $db->prepare("SELECT email FROM users WHERE email=:email");
+$query->bindParam(':email', $email);
+$query->execute();
 
 $result = $query->fetch(PDO::FETCH_ASSOC);
 
-if($result['email'] === $email)
-    echo json_encode(false);
-else echo json_encode(true);
+echo ($result['email'] === $email) ? json_encode(false) : json_encode(true);

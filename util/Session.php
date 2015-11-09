@@ -1,24 +1,24 @@
 <?php
 class Session {
 
-    static $er_msg;
-
-    function __construct(){
+    public function __construct(){
         session_start();
     }
 
     static function set($id, $email, $name){
+
         $name = explode(" ",$name);
+
         $_SESSION['id'] = $id;
         $_SESSION['email'] = $email;
         $_SESSION['name'] = trim(ucfirst($name[0]));
+
         return true;
     }
 
     static function started(){
-        if(isset($_SESSION['email']))
-            return true;
-        return false;
+
+        return (isset($_SESSION['email'])&&isset($_SESSION['id'])) ? true : false;
     }
 
     static function clear(){

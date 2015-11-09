@@ -3,7 +3,7 @@ require_once 'Model.php';
 
 class User extends Model{
 
-    public $table = 'users';
+    protected  $table = 'users';
     public $name = "", $email = "", $phone_number = "", $password = "";
 
     function __construct(){

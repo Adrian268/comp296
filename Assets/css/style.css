@@ -42,16 +42,12 @@
 a {
   text-decoration: none;
   transition: all 0.5s;
-  color: #aee4ff;
+  color: #f4f4f4;
   outline: 0;
 }
 
-a:hover {
-  color: #0030ff;
-}
-
 a:visited {
-  color: #aee4ff;
+  color: #f4f4f4;
 }
 
 .top-heading {
@@ -66,11 +62,12 @@ a:visited {
 }
 
 .top-heading a {
-  color: #aee4ff;
+  font-size: 13px;
+  color: #f4f4f4;
 }
 
 .top-heading a:hover {
-  color: white;
+  color: #54cbf4;
 }
 
 #logo-link-container {
@@ -141,7 +138,7 @@ footer {
   bottom: 0;
   width: 100%;
   background-color: #131313;
-  color: #aee4ff;
+  color: #f4f4f4;
   font-size: 13px;
   padding: 20px 0;
   z-index: 5;
@@ -154,7 +151,7 @@ footer p {
 .input-container {
   width: 50%;
   height: auto;
-  background-color: rgba(0, 0, 0, 0.17);
+  background-color: white;
   border-radius: 2px;
   margin: 50px auto;
   padding: 20px 0;
@@ -180,29 +177,35 @@ input {
   color: gray;
 }
 
+input[type='text'], input[type='email'], input[type='password'], input[type='tel'] {
+  border: 1px solid #8e8e8e;
+}
+
 input.required {
   border: 1px solid red;
 }
 
 .input-container input[type="submit"] {
   background-color: #14adff;
-  border-top: 1px solid #06e6ff;
-  border-left: 2px solid #06e6ff;
-  border-right: 1px solid #0482ff;
   border-bottom: 2px solid #0482ff;
   color: white;
 }
 
 .input-container input[type="submit"]:active {
-  border-right: 2px solid #06e6ff;
   border-bottom: 2px solid #06e6ff;
-  border-top: 2px solid #0482ff;
-  border-left: 2px solid #0482ff;
+}
+
+.input-container a {
+  color: #54cbf4;
+}
+
+.input-container a:hover {
+  color: #0482ff;
 }
 
 .input-container p {
   text-align: left;
-  color: white;
+  color: #383838;
   font-size: 13px;
 }
 
@@ -215,7 +218,7 @@ label {
   text-transform: uppercase;
 }
 
-.valid {
+input.valid {
   border: 1px solid #2dcc70;
   background-image: url("../img/check.png");
   background-position: 98% 50%;
@@ -233,4 +236,26 @@ select.error, textarea.error, input.error, input.error:focus {
 
 .text-input:focus {
   border: 1px solid #2dcc70;
+}
+
+/*** NO SCRIPT ***/
+.noscript {
+  width: 100%;
+  height: 90%;
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  font-family: open-sans;
+}
+
+.noscript #div100 {
+  display: block;
+  height: 100%;
+  background-color: white;
+}
+
+.noscript #div100 p {
+  padding: 100px;
+  color: #f72459;
 }
