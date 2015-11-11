@@ -150,18 +150,19 @@ h4.list-name {
 .item-wrapper input[type="checkbox"] {
   float: left;
   width: 0px;
-  margin: 10px;
+  margin: 3px;
 }
 
 .item-wrapper .container {
   position: relative;
   display: block;
-  height: 35px;
+  height: 25px;
 }
 
 .item-name {
   float: left;
-  margin-top: 3px;
+  font-size: 13px;
+  margin-left: 2px;
 }
 
 .bought-item {
@@ -171,12 +172,12 @@ h4.list-name {
 
 .quantity {
   color: gray;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .notes {
-  font-size: 13px;
-  margin-left: 5px;
+  display: block;
+  font-size: 11px;
   font-family: open-sans;
   color: gray;
 }
@@ -245,6 +246,8 @@ img.item-settings {
   border-top: 1px solid lightblue;
   margin: 0 5px;
   padding: 10px 0;
+  z-index: 100;
+  background-color: white;
 }
 
 .shared-with {
@@ -342,7 +345,7 @@ img.item-settings {
   overflow: hidden;
 }
 
-.main-navigation ul:first-child {
+.main-navigation ul {
   margin: 100px 0;
   list-style: none;
   font-size: 13px;
@@ -387,25 +390,26 @@ ul.sub-nav li a {
   padding: 5px 0 5px 50px;
 }
 
-/*** EDIT LIST POP UP ***/
+/*** MODAL WINDOWS ***/
 .close-btn {
   float: right;
   cursor: pointer;
 }
 
-.pop-up-wrapper {
+.modal-wrapper {
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 100;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
   background-color: rgba(0, 0, 0, 0.37);
   visibility: hidden;
   opacity: 0;
 }
 
-.edit-list-pop-up {
+.modal {
   position: relative;
   top: 50%;
   width: 300px;
@@ -414,20 +418,20 @@ ul.sub-nav li a {
   border-radius: 5px;
   padding: 10px 20px;
   box-shadow: 0 0 40px 5px black;
-  z-index: 200;
+  z-index: 500;
 }
 
-.edit-list-pop-up p {
+.modal p {
   margin-top: 40px;
   color: gray;
 }
 
-.edit-list-pop-up input[type='text'] {
+.modal input[type='text'] {
   margin: 5px auto 20px;
   border: 1px solid #a6a6a6;
 }
 
-.edit-list-pop-up input[type='submit'] {
+.modal input[type='submit'] {
   width: 100%;
   padding: 5px;
   margin: 10px auto;
@@ -439,6 +443,7 @@ input.save-btn {
   background-color: #28ba52;
   border: 0;
   border-bottom: 2px solid #24a14a;
+  cursor: pointer;
 }
 
 .save-btn:hover {
@@ -449,8 +454,110 @@ input.delete-btn {
   background-color: #e43550;
   border: 0;
   border-bottom: 2px solid #c8344b;
+  cursor: pointer;
 }
 
 .delete-btn:hover {
   background-color: #f03d55;
+}
+
+.regular-btn {
+  background-color: rgba(128, 128, 128, 0.65);
+  cursor: pointer;
+  width: 110px;
+  height: 25px;
+  padding: 0px;
+  font-size: 13px;
+}
+
+input[type='button'] {
+  color: white;
+}
+
+input {
+  margin: 0;
+}
+
+/*** new list modal window ***/
+.new-list-modal table p {
+  margin: 0;
+}
+
+.new-list-modal table input {
+  width: 85%;
+  float: left;
+  text-align: left;
+  height: 18px;
+  padding: 3px 10px;
+  font-size: 15px;
+}
+
+.new-list-modal table tr td input[type='text'] {
+  margin: 5px 0;
+}
+
+.new-list-modal table input.item-quantity {
+  float: right;
+  text-align: center;
+  width: 35px;
+  margin-right: 0;
+}
+
+.new-list-item {
+  margin: 0;
+}
+
+span.remove-item {
+  color: #545454;
+  font-family: open-sans;
+  background-color: #ababab;
+  margin-left: 10px;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+}
+
+#permission-check {
+  text-align: left;
+  height: 30px;
+  color: #464646;
+  font-size: 13px;
+}
+
+#permission-check input[type='checkbox'] {
+  padding: 0;
+  margin: 0 5px 0 0;
+  float: left;
+}
+
+/*** add items table ***/
+#new-item-form table tr td {
+  font-size: 11px;
+  color: #1a1a1a;
+}
+
+#new-item-form input[type='text'] {
+  float: left;
+  text-align: left;
+  height: 15px;
+  width: 90%;
+  padding: 0px 5px 3px;
+  font-size: 13px;
+  margin: 0 5px 0 0;
+}
+
+#new-item-form input.item-quantity {
+  width: 20px;
+  text-align: center;
+}
+
+#new-item-form input[type='submit'] {
+  font-family: open-sans-light;
+  height: 25px;
+  width: 80px;
+  font-size: 13px;
+  color: #626262;
+  background-color: #a2a2a2;
+  padding: 1px 2px 2px;
+  cursor: pointer;
 }

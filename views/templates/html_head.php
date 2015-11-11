@@ -11,7 +11,6 @@
     <script src="<?php echo DIR_PATH?>assets/js/message_animation.js"></script>
     <link rel="stylesheet" href="<?php echo DIR_PATH?>assets/css/style.css">
     <?php if(isset($page) && $page === 'dashboard') echo '<link rel="stylesheet" href="'.DIR_PATH.'assets/css/dashboard.css">' ?>
-    <?php if(isset($page) && $page === 'dashboard') echo '<script src="'.DIR_PATH.'assets/js/nav_and_modal.js"></script>' ?>
 </head>
 <body>
 <noscript class="noscript">

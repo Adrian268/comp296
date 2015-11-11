@@ -27,7 +27,7 @@ require_once 'Templates/page_header.php';
 </section>
 
 
-<!--BEGIN REGISTRATION FROM VALIDATION-->
+<!--BEGIN REGISTRATION FORM VALIDATION-->
 <script>
 
     $('#RegisterForm').validate({
@@ -62,6 +62,6 @@ require_once 'Templates/page_header.php';
     });
 
 </script>
-<!--END REGISTRATION FROM VALIDATION-->
+<!--END REGISTRATION FORM VALIDATION-->
 
 <?php require_once 'Templates/html_footer.php' ?>

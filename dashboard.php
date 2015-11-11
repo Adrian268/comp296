@@ -25,7 +25,6 @@ class Dashboard{
         return $model->show('user_id', $_SESSION['id']);
 
     }
-
 }
 
 // check if session is not started to restrict access to dashboard.php

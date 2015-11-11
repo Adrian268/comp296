@@ -22,7 +22,7 @@ require_once 'templates/html_head.php';
 
                         <?php
                         foreach($list_data as $list){
-                            echo  "<li rel='".$list['list_id']."'><a href='#'>".$list['list_name']."</a></li>";
+                            echo  "<li rel='".$list['list_id']."'><a href='#' class='".$list['list_id']."'>".$list['list_name']."</a></li>";
                         }
                         ?>
 
@@ -40,8 +40,8 @@ require_once 'templates/html_head.php';
                     <p>List App</p>
                 </div>
                 <div id="new-shopping-list">
-                    <form action="controllers/ListController.php" method="POST">
-                    <input type="text" placeholder="New Shopping List" name="new_shopping_list" class="text-input"/>
+                    <form action="controllers/ListController.php" method="POST" id="new-list-form">
+                    <input type="text" placeholder="New Shopping List" name="new_list_name" id="new-list-name" class="text-input"/>
                     <input type="submit" value="" name="add_new_list" id="new_list_btn"/>
                     </form>
                 </div>
@@ -71,16 +71,13 @@ require_once 'templates/html_head.php';
             }?>
 
             <div class="lists-container">
+
                 <?php
                 foreach($list_data as $list){
 
                 echo "<div class='list-wrapper'>
                             <div class='list-heading'>
-                                <h4 class='list-name'>".$list['list_name']."</h4>
-                                <form method='POST' action='controllers/itemcontroller.php'>
-                                <input type='text' placeholder='Add Item...' name='add_item'/>
-                                <input type='hidden' name='list_id' value='".$list['list_id']."'>
-                                </form>
+                                <h4 class='list-name ".$list['list_id']."'>".$list['list_name']."</h4>
                                 <div class='created-info'>
                                     <p class='small date-created'>".date("m/d/y h:i a",strtotime($list['created_at']))."</p>
                                     <p class='small created-by'>by: Me</p>
@@ -99,7 +96,7 @@ require_once 'templates/html_head.php';
                                         <input type='checkbox'>
                                         <p class='item-name'>".$item['item_name']." <span class='quantity'>";
 
-                                         if($item['quantity'] > 0){
+                                         if($item['quantity'] > 1){
                                              echo "(".$item['quantity'].")";
                                          }
 
@@ -108,8 +105,6 @@ require_once 'templates/html_head.php';
                                         <div class='item-settings-wrapper'><img src='assets/img/item-settings-icon.png' class='item-settings'></div>
                                     </div>
                                     <div class='notes'>
-                                        <p>Donec luctus ex risus</p>
-                                        <p>Sed placerat dui odio</p>
                                     </div>
                                 </div>
                                 <div class='item-settings-nav'>
@@ -126,7 +121,24 @@ require_once 'templates/html_head.php';
                 } // end item loop
 
 
-            echo "          </div>
+            echo "     <form method='POST' action='controllers/itemcontroller.php' id='new-item-form'>
+                                <table>
+                                    <tr>
+                                        <td>*Item Name</td>
+                                        <td>Quantity</td>
+                                        <td>Note</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type='text' name='new_item_name'></td>
+                                        <td><input type='text' name='new_item_quantity' class='item-quantity'</td>
+                                        <td><input type='text' name='new_item_notes'</td>
+                                        <td><input type='submit' name='add_item_btn' value=' + add item'</td>
+                                    </tr>
+                                    <tr><td><input type='hidden' name='list_id' value='".$list['list_id']."'></td></tr>
+                                </table>
+                            </form>
+                        </div>
                             <div class='list-footer'>
                                 <div class='container'>
                                     <p class='shared-with'>Shared With:</p>
@@ -140,19 +152,6 @@ require_once 'templates/html_head.php';
                 } // end list loop
 
                 ?>
-
-
-<!--                <div class="list-wrapper">-->
-<!--                    <div class="list-heading">-->
-<!--                        <h4 class="list-name">Grocery List</h4>-->
-<!--                        <input type="text" placeholder="Add Item..." name="add_item">-->
-<!--                        <div class="created-info">-->
-<!--                            <p class="small date-created">12/12/12 12:00pm</p>-->
-<!--                            <p class="small created-by">by: Me</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-
 
                 <div class="list-wrapper">
                     <div class="list-heading">
@@ -257,11 +256,16 @@ require_once 'templates/html_head.php';
 
         </section>
 
-        <?php require_once 'views/templates/list_options_modal.php' ?>
+        <?php require_once 'views/templates/edit_list_modal.php' ?>
+        <?php require_once 'views/templates/new_list_modal.php' ?>
 
         <footer>
             <p>&copy;2015 ListApp</p>
         </footer>
     </div>  <!--    site wrapper end div-->
+
+<script  type="text/javascript" src="assets/js/nav_and_modal.js"></script>
+<script  type="text/javascript" src="assets/js/lists.js"></script>
+
 </body>
 </html>
