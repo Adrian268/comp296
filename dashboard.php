@@ -2,6 +2,8 @@
 require_once 'init.php';
 require_once 'models/List.php';
 require_once 'models/Item.php';
+require_once 'models/Note.php';
+require_once 'models/Note.php';
 
 class Dashboard{
 
@@ -13,8 +15,10 @@ class Dashboard{
             $_SESSION['confirm_message'] = null;
         }
 
+        $user_data = $this->getData(new User());
         $list_data = $this->getData(new Lists());
         $item_data = $this->getData(new Item());
+        $note_data = $this->getData(new Note());
 
         require_once 'views/dashboard.php';
     }

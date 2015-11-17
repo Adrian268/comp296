@@ -18,7 +18,10 @@ abstract class Model {
             $query->bindValue(':' . $this->fillables[$i], ${$this->fillables[$i]});
         }
 
-        return $query->execute();
+        $query->execute();
+
+        // returning the auto incremented id
+        return $this->db->lastInsertId();
 
     }
 

@@ -1,4 +1,5 @@
 $main-color: #383838
+$main-color-light: #2c414e
 $text-color: #aee4ff
 $button-color: #14adff
 $border-radius: 2px
@@ -6,6 +7,7 @@ $logo-color: #00a8a8
 $confirm-green: #28ba52
 $warning-red: #db2a2a
 $dark-warning-red: #e43550
+$input-border: #CCC
 
 /*** page header styling ***/
 
@@ -13,20 +15,22 @@ $dark-warning-red: #e43550
   border: 1px solid white
 
 #logo-link-container
-  height: 55px
+  height: 50px
+  text-align: center
+  margin: 20px auto 10px auto
 
 #logo-link-container input
   border: 1px solid white
 
 #logo
-  margin-right: 20px
+  float: left
   display: inline-block
 
 #new-shopping-list
   vertical-align: middle
   display: inline-block
   width: 60%
-  margin-bottom: 20px
+  margin: 5px auto
 
 #new-shopping-list input[type='text']
   width: 90%
@@ -60,7 +64,7 @@ $dark-warning-red: #e43550
 
 /*** pages body sections styling ***/
 section
-  padding: 125px 0 60px 0
+  padding: 110px 0 60px 0
   height: 100vh
 
 .error-message, .confirm-message
@@ -95,34 +99,39 @@ hr
   float: right
 
 .list-wrapper
+  position: relative
   margin: 20px auto
   height: auto
   background-color: white
-  border-radius: $border-radius
-  box-shadow: 1px 1px 1px 0px gray
+  border-radius: 5px
   overflow: hidden
+  box-shadow: 0 0 10px -5px black
 
 /*** LIST HEADING STYLING ***/
 
 .list-heading
+  background-color: $main-color-light
   position: relative
   height: 50px
-  margin: 0 5px
+  padding: 0 10px
+
 
 h4.list-name
-  color: $main-color
+  color: white
   display: inline-block
   width: auto
   margin: 10px 5px 0 0
   font-weight: 100
   cursor: pointer
+  font-family: pacifico
+  letter-spacing: 1px
 
 .date-created, .created-by, a.edit-list
-  color: #9f9f9f
+  color: #e2e2e2
 
 .created-info
   position: absolute
-  right: 0
+  right: 5px
   top: 0
   margin-top: 10px
   text-align: right
@@ -130,13 +139,10 @@ h4.list-name
 
 /*** LIST BODY - LIST ITEMS STYLING ***/
 
-.list-body
-  margin: 0 5px
-
 .item-wrapper
   position: relative
-  border-top: 1px solid #9b9b9b
-  margin: 0
+  border-top: 1px solid #e4e4e4
+  overflow: hidden
 
 .item-wrapper input[type="checkbox"]
   float: left
@@ -147,11 +153,24 @@ h4.list-name
   position: relative
   display: block
   height: 25px
+  padding-top: 5px
 
-.item-name
+.item-name-container
+  float: left
+  font-size: 13px
+
+.item-name-container p
+  margin-right: 5px
+
+.item-name-container form
+  float: left
+
+.item-name, .item-name-edit
   float: left
   font-size: 13px
   margin-left: 2px
+  font-family: open-sans
+
 
 .bought-item
   text-decoration: line-through
@@ -159,55 +178,61 @@ h4.list-name
 
 .quantity
   color: gray
-  font-size: 13px
+  font-size: 11px
 
 .notes
   display: block
   font-size: 11px
-  font-family: open-sans
+  font-family: open-sans-light
   color: gray
 
 /**** ITEM SETTINGS NAV ****/
 
 .item-wrapper .item-settings-wrapper
   position: relative
+  height: 10px
+  width: 15px
   float: right
-  width: 25px
-  margin: 0px -5px
+  margin: -5px 3px
 
 img.item-settings
-  width: 20px
-  height: 20px
   cursor: pointer
+  width: 100%
+  position: absolute
+  padding: 5px 0
 
 .item-settings-nav
-  position: absolute
   top: 0
   right: 0
-  width: 25%
-  height: 100%
-  text-align: right
+  width: 100%
+  height: 0
+  text-align: center
   background-color: #181818
-  z-index: 0
+  z-index: 10
+  transition: all .3s
+
+.item-settings-nav.active
+  height: 78px
 
 .item-settings-nav ul
   margin: 5px 0
 
 .item-settings-nav ul li
   display: block
-  padding: 1px 5px
+  padding: 5px
   font-family: open-sans
   list-style-type: none
   color: #ffffff
   font-size: 11px
   cursor: pointer
   &:hover
-    background-color: gray
+    background-color: #222222
 
 .item-container
   position: relative
   background-color: white
-  padding: 5px 0
+  padding: 5px 5px 5px 25px
+
   height: 100%
   z-index: 4
   transition: transform .5s ease
@@ -218,35 +243,37 @@ img.item-settings
 /*** LIST FOOTER ***/
 
 .list-footer
-  border-top: 1px solid lightblue
-  margin: 0 5px
+  border-top: 1px dashed #747474
+  margin: 5px 15px
   padding: 10px 0
   z-index: 100
   background-color: white
 
 .shared-with
-  font-size: 15px
+  font-size: 13px
 
 .shared-with-names
-  font-size: 13px
+  font-size: 12px
   color: gray
 
 .share-list-btn
   width: 100px
-  padding: 0
+  padding: 3px 0
   margin: 5px auto
   background-color: $button-color
-  border-bottom: 2px solid #0482ff
+  border-radius: 0px
+  border-bottom: 2px solid #0695ff
   color: white
 
 .share-list-btn:hover
+  cursor: pointer
   background-color: rgba(20, 173, 255, 0.74)
 
 
 /*** navigation styling ***/
 #menu-tgl
   width: 95%
-  margin: 10px auto 0
+  margin: 0 auto
 
 .menu-icon-wrapper
   margin: 5px 0
@@ -263,15 +290,15 @@ img.item-settings
 /*** MENU ICON ANIMATION ***/
 
 .menu-icon-wrapper #div1.active
-  transform: matrix(0.70,.7,-0.7,0.586,0,7)
-  background-color: $dark-warning-red
+  transform: matrix(0.70,.7,-0.7,0.7,0,7)
 
 .menu-icon-wrapper #div2.active
-  opacity: 0
+  background: transparent
+  box-shadow: none
 
 .menu-icon-wrapper #div3.active
-  transform: matrix(0.70,-.7,0.7,0.586,0,-7)
-  background-color: $dark-warning-red
+  transform: matrix(0.70,-.7,0.7,0.7,0,-7)
+
 
 
 #menu img
@@ -288,7 +315,7 @@ img.item-settings
   height: 100%
   width: 200px
   z-index: 0
-  background: linear-gradient(90deg, #151515 80%, black 100%)
+  background: linear-gradient(90deg, #151515 88%, black 100%)
   visibility: hidden
   margin-left: -100px
   transition: all .6s ease
@@ -300,10 +327,10 @@ img.item-settings
   overflow: hidden
 
 .main-navigation ul
-  margin: 100px 0
+  margin: 20px 0
   list-style: none
-  font-size: 13px
-  font-family: open-sans
+  font-size: 14px
+  font-family: open-sans-light
 
 .main-navigation ul li a
   display: block
@@ -311,7 +338,7 @@ img.item-settings
   padding: 10px 0 10px 25px
   color: white
   &:hover
-    background-color: #4b4b4b
+    background-color: #222222
 
 footer.active, section.active, .top-heading.active, .main-navigation.active
   transform: translateX(180px)
@@ -323,7 +350,7 @@ footer.active, section.active, .top-heading.active, .main-navigation.active
 ul.sub-nav
   background-color: #0d0d0d
   list-style: none
-  font-size: 11px
+  font-size: 13px
   margin: 0
   padding: 10px 0
   box-shadow: 0 0 5px 0px black inset
@@ -333,6 +360,17 @@ ul.sub-nav li a
   padding: 5px 0 5px 50px
 
 
+/** USER INFO ***/
+
+.main-navigation #user-info
+  color: white
+  padding-left: 20px
+  margin-top: 60px
+  border-bottom: 1px solid gray
+
+.main-navigation #user-info ul
+  margin-bottom: 10px
+
 
 /*** MODAL WINDOWS ***/
 
@@ -340,7 +378,7 @@ ul.sub-nav li a
   float: right
   cursor: pointer
 
-.modal-wrapper
+.new-list-modal, .edit-list-modal
   content: ""
   position: fixed
   top: 0
@@ -351,6 +389,10 @@ ul.sub-nav li a
   background-color: rgba(0, 0, 0, 0.37)
   visibility: hidden
   opacity: 0
+
+.edit-list-modal.active, .new-list-modal.active
+  visibility: visible
+  opacity: 1
 
 .modal
   position: relative
@@ -363,9 +405,11 @@ ul.sub-nav li a
   box-shadow: 0 0 40px 5px black
   z-index: 500
 
+
 .modal p
   margin-top: 40px
   color: gray
+  font-size: 15px
 
 .modal input[type='text']
   margin: 5px auto 20px
@@ -373,7 +417,6 @@ ul.sub-nav li a
 
 .modal input[type='submit']
   width: 100%
-  padding: 5px
   margin: 10px auto
   color: white
   border-radius: 0
@@ -387,7 +430,7 @@ input.save-btn
 .save-btn:hover
   background-color: #2acf57
 
-input.delete-btn
+input.delete-btn, input.red-btn
   background-color: $dark-warning-red
   border: 0
   border-bottom: 2px solid #c8344b
@@ -451,37 +494,85 @@ span.remove-item
   font-size: 13px
 
 #permission-check input[type='checkbox']
-  padding: 0
+  padding: 0px
   margin: 0 5px 0 0
   float: left
 
 /*** add items table ***/
-#new-item-form table tr td
+
+.new-item-form
+  border-top: 1px solid #e4e4e4
+  padding: 10px 10px
+
+.new-item-form table tr td
   font-size: 11px
   color: #1a1a1a
 
-#new-item-form table tr td
-  //border: 1px solid red
-
-#new-item-form input[type='text']
-  float: left
-  text-align: left
+.new-item-form input[type='text'], .new-note-input, .item-name-edit input[type='text'], input.edit-item-quantity
   height: 15px
-  width: 90%
-  padding: 0px 5px 3px
-  font-size: 13px
+  padding: 2px 5px
+  font-size: 12px
+  border: 1px solid #d6d6d6
+  color: #1a1a1a
+  font-family: open-sans-light
+  border-radius: 1px
+  text-align: left
+
+.new-item-form input[type='text']
+  float: left
+  width: 85%
   margin: 0 5px 0 0
 
-#new-item-form input.item-quantity
-  width: 20px
+.new-item-form input.item-quantity, input.edit-item-quantity
+  width: 35px
+  margin-right: 10px
   text-align: center
 
-#new-item-form input[type='submit']
+.new-item-form input[type='submit'], .save-note-btn, .save-edit-name-btn
   font-family: open-sans-light
-  height: 25px
-  width: 80px
+  height: 22px
+  width: 75px
   font-size: 13px
-  color: #626262
-  background-color: #a2a2a2
+  color: #4b4b4b
+  background-color: #cacaca
   padding: 1px 2px 2px
   cursor: pointer
+
+
+
+// *********  EDIT LIST ITEMS ******//
+
+.item-name-edit input
+  width: 80px
+  padding: 2px 0
+  margin-right: 5px
+
+.item-container .container .edit
+  display: none
+
+.item-container .container.edit .edit
+  display: initial
+
+.item-container .container.edit .no-edit
+  display: none
+
+
+/*** new note styling ***/
+
+.new-note-input
+  width: 60%
+  display: inline-block
+
+input.save-note-btn
+  color: #4b4b4b
+  display: inline-block
+  height: 22px
+  margin-left: 5px
+
+.add-new-note-form .edit
+  display: none
+
+.add-new-note-form.edit .edit
+  display: initial
+
+

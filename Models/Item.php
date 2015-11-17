@@ -4,8 +4,27 @@ require_once 'Model.php';
 
 class Item extends Model{
 
-    protected $table = 'items';
+    protected  $table = 'items';
     protected  $fillables = ['list_id', 'user_id', 'item_name', 'quantity'];
-    protected  $values = [];
+
+    function delete($item_id, $user_id)
+    {
+        $query = $this->db->prepare("DELETE FROM $this->table WHERE item_id=:item_id AND user_id=:user_id");
+        $query->bindParam(':item_id', $item_id);
+        $query->bindParam(':user_id', $user_id);
+
+        $query->execute();
+    }
+
+    function update($name, $quantity, $user_id, $item_id){
+        $query = $this->db->prepare("UPDATE $this->table SET item_name=:item_name, quantity=:item_quantity  WHERE user_id=:user_id AND item_id =:item_id");
+
+        $query->bindParam(':item_name', $name);
+        $query->bindParam(':item_quantity', $quantity);
+        $query->bindParam(':user_id', $user_id);
+        $query->bindParam(':item_id', $item_id);
+
+        $query->execute();
+    }
 
 }

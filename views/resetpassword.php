@@ -9,15 +9,20 @@ require 'Templates/page_header.php';
             echo "<div class='flash-message error'>{$er_msg}</div>";
         }?>
 
+        <div class="background-img"></div>
+
         <div class="input-container">
         <form method="POST" action="Controllers/ResetPasswordController.php" id="ResetPasswordForm">
-            <p style="margin-left:125px">Confirm your email and set your new password</p>
+
             <div class="input-wrapper">
+            <p>Confirm your email and set your new password.</p>
+            <div>
             <input type="email" placeholder="EMAIL" name="email" id="email" class="text-input focus" required/>
             <input type="password" placeholder="NEW PASSWORD" name="new_password" id="new_password" class="text-input" minlength="6" required>
             <input type="password" placeholder="CONFIRM NEW PASSWORD" name="new_password_cf" id="new_password_cf" class="text-input" minlength="6" required>
             <input type="hidden" name="token" value="<?php if(isset($_GET['token'])) echo $_GET['token']?>">
-            <input type="submit" value="Reset Password" name="reset_password_rqst">
+            <input type="submit" value="RESET PASSWORD" name="reset_password_rqst">
+            </div>
           </div>
         </form>
         </div>

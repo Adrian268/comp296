@@ -1,5 +1,5 @@
 <?php
-
+$page = 'register';
 require_once 'Templates/html_head.php';
 require_once 'Templates/page_header.php';
 
@@ -10,6 +10,8 @@ require_once 'Templates/page_header.php';
         echo "<div class='flash-message error'>{$er_msg}</div>";
     }?>
 
+    <div class="background-img"></div>
+
     <div class="input-container">
         <form method="POST" action="controllers/RegisterController.php" id="RegisterForm">
             <div class="input-wrapper">
@@ -19,7 +21,7 @@ require_once 'Templates/page_header.php';
                 <input type="password" placeholder="PASSWORD" name="password" id="password" class="text-input" required minlength="6">
                 <input type="password" placeholder="CONFIRM PASSWORD" name="password_confirm" id="password_confirm" class="text-input" required minlength="6">
                 <input type="submit" value="REGISTER" name="register_rqst">
-                <p>Already have an account? <a href="index.php">LOG IN</a></p>
+                <p>Already have an account? <a href="index.php">Log In</a></p>
             </div>
         </form>
     </div>
