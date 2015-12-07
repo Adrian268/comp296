@@ -3,7 +3,7 @@ require_once 'init.php';
 require_once 'util/token.php';
 
 class ResetPassword{
-
+    
     public function __construct(){
 
         //check for error messages

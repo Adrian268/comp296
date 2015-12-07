@@ -9,3 +9,5 @@ require_once 'models/List.php';
 require_once 'models/Item.php';
 require_once 'models/Note.php';
 require_once 'models/User.php';
+require_once 'models/Contact.php';
+require_once 'models/SharedList.php';

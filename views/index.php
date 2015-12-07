@@ -19,7 +19,7 @@ require 'Templates/page_header.php';
     <div class="background-img"></div>
 
         <div class="input-container login-form-container">
-        <form method="POST" action="controllers/LoginController.php">
+        <form method="POST" action="controllers/LoginController.php" id="login-form">
                 <div class="input-wrapper">
                     <input type="text" placeholder="EMAIL" name="email" id="email" class="text-input email focus" >
                     <input type="password" placeholder="PASSWORD" name="password" class="text-input">

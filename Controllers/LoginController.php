@@ -21,9 +21,11 @@ class LoginHandle {
     function login($email, $password){
 
         if (Auth::attempt($email, $password)) {
+
                 View::render('dashboard.php');
 
         } else {
+
             $_SESSION['error_message'] = $this->ER_MSG;
             View::render('index.php');
         }

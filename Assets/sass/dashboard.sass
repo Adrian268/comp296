@@ -9,6 +9,10 @@ $warning-red: #db2a2a
 $dark-warning-red: #e43550
 $input-border: #CCC
 
+@font-face
+  font-family: source-sans-pro
+  src: url("../fonts/SourceSansPro-Regular.otf")
+
 /*** page header styling ***/
 
 .text-input:focus
@@ -38,15 +42,13 @@ $input-border: #CCC
   float: left
 
 #new-shopping-list input[type='submit']
-  background: url("../img/add-list-icon.png")
+  background: url("../img/add-list-icon.png") no-repeat left center
   background-size: contain
-  font-size: 30px
   padding: 0
   float: right
-  width: 30px
-  height: 30px
+  width: 38px
+  height: 38px
   border: none
-  margin: 6px 0 0 0
   cursor: pointer
 
 #top-right
@@ -55,16 +57,14 @@ $input-border: #CCC
   text-align: right
   font-size: 12px
 
-#top-right p.contact-name
-  display: inline-block
-  width: 70px
-  font-size: 15px
-  //background: url('../img/contact-icon.png') no-repeat left center
-  padding: 3px 0
+#top-right ul li a
+  width: 80px
+  padding: 5px 0px
 
 /*** pages body sections styling ***/
 section
-  padding: 110px 0 60px 0
+  background: linear-gradient(rgba(191, 191, 191, 0.60), rgba(191, 191, 191, 0.60)), url('../img/turqoise-backgroundjpg.jpg')
+  padding: 135px 0 60px 0
   height: 100vh
 
 .error-message, .confirm-message
@@ -93,7 +93,6 @@ hr
   padding: 2px 0
   text-align: center
   font-size: 13px
-  border-radius: $border-radius
   border: 1px solid white
   color: gray
   float: right
@@ -103,14 +102,15 @@ hr
   margin: 20px auto
   height: auto
   background-color: white
-  border-radius: 5px
+  border-radius: $border-radius
   overflow: hidden
   box-shadow: 0 0 10px -5px black
 
 /*** LIST HEADING STYLING ***/
 
 .list-heading
-  background-color: $main-color-light
+  //background-color: rgba(14, 71, 81, 0.86)
+  background-image: linear-gradient(rgba(44, 65, 78, 0.85), rgba(44, 65, 78, 0.90)), url('../img/pattern-background.jpg')
   position: relative
   height: 50px
   padding: 0 10px
@@ -143,17 +143,20 @@ h4.list-name
   position: relative
   border-top: 1px solid #e4e4e4
   overflow: hidden
+  &:nth-child(even)
+    background-color: #ebebeb
 
-.item-wrapper input[type="checkbox"]
+
+.item-wrapper input[type="checkbox"], .bought-item-check
   float: left
-  width: 0px
+  width: 13px
   margin: 3px
 
 .item-wrapper .container
   position: relative
   display: block
-  height: 25px
-  padding-top: 5px
+  height: 20px
+  padding-top: 3px
 
 .item-name-container
   float: left
@@ -184,6 +187,7 @@ h4.list-name
   display: block
   font-size: 11px
   font-family: open-sans-light
+  margin-left: 5px
   color: gray
 
 /**** ITEM SETTINGS NAV ****/
@@ -211,16 +215,13 @@ img.item-settings
   z-index: 10
   transition: all .3s
 
-.item-settings-nav.active
-  height: 78px
-
 .item-settings-nav ul
   margin: 5px 0
 
 .item-settings-nav ul li
   display: block
   padding: 5px
-  font-family: open-sans
+  font-family: open-sans-light
   list-style-type: none
   color: #ffffff
   font-size: 11px
@@ -230,9 +231,7 @@ img.item-settings
 
 .item-container
   position: relative
-  background-color: white
   padding: 5px 5px 5px 25px
-
   height: 100%
   z-index: 4
   transition: transform .5s ease
@@ -276,7 +275,7 @@ img.item-settings
   margin: 0 auto
 
 .menu-icon-wrapper
-  margin: 5px 0
+  margin-top: 5px
   height: 25px
   width: 25px
 
@@ -300,7 +299,6 @@ img.item-settings
   transform: matrix(0.70,-.7,0.7,0.7,0,-7)
 
 
-
 #menu img
   width: 50px
   height: 25px
@@ -316,6 +314,7 @@ img.item-settings
   width: 200px
   z-index: 0
   background: linear-gradient(90deg, #151515 88%, black 100%)
+  color: #d6d6d6
   visibility: hidden
   margin-left: -100px
   transition: all .6s ease
@@ -329,14 +328,22 @@ img.item-settings
 .main-navigation ul
   margin: 20px 0
   list-style: none
-  font-size: 14px
+  font-size: 13px
   font-family: open-sans-light
+  li img
+    display: inline-block
+    float: left
+    width: 13px
+    height: 13px
+    transform: translateY(13px)
+    padding-left: 15px
+    margin-right: 5px
 
 .main-navigation ul li a
   display: block
   margin: 0
   padding: 10px 0 10px 25px
-  color: white
+  margin-left: 5px
   &:hover
     background-color: #222222
 
@@ -350,7 +357,7 @@ footer.active, section.active, .top-heading.active, .main-navigation.active
 ul.sub-nav
   background-color: #0d0d0d
   list-style: none
-  font-size: 13px
+  font-size: 12px
   margin: 0
   padding: 10px 0
   box-shadow: 0 0 5px 0px black inset
@@ -363,10 +370,10 @@ ul.sub-nav li a
 /** USER INFO ***/
 
 .main-navigation #user-info
-  color: white
+  color: #686868
   padding-left: 20px
   margin-top: 60px
-  border-bottom: 1px solid gray
+  border-bottom: 1px solid #303030
 
 .main-navigation #user-info ul
   margin-bottom: 10px
@@ -377,20 +384,32 @@ ul.sub-nav li a
 .close-btn
   float: right
   cursor: pointer
+  width: 26px
+  height: 26px
+  border-radius: 100%
+  text-align: center
+  &:hover
+    background-color: #e4e4e4
+    box-shadow: -1px 3px 7px -4px black
+  img
+    padding: 5px 1px 5px 2px
+    width: 15px
+    height: 15px
 
-.new-list-modal, .edit-list-modal
+.new-list-modal, .edit-list-modal, .edit-account-modal, .delete-account-modal, .delete-contact-modal, .purchase-item-modal, .share-list-modal
   content: ""
   position: fixed
   top: 0
   left: 0
   width: 100%
   height: 100%
-  z-index: 50
-  background-color: rgba(0, 0, 0, 0.37)
+  z-index: 200
+  background-color: rgba(51, 51, 51, 0.26)
   visibility: hidden
   opacity: 0
+  transition: all .3s
 
-.edit-list-modal.active, .new-list-modal.active
+.edit-list-modal.active, .new-list-modal.active, .edit-account-modal.active, .delete-account-modal.active, .delete-contact-modal.active, .purchase-item-modal.active, .share-list-modal.active
   visibility: visible
   opacity: 1
 
@@ -400,20 +419,21 @@ ul.sub-nav li a
   width: 300px
   margin: -200px auto 0
   background-color: white
-  border-radius: 5px
+  border-radius: 3px
   padding: 10px 20px
-  box-shadow: 0 0 40px 5px black
+  box-shadow: 0 0 15px -5px black
   z-index: 500
 
+.modal p:first-of-type
+  margin-top: 40px
 
 .modal p
-  margin-top: 40px
+  margin: 10px auto 5px auto
   color: gray
-  font-size: 15px
+  font-size: 13px
 
-.modal input[type='text']
-  margin: 5px auto 20px
-  border: 1px solid #a6a6a6
+.modal input
+  margin-bottom: 15px
 
 .modal input[type='submit']
   width: 100%
@@ -422,30 +442,34 @@ ul.sub-nav li a
   border-radius: 0
 
 input.save-btn
-  background-color: $confirm-green
+  background-color: #00ba6a
   border: 0
-  border-bottom: 2px solid #24a14a
+  border-bottom: 2px solid #009352
   cursor: pointer
+  &:hover
+    background-color: #00a95c
 
-.save-btn:hover
-  background-color: #2acf57
 
 input.delete-btn, input.red-btn
-  background-color: $dark-warning-red
+  background-color: #f43753
   border: 0
-  border-bottom: 2px solid #c8344b
+  border-bottom: 2px solid #c3334d
   cursor: pointer
+  &:hover
+     background-color: #d73350
 
-.delete-btn:hover
-  background-color: #f03d55
 
 .regular-btn
-  background-color: rgba(128, 128, 128, 0.65)
+  background-color: rgba(160, 160, 160, 0.65)
   cursor: pointer
   width: 110px
   height: 25px
   padding: 0px
   font-size: 13px
+  transition: background-color .3s
+  &:hover
+    background-color: rgba(208, 208, 208, 0.65)
+
 
 input[type='button']
   color: white
@@ -488,15 +512,14 @@ span.remove-item
   border-radius: 5px
 
 #permission-check
+  height: 40px
   text-align: left
-  height: 30px
-  color: #464646
-  font-size: 13px
-
-#permission-check input[type='checkbox']
-  padding: 0px
-  margin: 0 5px 0 0
-  float: left
+  div#text
+    display: inline-block
+    float: left
+    width: 250px
+    p
+      margin: 0
 
 /*** add items table ***/
 
@@ -508,7 +531,7 @@ span.remove-item
   font-size: 11px
   color: #1a1a1a
 
-.new-item-form input[type='text'], .new-note-input, .item-name-edit input[type='text'], input.edit-item-quantity
+.new-item-form input[type='text'], .new-note-input, .item-name-edit input[type='text'], input.edit-item-quantity, input#add-contact-input
   height: 15px
   padding: 2px 5px
   font-size: 12px
@@ -574,5 +597,268 @@ input.save-note-btn
 
 .add-new-note-form.edit .edit
   display: initial
+
+
+/*** EDIT ACCOUNT MODAL ***/
+
+.edit-account-modal input[type='text'], .edit-account-modal input[type='email'], .edit-account-modal input[type='password']
+  text-align: left
+  padding-left: 15px
+  width: 282px
+
+.edit-account-modal .modal
+  margin-top: -220px
+
+.modal form#change-password-form p:first-of-type
+  margin-top: 10px
+
+input#show-password-form
+  margin-bottom: 0
+
+label
+  margin-top: -10px
+
+
+/** contacts styling ***/
+
+.contacts-container
+  width: 250px
+  height: 100%
+  overflow-y: scroll
+
+.contacts-wrapper
+  position: fixed
+  left: 0
+  top: 0
+  height: 100%
+  width: 170px
+  padding-right: 50px
+  padding-top: 10px
+  padding-left: 5px
+  background: white
+  overflow: hidden
+  color: #212121
+  z-index: 100
+  transform: translateX(-260px)
+  transition: transform .3s ease-in-out
+  .go-back
+    color: #d6d6d6
+    width: 35px
+    text-align: center
+    padding-bottom: 5px 0 0 0
+    cursor: pointer
+    transition: all .2s
+    &:hover
+      color: rgba(0, 202, 202, 0.65)
+    p
+      font-size: 35px
+      font-weight: bold
+      line-height: 30px
+      font-family: source-sans-pro
+
+.contacts-wrapper.active
+  transform: translateX(0px)
+
+
+.add-contact-container
+  margin-top: 5px
+  margin-left: 5px
+  p
+    font-size: 13px
+    color: gray
+  input
+    margin-top: 5px
+  #add-contact-input
+    width: 75%
+  .regular-btn
+    width: 50%
+    margin-top: 10px
+    padding: 2px 0
+    transition: all .2s
+    &:hover
+      background-color: rgba(0, 202, 202, 0.65)
+      color: white
+
+.contacts-container
+  ul
+    margin: 10px auto 50px
+
+  ul li
+    position: relative
+    display: block
+    padding: 8px 5px
+    transition: transform 1s
+    &:hover > .contact-email
+      opacity: 1
+    &:hover > .remove-contact
+      opacity: .7
+  ul li div
+    display: inline-block
+
+  .contact-img
+    background: url("../img/blue-blur.jpg") -50px 100px
+    border: 2px solid #c4c4c4
+    width: 25px
+    height: 22px
+    border-radius: 25px
+    padding-top: 4px
+    text-align: center
+    font-size: 15px
+    color: white
+    font-family: sans-serif
+
+  .contact-name
+    font-size: 13px
+    width: 110px
+
+  .contact-email
+    position: absolute
+    left: 35px
+    bottom: -2px
+    font-size: 11px
+    opacity: 0
+    color: #b5b5b5
+
+  .remove-contact
+    //background-color: rgba(223, 51, 82, 0.89)
+    border-radius: 100%
+    font-size: 13px
+    font-weight: bold
+    padding-bottom: 5px
+    width: 20px
+    height: 15px
+    color: white
+    text-align: center
+    cursor: pointer
+    text-shadow: 2px 2px 5px black
+    opacity: 0
+
+  #add-contact-msg, #add-contact-error
+    font-size: 11px
+    margin-top: 10px
+    margin-left: 5px
+
+  #add-contact-msg
+    color: $confirm-green
+
+  #add-contact-error
+    color: $dark-warning-red
+
+  li#no-contacts
+    color: gray
+    font-size: 13px
+    width: 80%
+
+
+/** delete contact modal ***/
+
+.delete-contact-modal .modal
+  width: 250px
+  .save-btn, .red-btn
+    padding: 3px 0
+
+
+
+
+/*** share list modal ***/
+
+.share-list-modal
+  #submit-shared-list
+    padding: 8px 0
+  #select-contacts
+    width: 100%
+    border: 1px solid #a6a6a6
+    padding-top: 2px
+    font-size: 12px
+    option
+      padding: 0 5px
+      &:checked, &:hover
+        background: rgba(0, 201, 255, 0.39) repeat url('../img/option-selected.jpg')
+        color: #000000
+
+
+/*** edit list modal ***/
+.edit-list-modal
+  #list-permission-container
+    text-align: center
+    //border: 1px solid blue
+    position: relative
+    p
+      text-align: left
+      //border: 1px solid red
+      margin: 0
+      float: left
+    #checkbox-container
+      display: inline-block
+      text-align: center
+      padding-top: 5px
+
+.slide-checkbox
+  width: 20px
+  height: 20px
+  position: relative
+  text-align: left
+  input
+    opacity: 0
+    display: none
+  input, label
+    vertical-align: middle
+    float: left
+    cursor: pointer
+  input + .label-for-slide-checkbox
+    background: $warning-red
+    width: 35px
+    height: 20px
+    padding: 1px
+    border-radius: 15px
+    display: inline-block
+    margin: 0
+    box-shadow: 0 0 2px #6d6d6d inset
+    transition: background .1s
+  input + .label-for-slide-checkbox:after
+    position: absolute
+    left: 0
+    content: ""
+    width: 20px
+    height: 20px
+    margin: 0 1px
+    border-radius: 100%
+    background: white
+    box-shadow: 1px 0 1px #303030
+    transition: transform .1s ease-in-out
+  input:checked + .label-for-slide-checkbox
+    background: $confirm-green
+  input:checked + .label-for-slide-checkbox:after
+    box-shadow: -1px 0 1px gray
+    transform: translateX(15px)
+
+
+
+
+
+//list type nav
+
+div#choose-list
+  width: 100%
+  text-align: center
+  li
+    display: inline-block
+    letter-spacing: 1px
+    padding: 0 20px 5px
+    cursor: pointer
+    margin: 0 10px
+    color: #808080
+    transition: color .2s
+    &.active
+      border-bottom: 2px solid white
+      color: white
+
+
+.list-type-name
+  background-color: rgba(128, 128, 128, 0.51)
+  color: #ffffff
+  padding: 10px
+  text-align: center
+  font-weight: bold
 
 

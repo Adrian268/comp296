@@ -27,8 +27,9 @@ $data = $query->fetch(PDO::FETCH_ASSOC);
         if($new_password === $new_password_cf){
 
             $password = password_hash($new_password, PASSWORD_BCRYPT);
+            $user_id = $data['user_id'];
             $user = new User();
-            $user->resetPassword($password, $email);
+            $user->resetPassword($password, $email, $user_id);
 
             $db->query("DELETE FROM password_resets where token = '$token'");
 

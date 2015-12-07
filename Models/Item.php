@@ -7,13 +7,19 @@ class Item extends Model{
     protected  $table = 'items';
     protected  $fillables = ['list_id', 'user_id', 'item_name', 'quantity'];
 
-    function delete($item_id, $user_id)
-    {
-        $query = $this->db->prepare("DELETE FROM $this->table WHERE item_id=:item_id AND user_id=:user_id");
-        $query->bindParam(':item_id', $item_id);
-        $query->bindParam(':user_id', $user_id);
+    function delete($item_id, $user_id, $session_id){
 
-        $query->execute();
+        if($user_id == $session_id || $this->listIsEditable($item_id)){
+
+            $query = $this->db->prepare("DELETE FROM $this->table WHERE item_id=:item_id AND user_id=:user_id");
+            $query->bindParam(':item_id', $item_id);
+            $query->bindParam(':user_id', $user_id);
+            $this->listIsEditable($item_id);
+
+            $query->execute();
+
+            return true;
+        }else return false;
     }
 
     function update($name, $quantity, $user_id, $item_id){
@@ -25,6 +31,28 @@ class Item extends Model{
         $query->bindParam(':item_id', $item_id);
 
         $query->execute();
+    }
+
+    function setAsPurchased($purchased = 0, $item_id, $user_id){
+        $query = $this->db->prepare("UPDATE $this->table SET purchased=:purchased WHERE item_id=:item_id AND user_id=:user_id");
+
+        $query->bindParam(':purchased', $purchased);
+        $query->bindParam(':item_id', $item_id);
+        $query->bindParam(':user_id', $user_id);
+
+        $query->execute();
+    }
+
+    function listIsEditable($item_id){
+
+        $item = $this->show('item_id', $item_id);
+
+        $query = $this->db->prepare("SELECT editable FROM lists WHERE list_id=:list_id");
+        $query->bindParam(':list_id', $item[0]['list_id']);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data['editable'] == 1 ? true : false;
     }
 
 }

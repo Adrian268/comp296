@@ -40,10 +40,28 @@ class User extends Model{
             $this->prepareValues();
     }
 
-    function resetPassword($password, $email){
+    function resetPassword($password, $email, $user_id){
 
-        $this->db->query("UPDATE $this->table SET password='$password' WHERE email='$email'");
+        $this->db->query("UPDATE $this->table SET password='$password' WHERE email='$email' AND user_id='$user_id'");
 
+    }
+
+    function update($name, $email, $user_id){
+        $query = $this->db->prepare("UPDATE $this->table SET name =:name, email=:email WHERE user_id=:user_id");
+        $query->bindParam(':name', $name);
+        $query->bindParam(':email', $email);
+        $query->bindParam(':user_id', $user_id);
+
+        $query->execute();
+    }
+
+    function delete($email, $user_id)
+    {
+        $query = $this->db->prepare("DELETE FROM $this->table WHERE email=:email AND user_id=:user_id");
+        $query->bindParam(':email', $email);
+        $query->bindParam(':user_id', $user_id);
+
+        $query->execute();
     }
 
 }

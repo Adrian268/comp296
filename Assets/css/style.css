@@ -166,9 +166,9 @@ section {
 }
 
 section .background-img {
-  background: url("../img/shopping-mall-bakcground.png") no-repeat center top -20px fixed;
-  background-size: contain;
-  height: 220px;
+  background: url("../img/shopping-mall-background.png") no-repeat center top -400px fixed;
+  background-size: cover;
+  height: 200px;
 }
 
 /**** ------------------------------------***/
@@ -315,14 +315,13 @@ select.error, textarea.error, input.error, input.error:focus {
 }
 
 .about-sections .container div {
-  width: 350px;
-  height: 250px;
-  padding: 20px 0 0 0;
+  width: 320px;
+  height: 220px;
+  padding: 20px 10px 0;
   margin: 10px;
   display: inline-block;
-  border: 3px solid white;
   color: white;
-  font-size: 15px;
+  font-size: 13px;
   text-transform: uppercase;
 }
 

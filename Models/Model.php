@@ -51,12 +51,40 @@ abstract class Model {
     }
 
     function show($field, $value){
+        $data = [];
+
         $query = $this->db->prepare("SELECT * FROM $this->table WHERE $field=" . ':' . "$field");
         $query->bindValue(':'.$field, $value);
         $query->execute();
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+        foreach($result as $dt){
+            $dt['creator'] = $this->setName('user_id', $dt['user_id']);
+            array_push($data, $dt);
+        }
 
         return $data;
+    }
+
+    function getUserId($field, $value){
+        $query = $this->db->prepare("SELECT user_id FROM $this->table WHERE $field=" . ':' . "$field");
+        $query->bindValue(':'.$field, $value);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $data;
+    }
+
+    function setName($field, $value){
+        $query = $this->db->prepare("SELECT name FROM users WHERE $field=" . ':' . "$field");
+        $query->bindValue(':'.$field, $value);
+        $query->execute();
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        $name = explode(" ", $data['name']);
+
+        return rtrim(ucfirst($name[0]));
+
     }
 
 }

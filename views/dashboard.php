@@ -8,21 +8,24 @@ require_once 'templates/html_head.php';
         <nav class="main-navigation">
             <div id="user-info">
                 <ul>
-                    <li><p class="contact-name"><?=$user_data[0]['name']?></p></li>
-                    <li><p><?=$user_data[0]['email']?></p></li>
+                    <li><p id="user-name"><?=$user_data[0]['name']?></p></li>
+                    <li><p id="user-email"><?=$user_data[0]['email']?></p></li>
                 </ul>
             </div>
             <ul>
 
                 <li><a href="#" class="sub-nav-tgl">My Account</a>
                     <ul class="sub-nav">
-                        <li><a href="#">Edit Account Info</a></li>
-                        <li><a href="#">Delete Account</a></li>
+                        <li><a href="#" id="edit-account-tgl">Edit Account Info</a></li>
+                        <li><a href="#" id="delete-account-tgl">Delete Account</a></li>
                     </ul>
                 </li>
-                <li><a href="#" class="sub-nav-tgl">Contacts</a>
-                    <ul class="sub-nav">
-                    </ul>
+                <li><a href="#" class="sub-nav-tgl" id="view-contacts">Contacts</a>
+
+<!--                    <ul class="sub-nav">-->
+<!--                        <li><a href="#" id="add-contacts-op">Add Contacts</a></li>-->
+<!---->
+<!--                    </ul>-->
                 </li>
                 <li><a href="#" class="sub-nav-tgl" id="edit_lists">Edit Lists <?php
                     if($user_data[0]['number_of_lists'] > 0)
@@ -58,7 +61,9 @@ require_once 'templates/html_head.php';
                     </form>
                 </div>
                 <div id="top-right">
-                    <a href="controllers/LoginController.php?log_out=true">Log Out</a>
+                    <ul>
+                        <li><a href="controllers/LoginController.php?log_out=true">Log Out</a></li>
+                    </ul>
                 </div>
             </div>
             <div id="menu-tgl">
@@ -191,111 +196,114 @@ require_once 'templates/html_head.php';
 
                 ?>
 
-                <div class="list-wrapper">
-                    <div class="list-heading">
-                        <h4 class="list-name">Grocery List</h4>
-                        <input type="text" placeholder="Add Item..." name="add_item">
-                        <div class="created-info">
-                            <p class="small date-created">12/12/12 12:00pm</p>
-                            <p class="small created-by">by: Me</p>
-                        </div>
-                    </div>
-                    <div class="list-body">
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox">
-                                    <p class="item-name">Item 1</p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>Donec luctus ex risus</p>
-                                    <p>Sed placerat dui odio</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox">
-                                    <p class="item-name">Item 2 <span class="quantity">(3)</span></p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>Ut consequat, metus</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox">
-                                    <p class="item-name">Item 3</p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>Maecenas orci magna</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox" checked disabled>
-                                    <p class="item-name bought-item">Item 4</p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>At euismod diam lacinia molestie.</p>
-                                    <p>Integer et venenatis nunc</p>
-                                    <p>Commodo, congue nisl.</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="list-footer">
-                        <div class="container">
-                            <p class="shared-with">Shared With:</p>
-                            <p class="shared-with-names">Bob, Jess, Michael</p>
-                        </div>
-                        <input type="submit" value="Share List" name="share_list" class="share-list-btn">
-                    </div>
-                </div>
+<!--                <div class="list-wrapper">-->
+<!--                    <div class="list-heading">-->
+<!--                        <h4 class="list-name">Grocery List</h4>-->
+<!--                        <input type="text" placeholder="Add Item..." name="add_item">-->
+<!--                        <div class="created-info">-->
+<!--                            <p class="small date-created">12/12/12 12:00pm</p>-->
+<!--                            <p class="small created-by">by: Me</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="list-body">-->
+<!--                        <div class="item-wrapper">-->
+<!--                            <div class="item-container">-->
+<!--                                <div class="container">-->
+<!--                                    <input type="checkbox">-->
+<!--                                    <p class="item-name">Item 1</p>-->
+<!--                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>-->
+<!--                                </div>-->
+<!--                                <div class="notes">-->
+<!--                                    <p>Donec luctus ex risus</p>-->
+<!--                                    <p>Sed placerat dui odio</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="item-settings-nav">-->
+<!--                                <ul>-->
+<!--                                    <li>Edit Name</li>-->
+<!--                                    <li>Delete Item</li>-->
+<!--                                    <li>Add Note</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item-wrapper">-->
+<!--                            <div class="item-container">-->
+<!--                                <div class="container">-->
+<!--                                    <input type="checkbox">-->
+<!--                                    <p class="item-name">Item 2 <span class="quantity">(3)</span></p>-->
+<!--                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>-->
+<!--                                </div>-->
+<!--                                <div class="notes">-->
+<!--                                    <p>Ut consequat, metus</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="item-settings-nav">-->
+<!--                                <ul>-->
+<!--                                    <li>Edit Name</li>-->
+<!--                                    <li>Delete Item</li>-->
+<!--                                    <li>Add Note</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item-wrapper">-->
+<!--                            <div class="item-container">-->
+<!--                                <div class="container">-->
+<!--                                    <input type="checkbox">-->
+<!--                                    <p class="item-name">Item 3</p>-->
+<!--                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>-->
+<!--                                </div>-->
+<!--                                <div class="notes">-->
+<!--                                    <p>Maecenas orci magna</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="item-settings-nav">-->
+<!--                                <ul>-->
+<!--                                    <li>Edit Name</li>-->
+<!--                                    <li>Delete Item</li>-->
+<!--                                    <li>Add Note</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item-wrapper">-->
+<!--                            <div class="item-container">-->
+<!--                                <div class="container">-->
+<!--                                    <input type="checkbox" checked disabled>-->
+<!--                                    <p class="item-name bought-item">Item 4</p>-->
+<!--                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>-->
+<!--                                </div>-->
+<!--                                <div class="notes">-->
+<!--                                    <p>At euismod diam lacinia molestie.</p>-->
+<!--                                    <p>Integer et venenatis nunc</p>-->
+<!--                                    <p>Commodo, congue nisl.</p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="item-settings-nav">-->
+<!--                                <ul>-->
+<!--                                    <li>Edit Name</li>-->
+<!--                                    <li>Delete Item</li>-->
+<!--                                    <li>Add Note</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="list-footer">-->
+<!--                        <div class="container">-->
+<!--                            <p class="shared-with">Shared With:</p>-->
+<!--                            <p class="shared-with-names">Bob, Jess, Michael</p>-->
+<!--                        </div>-->
+<!--                        <input type="submit" value="Share List" name="share_list" class="share-list-btn">-->
+<!--                    </div>-->
+<!--                </div>-->
             </div> <!--            end list container-->
 
         </section>
 
         <?php require_once 'views/templates/edit_list_modal.php' ?>
         <?php require_once 'views/templates/new_list_modal.php' ?>
+        <?php require_once 'views/templates/edit_account_modal.php' ?>
+        <?php require_once 'views/templates/delete_account_modal.php' ?>
+
 
         <footer>
             <p>&copy;2015 ListApp</p>
