@@ -156,6 +156,11 @@ h4.list-name {
   background-color: #ebebeb;
 }
 
+.item-wrapper .bought-item-check {
+  width: 10px;
+  margin-left: 5px;
+}
+
 .item-wrapper input[type="checkbox"], .bought-item-check {
   float: left;
   width: 13px;
@@ -354,10 +359,10 @@ img.item-settings {
   left: 0;
   top: 0;
   height: 100%;
-  width: 200px;
+  width: 190px;
   z-index: 0;
-  background: -webkit-linear-gradient(0deg, #151515 88%, black 100%);
-  background: linear-gradient(90deg, #151515 88%, black 100%);
+  background: -webkit-linear-gradient(0deg, #151515 92%, #0c0c0c 100%);
+  background: linear-gradient(90deg, #151515 92%, #0c0c0c 100%);
   color: #d6d6d6;
   visibility: hidden;
   margin-left: -100px;
@@ -434,13 +439,13 @@ ul.sub-nav li a {
 /** USER INFO ***/
 .main-navigation #user-info {
   color: #686868;
-  padding-left: 20px;
-  margin-top: 60px;
+  margin-top: 10px;
   border-bottom: 1px solid #303030;
 }
 
 .main-navigation #user-info ul {
   margin-bottom: 10px;
+  text-align: center;
 }
 
 /*** MODAL WINDOWS ***/
@@ -464,7 +469,7 @@ ul.sub-nav li a {
   height: 15px;
 }
 
-.new-list-modal, .edit-list-modal, .edit-account-modal, .delete-account-modal, .delete-contact-modal, .purchase-item-modal, .share-list-modal {
+.new-list-modal, .edit-list-modal, .edit-account-modal, .delete-account-modal, .delete-contact-modal, .purchase-item-modal, .share-list-modal, .change-profile-pic-modal {
   content: "";
   position: fixed;
   top: 0;
@@ -479,7 +484,7 @@ ul.sub-nav li a {
           transition: all 0.3s;
 }
 
-.edit-list-modal.active, .new-list-modal.active, .edit-account-modal.active, .delete-account-modal.active, .delete-contact-modal.active, .purchase-item-modal.active, .share-list-modal.active {
+.edit-list-modal.active, .new-list-modal.active, .edit-account-modal.active, .delete-account-modal.active, .delete-contact-modal.active, .purchase-item-modal.active, .share-list-modal.active, .change-profile-pic-modal.active {
   visibility: visible;
   opacity: 1;
 }
@@ -832,19 +837,6 @@ label {
   display: inline-block;
 }
 
-.contacts-container .contact-img {
-  background: url("../img/blue-blur.jpg") -50px 100px;
-  border: 2px solid #c4c4c4;
-  width: 25px;
-  height: 22px;
-  border-radius: 25px;
-  padding-top: 4px;
-  text-align: center;
-  font-size: 15px;
-  color: white;
-  font-family: sans-serif;
-}
-
 .contacts-container .contact-name {
   font-size: 13px;
   width: 110px;
@@ -887,9 +879,10 @@ label {
   color: #e43550;
 }
 
-.contacts-container li#no-contacts {
+.contacts-container p#no-contacts {
   color: gray;
-  font-size: 13px;
+  font-size: 12px;
+  margin-left: 5px;
   width: 80%;
 }
 
@@ -997,6 +990,41 @@ label {
           transform: translateX(15px);
 }
 
+.custom-checkbox {
+  width: 13px;
+  height: 13px;
+  position: relative;
+  margin: 3px 3px 0 3px;
+  float: left;
+}
+
+.custom-checkbox input {
+  opacity: 0;
+  display: none;
+}
+
+.custom-checkbox input, .custom-checkbox label.custom-checkbox-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  width: 10px;
+  height: 10px;
+  border: 1px solid #afafaf;
+  border-radius: 2px;
+  background: -webkit-linear-gradient(90deg, #e0e0e0 65%, white 100%);
+  background: linear-gradient(0deg, #e0e0e0 65%, white 100%);
+}
+
+.custom-checkbox input:hover, .custom-checkbox label.custom-checkbox-label:hover {
+  border: 1px solid #a1a1a1;
+}
+
+.custom-checkbox input:active, .custom-checkbox label.custom-checkbox-label:active {
+  background: -webkit-linear-gradient(90deg, #d1d1d1 65%, #e1e1e1 100%);
+  background: linear-gradient(0deg, #d1d1d1 65%, #e1e1e1 100%);
+}
+
 div#choose-list {
   width: 100%;
   text-align: center;
@@ -1024,4 +1052,82 @@ div#choose-list li.active {
   padding: 10px;
   text-align: center;
   font-weight: bold;
+}
+
+.contact-img, .contact-img-lrg, .contact-img-pic, .contact-img-pic-lrg {
+  background: url("../img/blue-blur.jpg") -50px 100px;
+  border: 2px solid #c4c4c4;
+  width: 25px;
+  height: 22px;
+  border-radius: 25px;
+  padding-top: 4px;
+  text-align: center;
+  font-size: 15px;
+  color: white;
+  font-family: sans-serif;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.contact-img-lrg, .contact-img-pic-lrg {
+  width: 40px;
+  height: 37px;
+  font-size: 25px;
+}
+
+.contact-img-lrg {
+  padding: 5px 0 0 0;
+  height: 35px;
+}
+
+.contact-img-pic {
+  background: white;
+  padding: 0;
+  height: 25px;
+}
+
+.contact-img-pic img {
+  height: inherit;
+}
+
+.contact-img-pic-lrg {
+  background: white;
+  padding: 0;
+  height: 40px;
+}
+
+.contact-img-pic-lrg img {
+  height: inherit;
+}
+
+.profile-pic {
+  margin: 25px auto 0 auto;
+}
+
+/** profile pic modal ***/
+.change-profile-pic-modal .modal {
+  width: 220px;
+}
+
+.change-profile-pic-modal .modal.active::after {
+  content: " ";
+  text-align: center;
+  z-index: 100000;
+  background: url("../img/loading.gif") no-repeat center;
+  background-size: 10%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.change-profile-pic-modal input[type='file'] {
+  background: transparent;
+  padding: 8px 0 0 0;
+  font-size: 12px;
+}
+
+.change-profile-pic-modal label {
+  padding-top: 3px;
 }

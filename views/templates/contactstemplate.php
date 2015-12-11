@@ -17,8 +17,9 @@
 
                 foreach ($contacts as $contact_num => $contact) {
 
-                    echo "<li rel='" . $contact[0]['user_id'] . "'>
-                            <div class='contact-img'>".$contact[0]['name'][0]."</div>
+                    $contact_img = file_exists('users/'.$contact[0]['user_id'].'/img/profilepic.jpg') ? "<div class='contact-img-pic'><img src='users/".$contact[0]['user_id']."/img/profilepic.jpg'></div>" : "<div class='contact-img'>".$contact[0]['name'][0]."</div>";
+
+                    echo "<li rel='" . $contact[0]['user_id'] . "'>".$contact_img."
                             <div><p class='contact-name'>".$contact[0]['creator']."</p></div>
                             <div class='contact-email'>".$contact[0]['email']."</div>
                             <div class='remove-contact'><img src='assets/img/remove-contact.png'/></div>
@@ -27,8 +28,8 @@
 
             }else{
 
-                echo "<li id='no-contacts'>You don't have any contacts yet.<br/><br/>You can enter a users email above to add them to
-                        your contacts lists. </li>";
+                echo "<p id='no-contacts'>You don't have any contacts yet.<br/><br/>You can enter a users email above to add them to
+                        your contacts lists. </p>";
             }
 
 

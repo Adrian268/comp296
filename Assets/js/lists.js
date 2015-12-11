@@ -28,7 +28,7 @@ function saveList(){
         $list.text(data);
         $list.closest('li').data('editable', listPermission);
         $list.closest('li').attr('data-editable', listPermission); // visual purposes this changes in inspector mode
-        $edit_list_modal.toggleClass('active');
+        $edit_list_modal.removeClass('active');
     }
 
     );
@@ -44,10 +44,12 @@ function deleteList(){
         list_option: 'delete'
     });
 
-    delete_post.done(
-        $list.closest('.list-wrapper').remove(), // removes the list from the main page
-        $list.remove() // removes the list from the settings page
-    );
+    delete_post.done(function(){
+        $list.closest('.list-wrapper').remove(); // removes the list from the main page
+        $list.remove(); // removes the list from the settings page
+        $edit_list_modal.removeClass('active');
+
+    });
 }
 
 
@@ -55,11 +57,13 @@ function deleteList(){
 
 var $new_item_form = $('.new-item-form');
 var onShareListType;
+var itemsToBuy;
 
 $new_item_form.submit(function(e){
     e.preventDefault();
 
     var item_form = $(this);
+    itemsToBuy = $(this).closest('.list-wrapper').find('.items-to-purchase');
     var item_name_input = item_form.find('.new_item_name');
     onShareListType = item_form.attr('rel');
     var item_name = item_name_input.val();
@@ -125,7 +129,7 @@ $new_item_form.submit(function(e){
                        "</div>";
 
 
-        $(item_tmpl).insertBefore(item_form);
+        $(item_tmpl).appendTo(itemsToBuy);
 
         item_name_input.val("");
         item_quantity_input.val(1);

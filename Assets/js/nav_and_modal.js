@@ -347,19 +347,23 @@ $list_wrapper.on('submit', '.edit-item-name-form', function(e){
 
         $item_name_field.text(item.name);
 
+        if(item_data == 'false'){
 
+            location.reload();
 
-        if( item.quantity > 1 ){
-            $item_quantity_field.attr('rel', item.quantity);
-            $item_quantity_field.text('('+item.quantity+')');
         }else{
 
-            $item_quantity_field.attr('rel', 1);
-            $item_quantity_field.text('');
+            if( item.quantity > 1 ){
+                $item_quantity_field.attr('rel', item.quantity);
+                $item_quantity_field.text('('+item.quantity+')');
+            }else{
+
+                $item_quantity_field.attr('rel', 1);
+                $item_quantity_field.text('');
+            }
+
+            $item_wrapper.find('.container').toggleClass('edit');
         }
-
-
-        $item_wrapper.find('.container').toggleClass('edit');
 
     });
 
@@ -373,6 +377,7 @@ var purchaseItemForm = purchaseItemModal.find('#purchase-item-form');
 var purchaseItemModalName = purchaseItemModal.find('#purchased-item-name');
 var closePurchaseItemModal = purchaseItemModal.find('.close-btn');
 var cancelPurchaseItemModal = purchaseItemModal.find('#cancel-purchased-item');
+var purchasedItems;
 var item;
 var itemName;
 
@@ -382,6 +387,7 @@ $list_wrapper.on('click', '.set-as-purchased', function(e){
     purchaseItemModal.toggleClass('active');
 
     item = $(this).closest('.item-wrapper');
+    purchasedItems = $(this).closest('.list-wrapper').find('.purchased-items');
     itemName= item.find('.item-name');
 
     purchaseItemModalName.text(itemName.text());
@@ -394,7 +400,9 @@ purchaseItemForm.submit(function(e){
     var purchaseItemPost;
     var checkBox = item.find('.set-as-purchased');
     var itemId = item.attr('rel');
-    var editItemSetting = item.find('.item-settings-wrapper');
+    var itemSettingsContainer = item.find('.item-settings-nav');
+    var editItemSetting = item.find('li.edit_item_name');
+    var addNoteSetting = item.find('li.add-note-click');
     var checkMark = $("<img src='assets/img/checked-box-icon.png' class='bought-item-check'/>");
 
     purchaseItemPost = $.post("controllers/itemcontroller.php",{
@@ -409,7 +417,16 @@ purchaseItemForm.submit(function(e){
         checkMark.insertAfter(checkBox);
         checkBox.remove();
         itemName.addClass('bought-item');
-        editItemSetting.remove();
+
+        if(editItemSetting.length > 0){
+            editItemSetting.remove();
+            addNoteSetting.remove();
+
+            if(itemSettingsContainer.hasClass('active'))
+                itemSettingsContainer.css({'height': "26px"});
+        }
+
+        item.appendTo(purchasedItems);
 
         purchaseItemModal.removeClass('active');
 
@@ -497,7 +514,7 @@ function loadContacts(){
         var contactName = $(this).find('.contact-name');
         var contactId = $(this).attr('rel');
 
-    if(contacts.length > 1)
+    if(contacts.length > 0)
         $("<option value='"+contactId+"' id='"+contactName.text()+"'>"+contactName.text()+" ("+contactEmail.text()+")</option>").appendTo(selectContactList);
 
     });
@@ -659,8 +676,10 @@ function setContactMsg(msg, div){
 
 function contactTmpl(contact){
 
+    var contactImg = contact.profilePic == true ? "<div class='contact-img-pic'><img src='users/"+contact.contactId+"/img/profilepic.jpg'></div>" : "<div  class='contact-img'>"+contact.contactInit+"</div>";
+
     return "<li rel='"+contact.contactId+"'>"+
-             "<div  class='contact-img'>"+contact.contactInit+"</div>"+
+             contactImg+
              "<div><p class='contact-name'>&nbsp;"+contact.contactName+"</p></div>"+
              "<div class='contact-email'> "+contact.contactEmail+"</div>"+
              "<div class='remove-contact'><img src='assets/img/remove-contact.png'/></div>"+
@@ -668,7 +687,7 @@ function contactTmpl(contact){
 
 }
 
-/***_______________****/
+
 
 
 
@@ -775,6 +794,94 @@ listTypeTgl.on('click', function(){
 });
 
 
+//uploading profille pic
+var changePictureTgl = $('#add-profile-picture');
+
+var changePicModal = $('.change-profile-pic-modal'),
+    picModalWindow = changePicModal.find('.modal'),
+    closePicModal = changePicModal.find('.close-btn'),
+    profilePicForm = changePicModal.find('#change-profile-pic-form'),
+    profilePicError = profilePicForm.find('.error-msg'),
+    cancelProfilePic = profilePicForm.find('#cancel-profile-pic');
+
+var profilePicContainer = $('.profile-pic');
+var formData, profilePic, imgSrc;
+
+changePictureTgl.on('click', function(){changePicModal.addClass('active')});
+closePicModal.on('click', function(){changePicModal.removeClass('active')});
+cancelProfilePic.on('click', function(){changePicModal.removeClass('active')});
+
+profilePicForm.submit(function(e){
+    e.preventDefault();
+
+    profilePicError.text("Uploading...");
+    picModalWindow.addClass('active');
+
+    formData = new FormData(document.getElementById('change-profile-pic-form'));
+
+    $.ajax({
+
+        url: "controllers/accountcontroller.php",
+        type: "POST",
+        data: formData,
+        enctype: 'multipart/form-data',
+        processData: false,
+        contentType: false
+    }).done(function(result){
+        var d = new Date();
+
+        profilePicError.text(" ");
+        picModalWindow.removeClass('active');
+
+        switch(result){
+
+            case "1":
+                profilePicError.text("Please select a file");
+                break;
+            case "2":
+                profilePicError.text("Please select a valid file");
+                break;
+            case "3":
+                profilePicError.text("Sorry, an error occurred, please try again");
+                break;
+            default:
+
+                imgSrc = 'users/'+result+'/img/profilepic.jpg?'+ d.getTime(); // a time is added as a query variable to reload img src
+                profilePic = $("<img src='"+imgSrc+"'>");
+
+                profilePicContainer.html("");
+                profilePicContainer.attr('class', 'contact-img-pic-lrg profile-pic');
+                profilePic.appendTo(profilePicContainer);
+
+                changePicModal.removeClass('active')
+        }
+
+    });
+
+});
+
+/*** deleting profile pic ***/
+var deleteProfilePicTgl = $('#remove-profile-picture');
+
+deleteProfilePicTgl.on('click', function(){
+
+    var deleteProfilePicPost;
+    var initial = profilePicContainer.attr('rel');
+
+    profilePicContainer.html("");
+    profilePicContainer.attr('class', 'contact-img-lrg profile-pic');
+    profilePicContainer.text(initial);
+
+
+    deleteProfilePicPost = $.post('controllers/accountcontroller.php', {
+        delete_profile_pic : true
+    });
+
+    deleteProfilePicPost.done(function(result){
+
+    });
+
+});
 
 $(window).load(function(){
     var $list_body = $('.list-body');

@@ -19,18 +19,27 @@ class Item extends Model{
             $query->execute();
 
             return true;
-        }else return false;
+        }
+
+        return false;
     }
 
-    function update($name, $quantity, $user_id, $item_id){
-        $query = $this->db->prepare("UPDATE $this->table SET item_name=:item_name, quantity=:item_quantity  WHERE user_id=:user_id AND item_id =:item_id");
+    function update($name, $quantity, $user_id, $item_id, $session_id){
 
-        $query->bindParam(':item_name', $name);
-        $query->bindParam(':item_quantity', $quantity);
-        $query->bindParam(':user_id', $user_id);
-        $query->bindParam(':item_id', $item_id);
+        if($user_id == $session_id || $this->listIsEditable($item_id)) {
 
-        $query->execute();
+            $query = $this->db->prepare("UPDATE $this->table SET item_name=:item_name, quantity=:item_quantity  WHERE user_id=:user_id AND item_id =:item_id");
+
+            $query->bindParam(':item_name', $name);
+            $query->bindParam(':item_quantity', $quantity);
+            $query->bindParam(':user_id', $user_id);
+            $query->bindParam(':item_id', $item_id);
+
+            $query->execute();
+            return true;
+        }
+
+        return false;
     }
 
     function setAsPurchased($purchased = 0, $item_id, $user_id){

@@ -1,10 +1,21 @@
 <?php
 $page = "dashboard";
+$profile_pic_path = 'users/'.$user_data[0]['user_id'].'/img/profilepic.jpg';
+
+
 require_once 'templates/html_head.php';
 ?>
 
 <div class="site-wrapper">
     <nav class="main-navigation">
+
+        <?php
+        if(file_exists($profile_pic_path)){
+            echo "<div class='contact-img-pic-lrg profile-pic' rel='".$user_data[0]['name'][0]."'><img src='".$profile_pic_path."'></div>";
+        }else
+            echo "<div class='contact-img-lrg profile-pic' rel='".$user_data[0]['name'][0]."'>".$user_data[0]['name'][0]."</div>";
+        ?>
+
         <div id="user-info">
             <ul>
                 <li><p id="user-name"><?=$user_data[0]['name']?></p></li>
@@ -26,7 +37,7 @@ require_once 'templates/html_head.php';
                 <!---->
                 <!--                    </ul>-->
             </li>
-            <li><img src="assets/img/gears.png" alt=""/><a href="#" class="sub-nav-tgl" id="edit_lists">Edit Lists <?php
+            <li><img src="assets/img/edit-list-icon.png" alt=""/><a href="#" class="sub-nav-tgl" id="edit_lists">Edit Lists <?php
                     if($user_data[0]['number_of_lists'] > 0)
                         echo "<div class='badge'>" . $user_data[0]['number_of_lists'] . "</div>";
                     ?>
@@ -42,6 +53,12 @@ require_once 'templates/html_head.php';
 
                 </ul>
 
+            </li>
+            <li><img src="assets/img/gears.png" alt=""/><a href="#" class="sub-nav-tgl" >Settings</a>
+                <ul class="sub-nav">
+                    <li><a href="#" id="add-profile-picture">Change Profile Picture</a></li>
+                    <li><a href="#" id="remove-profile-picture">Delete Profile Picture</a></li>
+                </ul>
             </li>
             <!--                <li><a href="#">Settings</a></li>-->
         </ul>
@@ -92,7 +109,7 @@ require_once 'templates/html_head.php';
     $_SESSION['error_message'] = null;
 }?>
 
-<!--                --><?php //echo "<pre>", print_r($shared_with_names), "</pre>"?>
+<!--                --><?php //echo "<pre>", print_r($profile_pic_path), "</pre>"?>
 
 
 
@@ -107,6 +124,7 @@ require_once 'templates/html_head.php';
     <?php require_once 'views/templates/edit_account_modal.php' ?>
     <?php require_once 'views/templates/delete_account_modal.php' ?>
     <?php require_once 'views/templates/contactstemplate.php' ?>
+    <?php require_once 'views/templates/changeprofilepic.php' ?>
 
     <footer>
         <p>&copy;2015 ListApp</p>

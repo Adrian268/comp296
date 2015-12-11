@@ -2,7 +2,7 @@
 require_once '../Models/User.php';
 require_once 'LoginController.php';
 
-new Session();
+//new Session();
 
 if(isset($_POST['register_rqst'])) {
 
@@ -10,7 +10,7 @@ if(isset($_POST['register_rqst'])) {
 
         $name = ucwords(strtolower(trim($_POST['name'])));
         $email = trim($_POST['email']);
-        $phone_number = trim($_POST['phone_number']);
+        $phone_number = isset($_POST['phone_number']) ? trim($_POST['phone_number']) : null;
         $password = trim($_POST['password']);
 
         $email = strtolower($email);
@@ -20,7 +20,8 @@ if(isset($_POST['register_rqst'])) {
         $user = new User();
 
         if($user->save($name, $email, $phone_number, $password)){
-            $login->login(trim($_POST['email']), trim($_POST['password']));
+            if($user->createUserDir($email))
+                $login->login(trim($_POST['email']), trim($_POST['password']));
         }else{
             $_SESSION['error_message'] = "Sorry! An error occurred, please try again.";
             View::render('register.php');

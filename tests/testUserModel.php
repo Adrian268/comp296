@@ -1,7 +1,8 @@
 <?php
-require_once 'Model.php';
+require_once '../models/Model.php';
+require_once '../util/database.php';
 
-class User extends Model{
+class UserTest extends Model{
 
     protected  $table = 'users';
     public $name = "", $email = "", $phone_number = "", $password = "";
@@ -18,7 +19,7 @@ class User extends Model{
         $this->password = $password;
 
         if($this->db->query($this->getQuery()))
-        return true;
+            return true;
 
         return false;
     }
@@ -36,8 +37,8 @@ class User extends Model{
 
     function getQuery(){
         return "INSERT INTO $this->table " .
-            $this->insertableFields() . " values " .
-            $this->prepareValues();
+        $this->insertableFields() . " values " .
+        $this->prepareValues();
     }
 
     function resetPassword($password, $email, $user_id){
@@ -70,16 +71,19 @@ class User extends Model{
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
-        $path = "./../users/".$result['user_id']. "/img";
+        $path = "testuser/".$result['user_id']. "/img";
 
         if(!file_exists($path)){
 
-            if(!mkdir($path, 0777, true))
-                return false;
+            mkdir($path, 0777, true);
+            echo "dir created";
 
-        }else return false;
-
-        return true;
+        }else echo "error ";
     }
 
 }
+
+
+$user = new UserTest();
+
+$user->createUserDir('adrian@email.com');

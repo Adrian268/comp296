@@ -63,14 +63,21 @@ if(isset($_SESSION['id'])) {
         if($item_quantity < 1)
             $item_quantity = 1;
 
-        $item->update($item_name, $item_quantity, $user_id, $item_id);
+        if($item->update($item_name, $item_quantity, $user_id, $item_id, $_SESSION['id'])){
 
-        echo json_encode([
+            echo json_encode([
 
                 'name' => $item_name,
                 'quantity' => $item_quantity,
 
-                ]);
+            ]);
+        }else {
+
+            $_SESSION['error_message'] = "Permissions for that list have changed. Could not edit item.";
+            echo "false";
+        }
+
+
 
     }
 
@@ -81,7 +88,7 @@ if(isset($_SESSION['id'])) {
         $purchased = $_POST['purchased'];
         $user_id = userId($item, 'item_id', $item_id);
 
-        $item->setAsPurchased($purchased,$item_id, $user_id);
+//        $item->setAsPurchased($purchased,$item_id, $user_id);
     }
 }
 

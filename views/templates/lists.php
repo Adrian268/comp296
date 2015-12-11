@@ -1,122 +1,96 @@
+<?php
+
+function itemTemplate($item, $note_data, $is_editable = true){
+
+    $items = "<div class='item-wrapper' rel='".$item['item_id']."'>
+                <div class='item-container'>
+                    <div class='container'>";
+
+    $item['purchased'] == 1 ?
+        $items .= "<img src='assets/img/checked-box-icon.png' class='bought-item-check'/>" :
+        $items .= "<div class='custom-checkbox set-as-purchased'>
+                        <input type='checkbox' id='set-as-purchased'>
+                        <label for='set-as-purchased' class='custom-checkbox-label'></label>
+                   </div>";
+
+    $items .= "<div class='item-name-container'>
+                <form class='edit-item-name-form'>
+                    <p class='item-name-edit edit'><input class='item-name-edit-input' type='text'></p>
+                        <input type='text' class='edit-item-quantity edit'>
+                        <input type='submit' class='save-edit-name-btn edit' value='save'>
+                </form>";
+
+    $item['purchased'] == 1 ?
+        $items .= "<p class='item-name item".$item['item_id']." no-edit bought-item'>".$item['item_name']."</p>
+                        <span class='quantity no-edit' rel='".$item['quantity']."'>" :
+        $items .= "<p class='item-name item".$item['item_id']." no-edit'>".$item['item_name']."</p>
+                        <span class='quantity no-edit' rel='".$item['quantity']."'>";
+
+    if($item['quantity'] > 1 )
+        $items .= "(".$item['quantity'].")";
+
+
+    $items .= "</span>
+                  </div>"; //end item name container
+
+    $items .= "<div class='item-settings-wrapper' rel='" . $item['item_id'] . "'><img src='assets/img/item-settings-icon.png' class='item-settings'></div>";
+
+    $items .= "</div>
+                <div class='notes'>";
+
+    foreach($note_data as $note){
+
+        if($note['item_id'] === $item['item_id']){
+
+            $items .= "<p>".$note['content']."</p>";
+
+        }
+    }
+
+    $items .= "<form class='add-new-note-form'>
+                 <input type='text' class='new-note-input edit'/>
+                 <input type='submit' value='Save' class='save-note-btn edit'/>
+               </form>
+            </div>
+            </div>
+            <div class='item-settings-nav' id='item-settings".$item['item_id']."'>
+                <ul>";
+
+    if($item['purchased'] == 1 && $is_editable == true){
+
+        $items .= "<li class='delete-item-click'>Delete Item</li>";
+
+    }else if($is_editable == false){
+        $items .= "<li class='add-note-click'>Add Note</li>";
+    }else{
+
+        $items .= " <li class='edit_item_name'>Edit Item</li>
+                    <li class='delete-item-click'>Delete Item</li>
+                    <li class='add-note-click'>Add Note</li>";
+    }
+
+    $items .= "</ul>
+             </div>
+          </div>"; // end item wrapper
+
+    return $items;
+}
+
+?>
+
 <div class="lists-container">
 
-<div id="my-lists-container">
+    <div id="my-lists-container">
+        <?php require_once 'views/templates/mylists.php' ?>
+    </div>
 
-<?php require_once 'views/templates/mylists.php' ?>
+    <div id="shared-lists-container">
+        <?php require_once 'views/templates/sharedlists.php' ?>
+    </div>
 
+</div> <!-- end list container-->
 
-<!--                <div class="list-wrapper">
-                    <div class="list-heading">
-                        <h4 class="list-name">Grocery List</h4>
-                        <input type="text" placeholder="Add Item..." name="add_item">
-                        <div class="created-info">
-                            <p class="small date-created">12/12/12 12:00pm</p>
-                            <p class="small created-by">by: Me</p>
-                        </div>
-                    </div>
-                    <div class="list-body">
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox">
-                                    <p class="item-name">Item 1</p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>Donec luctus ex risus</p>
-                                    <p>Sed placerat dui odio</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox">
-                                    <p class="item-name">Item 2 <span class="quantity">(3)</span></p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>Ut consequat, metus</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox">
-                                    <p class="item-name">Item 3</p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>Maecenas orci magna</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="item-wrapper">
-                            <div class="item-container">
-                                <div class="container">
-                                    <input type="checkbox" checked disabled>
-                                    <p class="item-name bought-item">Item 4</p>
-                                    <div class="item-settings-wrapper"><img src="assets/img/item-settings-icon.png" class="item-settings"></div>
-                                </div>
-                                <div class="notes">
-                                    <p>At euismod diam lacinia molestie.</p>
-                                    <p>Integer et venenatis nunc</p>
-                                    <p>Commodo, congue nisl.</p>
-                                </div>
-                            </div>
-                            <div class="item-settings-nav">
-                                <ul>
-                                    <li>Edit Name</li>
-                                    <li>Delete Item</li>
-                                    <li>Add Note</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="list-footer">
-                        <div class="container">
-                            <p class="shared-with">Shared With:</p>
-                            <p class="shared-with-names">Bob, Jess, Michael</p>
-                        </div>
-                        <input type="submit" value="Share List" name="share_list" class="share-list-btn">
-                    </div>
-                </div>-->
-
-</div>
-
-<div id="shared-lists-container">
-
-    <?php require_once 'views/templates/sharedlists.php' ?>
-
-</div>
-
-</div> <!--            end list container-->
-
-<!--CONFIRM ITEM PURCHASE-->
-
+<!--CONFIRM ITEM PURCHASE MODAL-->
 <div class="modal-wrapper purchase-item-modal">
     <div class="modal">
         <div class="close-btn"><img src="assets/img/close-icon.png" alt=""/></div>
@@ -130,7 +104,6 @@
 
 
 <!--SHARE LISTS MODAL-->
-
 <div class="modal-wrapper share-list-modal">
     <div class="modal">
         <div class="close-btn"><img src="assets/img/close-icon.png" alt=""/></div>

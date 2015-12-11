@@ -29,18 +29,20 @@ if(isset($_SESSION['id'])){
                 //check if that person already exists in users contacts
                 if(!($contact->check($result['user_id'], $user_id))){
 
-                    $contact->create($result['user_id'], $user_id);
+                    $contact_name = explode(" ", $result['name']);
+                    $profile_img = file_exists("../users/".$result['user_id']."/img/profilepic.jpg") ? true : false;
 
+                    $contact->create($result['user_id'], $user_id);
                     $contact->save();
 
-                    $contact_name = explode(" ", $result['name']);
 
                     // no errors, contact was added
                     echo json_encode([
                         "contactId"    => $result['user_id'],
                         "contactEmail" => $result['email'],
                         "contactName"  => trim(ucfirst($contact_name[0])),
-                        "contactInit"  => $contact_name[0][0]
+                        "contactInit"  => $contact_name[0][0],
+                        "profilePic"   => $profile_img
                     ]);
 
                 }else echo "3"; // error 3, already a contact
