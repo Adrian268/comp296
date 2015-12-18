@@ -4,7 +4,7 @@ require_once 'init.php';
 
 class Dashboard{
 
-    public function __construct($page_body){
+    public function __construct(){
 
         // check for messages
         if(isset($_SESSION['confirm_message'])){
@@ -12,91 +12,98 @@ class Dashboard{
             $_SESSION['confirm_message'] = null;
         }
 
-        $user_data = $this->getData(new User(), $_SESSION['id']);
-        $list_data = $this->getData(new Lists(), $_SESSION['id']);
-        $item_data = $this->getData(new Item(), $_SESSION['id']);
-        $note_data = $this->getData(new Note(), $_SESSION['id']);
+        $user_model = new User();
+        $list_model = new Lists();
+        $item_model = new Item();
+        $note_model = new Note();
+        $contact_model = new Contact();
+        $shared_list_model = new SharedList();
 
-        $contact_data = $this->getData(new Contact(), $_SESSION['id']);
+        $user_data = $user_model->show('user_id', $_SESSION['id']);
+        $list_data = $list_model->showAll('user_id', $_SESSION['id']);
+        $item_data = $item_model->showAll('user_id', $_SESSION['id']);
+        $note_data = $note_model->showAll('user_id', $_SESSION['id']);
+
+
+        // GET CONTACT DATA
+        $contact_data = $contact_model->showAll('user_id', $_SESSION['id']);
         $contacts = [];
 
-        $shared_list_data = $this->getData(new SharedList(), $_SESSION['id']);
-        $shared_lists_names = [];
+        foreach($contact_data as $index => $contact){
 
-        $shared_lists = new SharedList();
-        $shared_lists_id = $shared_lists->getSharedLists($_SESSION['id']);
+            $contacts[$index] = $user_model->show('user_id', $contact_data[$index]['contact_id']);
+        }
+
+        // GET SHARED LIST DATA FOR THE USERS LISTS
+        $shared_list_data = $shared_list_model->showAll('user_id', $_SESSION['id']);
+
+        // GET NAMES FOR WHOM THE USER IS SHARING LISTS WITH
+        foreach($list_data as $list){
+            $shared_lists_names = $list_model->getSharedWithNames($list['list_id']);
+        }
+
+
+        // DATA FOR THE LISTS BEING SHARED WITH THE USER
+        $shared_lists_id = $shared_list_model->getSharedLists($_SESSION['id']);
         $shared_with_id = [];
-        $shared_with_names = [];
         $shared_lists_info = [];
+        $items_from_shared_lists = [];
+        foreach($shared_lists_id as $index => $shared_list){
+
+            $shared_lists_info[$index] = $list_model->show('list_id', $shared_lists_id[$index]['list_id']);
+            $shared_with_id[$index] = $shared_list_model->getSharedWith($shared_lists_id[$index]['list_id']);
+
+            $items_from_shared_lists[$index] = $item_model->showAll('list_id', $shared_lists_id[$index]['list_id']);
+        }
+
         $shared_item_info = [];
-        $shared_note_info = [];
-
-        //get shared list and item data
-        for($i = 0 ; $i < count($shared_lists_id) ; $i++){
-            $list = new Lists();
-            $list_being_shared = new SharedList();
-            $item = new Item();
-
-            $shared_lists_info[$i] = $list->show('list_id', $shared_lists_id[$i]['list_id']);
-            $shared_with_id[$i] = $list_being_shared->getSharedWith($shared_lists_id[$i]['list_id']);
-
-            $shared_item_info[$i] = $item->show('list_id', $shared_lists_id[$i]['list_id']);
+        foreach($items_from_shared_lists as $item_array){
+            foreach($item_array as $item){
+                array_push($shared_item_info, $item);
+            }
         }
 
         //find who each shared lists is being shared with
+        $shared_with_names = [];
         $user_num = 0;
         foreach( $shared_with_id as $shared_with){
-            $user = new User();
+
             for($i = 0 ; $i< count($shared_with) ; $i ++){
-                $shared_with_names[$user_num] = $user->show('user_id', $shared_with[$i]['viewer_id']);
+                $shared_with_names[$user_num] = $user_model->showAll('user_id', $shared_with[$i]['viewer_id']);
                 $user_num++;
             }
         }
 
-        // get shared note data
+        // GET SHARED NOTE DATA
+        $shared_note_info = [];
         $note_num = 0;
-        foreach($shared_item_info as $item_array){
-            $note = new Note();
+        foreach($shared_item_info as $item){
 
-            for($i = 0 ; $i < count($item_array) ; $i ++){
-                $shared_note_info[$note_num] = $note->show('item_id', $item_array[$i]['item_id']);
-                $note_num++;
+            $shared_note_info[$note_num] = $note_model->showAll('item_id', $item['item_id']);
+            $note_num++;
+
+        }
+
+        $shared_note_data = [];
+        foreach($shared_note_info as $shared_note){
+            foreach($shared_note as $note){
+                array_push($shared_note_data, $note );
             }
+        }// end note loop
 
+        $page = "dashboard";
+        $profile_pic_path = 'users/'.$user_data['user_id'].'/img/profilepic.jpg';
 
-        }
-
-
-        //get shared list names
-        for($i = 0 ; $i < count($shared_list_data) ; $i++){
-            $user = new User();
-
-            $shared_lists_names[$i] = $user->show('user_id', $shared_list_data[$i]['viewer_id']);
-        }
-
-        // get contacts information
-        for($i = 0 ; $i < count($contact_data) ; $i++){
-            $user = new User();
-            $contacts[$i] = $user->show('user_id', $contact_data[$i]['contact_id']);
-        }
-
-
-        require_once 'views/dashboardtemplate.php';
+        require_once 'views/dashboardview.php';
     }
 
-    // takes a model class to retrieve data
-    public function getData(Model $model, $user_id){
-
-        return $model->show('user_id', $user_id);
-
-    }
 }
 
 
 // check if session is not started to restrict access to dashboard.php
 if(Auth::loggedIn()){
 
-    new Dashboard('lists');
+    new Dashboard();
 }
 
 

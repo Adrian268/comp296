@@ -1,5 +1,7 @@
 <?php
 require_once 'Model.php';
+require_once 'SharedList.php';
+require_once 'User.php';
 
 class Lists extends Model{
 
@@ -21,8 +23,6 @@ class Lists extends Model{
     }
 
     function update($name, $editable, $list_id, $user_id){
-
-
             $query = $this->db->prepare("UPDATE $this->table SET list_name =:list_name, editable:=:editable WHERE user_id=:user_id AND list_id =:list_id");
             $query->bindParam(':list_name', $name);
             $query->bindParam(':editable', $editable);
@@ -30,7 +30,22 @@ class Lists extends Model{
             $query->bindParam(':user_id', $user_id);
 
             $query->execute();
+    }
+
+    function getSharedWithNames($list_id){
+        $shared_list = new SharedList();
+        $user = new User();
+        $user_data = [];
+
+        $data = $shared_list->getSharedWith($list_id);
+
+        foreach($data as $index => $list){
+            $user_data[$index]  = $user->show('user_id', $list['viewer_id']);
+        }
+
+        return $user_data;
 
     }
+
 
 }

@@ -5,7 +5,7 @@
     "Adrian Sanchez"
   ],
   "description": "List Web Application",
-  "main": "index.html",
+  "main": "index.php",
   "license": "",
   "ignore": [
     "**/.*",

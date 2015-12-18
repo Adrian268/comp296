@@ -6,10 +6,10 @@ class Email extends Swift{
     public $mailer;
 
     // email connection settings: host, port, username, password
-    protected $smtp_host = "ssl://smtp.gmail.com";
-    protected $port = 465;
-    protected $user_name = 'adriian591@gmail.com';
-    protected $password = 'rx8sti1!';
+    protected $smtp_host = "ssl://smtp.gmail.com"; // email host server
+    protected $port = 465;                         // email host server port
+    protected $user_name = 'adrian56h@gmail.com';  //email to send from
+    protected $password = '1!password';            // password
 
     // sender email information: email, name
     protected $sender_email = "ListApp@domain.com";

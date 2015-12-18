@@ -2,8 +2,6 @@
 require_once '../Models/User.php';
 require_once 'LoginController.php';
 
-//new Session();
-
 if(isset($_POST['register_rqst'])) {
 
     if($_POST['password'] === $_POST['password_confirm']){

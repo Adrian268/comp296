@@ -5,6 +5,7 @@ require_once 'util/token.php';
 class ResetPassword{
     
     public function __construct(){
+        $page = 'resetpassword';
 
         //check for error messages
         if(isset($_SESSION['error_message']))

@@ -1,5 +1,7 @@
 $main-color: #131313
 $main-color-light: #2c414e
+$main-color-superlight: #597e8b
+$main-blue: #00a7a7
 $text-color: #f4f4f4
 $button-color: #14adff
 $border-radius: 2px
@@ -8,7 +10,7 @@ $confirm-green: #2dcc70
 $input-green: #2dcc70
 $warning-red: #f72459
 $dark-warning-red: #e43550
-$input-border: #CCC
+$input-border: #b5b5b5
 
 @font-face
   font-family: oswald
@@ -19,22 +21,18 @@ $input-border: #CCC
   src: url("../fonts/OpenSans-Regular.ttf")
 
 @font-face
-  font-family: fff-tusj
-  src: url("../fonts/FFF_Tusj.ttf")
-
-@font-face
-  font-family: pacifico
-  src: url("../fonts/Pacifico.ttf")
-
-@font-face
   font-family: open-sans-light
   src: url("../fonts/OpenSans-Light.ttf")
 
 @font-face
-  font-family: source-sans-light
-  src: url("../fonts/SourceSansPro-Light.otf")
+  font-family: deftone
+  src: url("../fonts/deftone-stylus.ttf")
 
+@font-face
+  font-family: variane
+  src: url("../fonts/Variane-Script.ttf")
 
+/*** DEFAULTS ***/
 
 *
   border: 0
@@ -50,75 +48,79 @@ a
   transition: color .5s
   color: $text-color
   outline: 0
-
-
-a:visited
-  color: $text-color
+  font-size: 12px
+  &:visited
+    color: $text-color
 
 li
   list-style-type: none
 
+label
+  display: block
+  position: absolute
+  margin-top: -18px
+  font-size: 10px
+  color: rgba(247, 36, 89, 0.55)
+  text-transform: uppercase
+
+
+/*** HEADER STYLING ***/
 .top-heading
   font-family: open-sans-light
   position: fixed
   top: 0
   width: 100%
   height: auto
-  background-color: $main-color-light
+  background-color: #1d1d1d
   color: white
   z-index: 10
 
-.top-heading a
-  font-size: 13px
-  color: $text-color
-
-.top-heading a:hover
-  color: #4ABCBD
-
-
 #logo-link-container
+  position: relative
   height: 55px
   width: 95%
   margin: 20px auto
   letter-spacing: 1px
 
 #logo
-  display: inline-block
-  transform: translateY(-20px)
-  text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.77)
-
-#logo p
-  font-family: pacifico
-  font-size: 40px
-  letter-spacing: 2px
-  color: white
+  position: absolute
+  bottom: 0
+  left: 0
+  transform: translateY(-5px)
+  text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.77)
+  background: url("../img/list-icon.png") no-repeat top left
+  background-size: contain
+  padding-left: 55px
+  p
+    font-family: deftone
+    font-size: 45px
+    letter-spacing: 2px
 
 #top-right
-  font-size: 15px
-  margin-top: 15px
-  float: right
-
-#top-right li
-  background-color: rgba(198, 198, 198, 0.26)
-  display: inline-block
-  height: 2px
-  margin: 0 5px
-  text-align: center
-  transition: height .3s
-
-#top-right li.active
-  height: 30px
-
-#top-right li.active > a
-  color: #4ABCBD
-
-#top-right li a
-  display: block
-  width: 50px
-  padding: 5px 10px
-
-#top-right li:hover
-  height: 30px
+  position: absolute
+  top: 10px
+  right: 0
+  ul
+    border-radius: 2px
+    height: 30px
+    overflow: hidden
+    li
+      background-color: #b8b8b8
+      height: 30px
+      width: 80px
+      display: inline-block
+      float: left
+      text-align: center
+      transition: height .3s, background-color .3s
+      &.active
+        background-color: $main-blue
+        box-shadow: none
+        &:hover
+          background-color: $main-blue
+      &:hover
+        background-color: #c2c2c2
+      a
+        padding: 5px 10px
 
 .flash-message
   position: fixed
@@ -132,145 +134,115 @@ li
   z-index: 9
   font-family: oswald
   letter-spacing: 1px
-
-.flash-message.show
-  padding: 10px 0
-  opacity: 1
-
-.flash-message.error
-  background-color: $dark-warning-red
-
-.flash-message.confirm
-  background-color: $confirm-green
+  &.show
+    padding: 10px 0
+    opacity: 1
+  &.error
+    background-color: $dark-warning-red
+  &.confirm
+    background-color: $confirm-green
 
 
-//body styling
+/*** BODY STYLING ***/
+
+html
+  height: 100vh
 
 body
   font-family: open-sans
-  background: url('../img/turqoise-backgroundjpg.jpg')
+  p
+    font-size: 12px
 
 section
-  background: url('../img/turqoise-backgroundjpg.jpg')
   padding-top: 95px
-  height: 100vh
+  padding-bottom: 50px
+  .background-img
+    background: url("../img/shopping-bg.jpg") no-repeat top right fixed
+    -webkit-background: url("../img/shopping-bg.jpg") no-repeat top right fixed
+    background-size: 100%
+    height: 200px
 
-section .background-img
-  background: url("../img/shopping-mall-background.png") no-repeat center top -400px fixed
-  background-size: cover
-  height: 200px
-
-
-/**** ------------------------------------***/
-
-
-//footer styling
+/*** FOOTER STYLING ***/
 footer
   position: fixed
   bottom: 0
   width: 100%
   background-color: $main-color
   color: $text-color
-  font-size: 13px
   padding: 10px 0
   z-index: 5
+  p
+    font-size: 11px
+    margin-left: 20px
 
-footer p
-  font-size: 11px
-  margin-left: 20px
 
-
-//input fields styling
-
+/*** FORMS STYLING ***/
 .input-container
   width: 500px
-  height: auto
   background-color: white
   border-radius: $border-radius
-  margin: 50px auto 0 auto
+  margin: -110px auto 0
   padding: 20px 0
   text-align: center
-  box-shadow: 0 0 10px -5px black
-  margin-top: -110px
-
-
-// ************************* //
+  box-shadow: 0 0 3px 0px #898989
+  input:focus
+    border: 1px solid rgba(45, 204, 112, 0.55)
+  a
+    color: $main-blue
+    &:hover
+      text-decoration: underline
+  p
+    text-align: left
 
 .input-wrapper
   width: 300px
   margin: 0 auto
 
-input //.input-container input
-  font-family: source-sans-light
-  width: 100%
-  display: block
-  margin: 30px 0
-  background-color: white
-  padding: 8px 0
-  text-align: center
-  font-size: 15px
-  color: gray
-
-
 input[type='text'], input[type='email'], input[type='password'], input[type='tel']
   border: 1px solid $input-border
   border-radius: $border-radius
+  box-shadow: 2px 2px 10px -5px #989898 inset
+  &.required
+    border: 1px solid red
 
-input.required
-  border: 1px solid red
-
-
-.input-container input[type="submit"]
-  background-color: $button-color
-  border-bottom: 2px solid #0695ff
-  color: white
-  cursor: pointer
-  transition: color .3s
-
-.input-container input[type="submit"]:hover
-  background-color: #01a2ff
-
-.input-container a
-  color: #54cbf4
-
-.input-container a:hover
-  color: #4ABCBD
-
-.input-container p
-  text-align: left
-  color: #383838
-  font-size: 13px
-
-label
+input
+  font-family: open-sans
+  width: 100%
   display: block
-  position: absolute
-  margin-top: -18px
-  font-size: 10px
-  color: rgba(247, 36, 89, 0.55)
-  text-transform: uppercase
+  margin: 25px 0
+  background-color: white
+  padding: 8px 0
+  text-align: center
+  font-size: 13px
+  -webkit-appearance: none
+
 
 input.valid
   border: 1px solid rgba(45, 204, 112, 0.55)
-  background-image: url("../img/check.png")
-  background-position: 98% 50%
-  background-repeat: no-repeat
+  background: url("../img/check.png") no-repeat 98% 50%
   z-index: 50
 
 select.error, textarea.error, input.error, input.error:focus
   border: 1px solid rgba(247, 36, 89, 0.55)
-  background-image: url("../img/x.png")
-  background-position: 98% 50%
-  background-repeat: no-repeat
+  background: url("../img/x.png") no-repeat 98% 50%
   z-index: 50
 
-.text-input:focus
-  border: 1px solid rgba(45, 204, 112, 0.55)
+
+.input-container input[type="submit"]
+  background-color: $main-blue
+  border-radius: $border-radius
+  border: 2px solid $main-blue
+  color: white
+  cursor: pointer
+  transition: background-color .2s, color .2s
+  &:hover
+    background-color: white
+    border: 2px solid $main-blue
+    color: $main-blue
 
 
 
-
-
-/*** NO SCRIPT ***/
+/*** NO SCRIPT STYLING ***/
 
 .noscript
   width: 100%
@@ -292,33 +264,36 @@ select.error, textarea.error, input.error, input.error:focus
 
 
 
-/// *** ABOUT SECTIONS STYlING ***//
+/*** ABOUT SECTIONS STYlING ***/
 
 .about-sections
-  width: 100%
-  margin: 50px auto
+  border-top: 1px solid $input-border
+  width: 95%
+  margin: 40px auto
   text-align: center
+  .container div
+    border-bottom: 1px solid $input-border
+    width: 300px
+    height: 180px
+    margin:  10px 0
+    display: inline-block
+    font-size: 13px
+    text-transform: uppercase
 
-.about-sections .container
-  width: 100%
-  text-align: center
-
-
-.about-sections .container div
-  width: 320px
-  height: 220px
-  padding: 20px 10px 0
-  margin: 10px
-  display: inline-block
-  color: white
-  font-size: 13px
-  text-transform: uppercase
 
 #device-range
-  background: url('../img/rangedevice.png') no-repeat center bottom 10px
+  background: url('../img/rangedevice.png') no-repeat center bottom 5px
+  background-size: contain
 
 #share-with-fnf
-  background: url('../img/share-withff-icon.png') no-repeat center bottom 25px
+  background: url('../img/share-withff-icon.png') no-repeat center bottom 5px
+  float: right
+  background-size: contain
 
 #store-online
-  background: url('../img/store-online-icon.png') no-repeat center bottom 25px
+  background: url('../img/store-online-icon.png') no-repeat center bottom 5px
+  float: left
+  background-size: contain
+
+
+

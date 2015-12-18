@@ -88,7 +88,7 @@ if(isset($_SESSION['id'])) {
         $purchased = $_POST['purchased'];
         $user_id = userId($item, 'item_id', $item_id);
 
-//        $item->setAsPurchased($purchased,$item_id, $user_id);
+        $item->setAsPurchased($purchased,$item_id, $user_id);
     }
 }
 

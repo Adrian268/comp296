@@ -26,24 +26,12 @@ require 'Templates/page_header.php';
           </div>
         </form>
         </div>
+
+        <?php require_once'templates/aboutsections.html' ?>
+
     </section>
 
-    <script>
-        $('#ResetPasswordForm').validate({
-            rules:{
-                new_password_cf:{
-                    equalTo: "#new_password"
-                }
-            },
-            messages:{
-                new_password_cf:{
-                    equalTo: "Passwords do not match."
-                }
-            },
-            errorPlacement: function(error, element) {
-                error.insertBefore(element);
-            }
-        });
+    <script type="text/javascript" src="assets/js/resetpasswordvalidation.js"></script>
 
-    </script>
-<?php require_once 'Templates/html_footer.php' ?>
+
+<?php require_once 'Templates/html_footer.html' ?>

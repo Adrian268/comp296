@@ -26,9 +26,8 @@ class SharedList extends Model{
         $query = $this->db->prepare("SELECT * FROM $this->table WHERE viewer_id=:user_id");
         $query->bindValue(':user_id', $user_id);
         $query->execute();
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $data;
     }
 
     public function getSharedWith($list_id){
@@ -36,10 +35,10 @@ class SharedList extends Model{
         $query = $this->db->prepare("SELECT * FROM $this->table WHERE list_id=:list_id");
         $query->bindValue(':list_id', $list_id);
         $query->execute();
-        $data = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $data;
     }
+
 
 }
 

@@ -1,0 +1,28 @@
+<!--        edit account info modal window BEGIN-->
+<div class="modal-wrapper edit-account-modal">
+    <div class="modal">
+        <div class="close-btn"><img src="assets/img/close-icon.png" alt=""/></div>
+        <form id="edit-account-form">
+            <label class="error-msg"></label>
+            <p>Name</p>
+            <input type="text" id="edit-name-input" required/>
+            <p>Email</p>
+            <input type="email" id="edit-email-input" required/>
+            <input type="submit" class="green-btn" value="Save"/>
+            <input type="button" class="red-btn cancel-btn" id="cancel-account-edit" value="Cancel"/>
+        </form>
+
+        <input type="button" value="Change Password" class="regular-btn" id="show-password-form"/>
+
+        <form id="change-password-form">
+            <label class="error-msg"></label>
+            <p>New Password</p>
+            <input type="password" id="edit-password-input" />
+            <p>Confirm New Password</p>
+            <input type="password" id="confirm-edit-password-input" />
+            <input type="submit" class="green-btn" id="change-password-btn" value="Change Password"/>
+        </form>
+    </div>
+</div>
+
+<!--        edit account info modal window END-->

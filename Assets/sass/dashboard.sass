@@ -3,313 +3,160 @@ $main-color-light: #2c414e
 $text-color: #aee4ff
 $button-color: #14adff
 $border-radius: 2px
+$main-blue: #00a7a7
 $logo-color: #00a8a8
 $confirm-green: #28ba52
 $warning-red: #db2a2a
 $dark-warning-red: #e43550
 $input-border: #CCC
 
-@font-face
-  font-family: source-sans-pro
-  src: url("../fonts/SourceSansPro-Regular.otf")
+/*** DEFAULTS ***/
+.regular-btn
+  background-color: rgba(160, 160, 160, 0.65)
+  border-radius: $border-radius
+  cursor: pointer
+  width: 75px
+  height: 22px
+  padding: 1px 2px 2px
+  font-size: 13px
+  transition: background-color .3s
+  &:hover
+    background-color: rgba(208, 208, 208, 0.65)
 
-/*** page header styling ***/
+input
+  margin: 0
 
-.text-input:focus
-  border: 1px solid white
+label
+  margin-top: -10px
+/************
 
+/*** HEADER STYLING ***/
 #logo-link-container
   height: 50px
   text-align: center
   margin: 20px auto 10px auto
-
-#logo-link-container input
-  border: 1px solid white
-
-#logo
-  float: left
-  display: inline-block
+  input
+    border: 0
 
 #new-shopping-list
   vertical-align: middle
   display: inline-block
-  width: 60%
+  width: 480px
   margin: 5px auto
-
-#new-shopping-list input[type='text']
-  width: 90%
-  margin: 0
-  float: left
-
-#new-shopping-list input[type='submit']
-  background: url("../img/add-list-icon.png") no-repeat left center
-  background-size: contain
-  padding: 0
-  float: right
-  width: 38px
-  height: 38px
-  border: none
-  cursor: pointer
+  input[type='text']
+    width: 390px
+    float: left
+  input[type='submit']
+    background-color: $main-blue
+    border-radius: $border-radius
+    color: white
+    float: right
+    width: 80px
+    height: 34px
+    padding: 0
+    cursor: pointer
+    &:hover
+      background-color: #00cbcb
 
 #top-right
-  margin-top: 5px
-  width: 70px
-  text-align: right
-  font-size: 12px
+  top: 5px
+  ul
+    height: 34px
+    li
+      height: 34px
+      a
+        display: block
+        margin-top: 2px
+  li:hover
+        background-color: $main-blue
 
-#top-right ul li a
-  width: 80px
-  padding: 5px 0px
+/*** BODY, SECTION STYLING ***/
 
-/*** pages body sections styling ***/
+.site-wrapper
+  overflow: hidden
+
+body
+  min-height: 100%
+
 section
-  background: linear-gradient(rgba(191, 191, 191, 0.60), rgba(191, 191, 191, 0.60)), url('../img/turqoise-backgroundjpg.jpg')
-  padding: 135px 0 60px 0
-  height: 100vh
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.50) 20%, rgba(237, 237, 237, 0.50) 35%), url('../img/dashboard-bg.jpg') bottom center
+  background-size: cover
+  background-attachment: fixed
+  padding: 123.5px 0 60px 0
+  min-height: 100vh
+  z-index: 4
 
 .error-message, .confirm-message
   position: fixed
   top: 0
 
-/*** list styling ***/
-hr
-  border: 1px solid lightblue
 
-.lists-container
-  width: 460px
-  margin: 0 auto 50px
-  padding-top: 50px
-  text-align: left
-
-.list-heading form
-  display: inline
-
-.list-heading input
-  font-family: oswald
-  width: 35%
-  display: inline-block
-  margin: 13px 100px 0 0
-  background-color: #d7d7d7
-  padding: 2px 0
-  text-align: center
-  font-size: 13px
-  border: 1px solid white
-  color: gray
-  float: right
-
-.list-wrapper
-  position: relative
-  margin: 20px auto
-  height: auto
-  background-color: white
-  border-radius: $border-radius
-  overflow: hidden
-  box-shadow: 0 0 10px -5px black
-
-/*** LIST HEADING STYLING ***/
-
-.list-heading
-  //background-color: rgba(14, 71, 81, 0.86)
-  background-image: linear-gradient(rgba(44, 65, 78, 0.85), rgba(44, 65, 78, 0.90)), url('../img/pattern-background.jpg')
-  position: relative
-  height: 50px
-  padding: 0 10px
-
-
-h4.list-name
-  color: white
-  display: inline-block
-  width: auto
-  margin: 10px 5px 0 0
-  font-weight: 100
-  cursor: pointer
-  font-family: pacifico
-  letter-spacing: 1px
-
-.date-created, .created-by, a.edit-list
-  color: #e2e2e2
-
-.created-info
-  position: absolute
-  right: 5px
-  top: 0
-  margin-top: 10px
-  text-align: right
-  float: right
-
-/*** LIST BODY - LIST ITEMS STYLING ***/
-
-.item-wrapper
-  position: relative
-  border-top: 1px solid #e4e4e4
-  overflow: hidden
-  &:nth-child(even)
-    background-color: #ebebeb
-  .bought-item-check
-    width: 10px
-    margin-left: 5px
-
-
-.item-wrapper input[type="checkbox"], .bought-item-check
-  float: left
-  width: 13px
-  margin: 3px
-
-.item-wrapper .container
-  position: relative
-  display: block
-  height: 20px
-  padding-top: 3px
-
-.item-name-container
-  float: left
-  font-size: 13px
-
-.item-name-container p
-  margin-right: 5px
-
-.item-name-container form
-  float: left
-
-.item-name, .item-name-edit
-  float: left
-  font-size: 13px
-  margin-left: 2px
-  font-family: open-sans
-
-
-.bought-item
-  text-decoration: line-through
-  color: $main-color
-
-.quantity
-  color: gray
-  font-size: 11px
-
-.notes
-  display: block
-  font-size: 11px
-  font-family: open-sans-light
-  margin-left: 5px
-  color: gray
-
-/**** ITEM SETTINGS NAV ****/
-
-.item-wrapper .item-settings-wrapper
-  position: relative
-  height: 10px
-  width: 15px
-  float: right
-  margin: -5px 3px
-
-img.item-settings
-  cursor: pointer
-  width: 100%
-  position: absolute
-  padding: 5px 0
-
-.item-settings-nav
-  top: 0
-  right: 0
-  width: 100%
-  height: 0
-  text-align: center
-  background-color: #181818
-  z-index: 10
-  transition: all .3s
-
-.item-settings-nav ul
-  margin: 5px 0
-
-.item-settings-nav ul li
-  display: block
-  padding: 5px
-  font-family: open-sans-light
-  list-style-type: none
-  color: #ffffff
-  font-size: 11px
-  cursor: pointer
-  &:hover
-    background-color: #222222
-
-.item-container
-  position: relative
-  padding: 5px 5px 5px 25px
-  height: 100%
-  z-index: 4
-  transition: transform .5s ease
-
-.item-container.active
-  transform: translateX(-100px)
-
-/*** LIST FOOTER ***/
-
-.list-footer
-  border-top: 1px dashed #747474
-  margin: 5px 15px
-  padding: 10px 0
-  z-index: 100
-  background-color: white
-
-.shared-with
-  font-size: 13px
-
-.shared-with-names
-  font-size: 12px
-  color: gray
-
-.share-list-btn
-  width: 100px
-  padding: 3px 0
-  margin: 5px auto
-  background-color: $button-color
-  border-radius: 0px
-  border-bottom: 2px solid #0695ff
-  color: white
-
-.share-list-btn:hover
-  cursor: pointer
-  background-color: rgba(20, 173, 255, 0.74)
-
-
-/*** navigation styling ***/
-#menu-tgl
+/*** TOP MENU NAV ***/
+#menu-icon-wrapper
   width: 95%
   margin: 0 auto
 
-.menu-icon-wrapper
+#nav-toggle
   margin-top: 5px
-  height: 25px
+  margin-left: 15px
+  height: 20px
   width: 25px
 
-.menu-icon-wrapper div
+#nav-toggle div
   background-color: #ffffff
-  box-shadow: 2px 2px 5px 0 black
+  box-shadow: 1px 1px 2px 0 black
   height: 3px
-  margin: 4px 0
-  transition: all .5s ease
+  margin-bottom: 4px
+  transition: all .4s ease
 
-/*** MENU ICON ANIMATION ***/
 
-.menu-icon-wrapper #div1.active
+/*** TOP MENU ICON ANIMATION ***/
+#nav-toggle #div1.active
   transform: matrix(0.70,.7,-0.7,0.7,0,7)
 
-.menu-icon-wrapper #div2.active
+#nav-toggle #div2.active
   background: transparent
   box-shadow: none
 
-.menu-icon-wrapper #div3.active
+#nav-toggle #div3.active
   transform: matrix(0.70,-.7,0.7,0.7,0,-7)
-
-
-#menu img
-  width: 50px
-  height: 25px
 
 #nav-toggle
   cursor: pointer
 
-.main-navigation
+/*** LIST TYPE TABS ***/
+div#choose-list
+  width: 100%
+  text-align: center
+  li
+    font-family: sans-serif
+    display: inline-block
+    padding: 5px 10px
+    cursor: pointer
+    margin: 0 10px
+    color: #808080
+    text-transform: uppercase
+    transition: color .2s
+    font-size: 13px
+    letter-spacing: 1px
+    &.active
+      border-bottom: 2px solid $main-blue
+      color: white
+
+
+/*** LEFT HIDDEN NAV ***/
+// USER INFO
+.left-navigation #user-info
+  color: #7a7a7a
+  margin-top: 10px
+  border-bottom: 1px solid #303030
+  ul
+    margin-bottom: 10px
+    text-align: center
+
+// -------------
+
+.left-navigation
   position: fixed
   left: 0
   top: 0
@@ -319,17 +166,10 @@ img.item-settings
   background: linear-gradient(90deg, #151515 92%, #0c0c0c 100%)
   color: #d6d6d6
   visibility: hidden
-  margin-left: -100px
+  margin-left: -50px
   transition: all .6s ease
 
-.top-heading, section, footer
-  transition: transform .6s ease
-
-.site-wrapper
-  overflow: hidden
-
-.main-navigation ul
-  margin: 20px 0
+.left-navigation ul
   list-style: none
   font-size: 13px
   font-family: open-sans-light
@@ -338,240 +178,335 @@ img.item-settings
     float: left
     width: 13px
     height: 13px
-    transform: translateY(13px)
+    transform: translateY(12px)
     padding-left: 15px
     margin-right: 5px
+  li a
+    display: block
+    margin: 0 0 0 5px
+    padding: 10px 0 10px 25px
+    &:hover
+      background-color: #222222
+    .contacts-badge
+      background-color: gray
+      border-radius: 10px
+      padding: 0 5px
+      margin-left: 5px
+      text-align: center
 
-.main-navigation ul li a
-  display: block
-  margin: 0
-  padding: 10px 0 10px 25px
-  margin-left: 5px
-  &:hover
-    background-color: #222222
 
-footer.active, section.active, .top-heading.active, .main-navigation.active
-  transform: translateX(180px)
-
-.main-navigation.active
+.left-navigation.active
+  transform: translateX(50px)
   visibility: visible
-  transform: translateX(90px)
+
+footer.active, section.active, .top-heading.active
+  transform: translateX(180px)
 
 ul.sub-nav
   background-color: #0d0d0d
   list-style: none
   font-size: 12px
   margin: 0
-  padding: 10px 0
-  box-shadow: 0 0 5px 0px black inset
-
-ul.sub-nav li a
-  margin: 0
-  padding: 5px 0 5px 50px
+  box-shadow: 0 0 2px 0px black inset
+  li a
+    margin: 0
+    padding: 5px 0 5px 50px
 
 
-/** USER INFO ***/
 
-.main-navigation #user-info
-  color: #686868
-  margin-top: 10px
-  border-bottom: 1px solid #303030
-
-.main-navigation #user-info ul
-  margin-bottom: 10px
-  text-align: center
-
-
-/*** MODAL WINDOWS ***/
-
-.close-btn
-  float: right
-  cursor: pointer
-  width: 26px
-  height: 26px
-  border-radius: 100%
-  text-align: center
-  &:hover
-    background-color: #e4e4e4
-    box-shadow: -1px 3px 7px -4px black
-  img
-    padding: 5px 1px 5px 2px
-    width: 15px
-    height: 15px
-
-.new-list-modal, .edit-list-modal, .edit-account-modal, .delete-account-modal, .delete-contact-modal, .purchase-item-modal, .share-list-modal, .change-profile-pic-modal
-  content: ""
+/*** CONTACTS MENU STYLING ***/
+.contacts-wrapper
   position: fixed
-  top: 0
   left: 0
-  width: 100%
+  top: 0
   height: 100%
-  z-index: 200
-  background-color: rgba(51, 51, 51, 0.26)
-  visibility: hidden
-  opacity: 0
-  transition: all .3s
+  width: 170px
+  padding-right: 50px
+  background: white
+  overflow: hidden
+  color: #212121
+  z-index: 100
+  transform: translateX(-260px)
+  transition: transform .3s ease-in-out
+  &.active
+    transform: translateX(0px)
 
-.edit-list-modal.active, .new-list-modal.active, .edit-account-modal.active, .delete-account-modal.active, .delete-contact-modal.active, .purchase-item-modal.active, .share-list-modal.active, .change-profile-pic-modal.active
-  visibility: visible
-  opacity: 1
+.contacts-container
+  width: 250px
+  height: 100%
+  overflow-y: scroll
+  .go-back
+    background: url('../img/left-arrow.png') no-repeat left center
+    background-size: contain
+    opacity: .5
+    height: 30px
+    width: 30px
+    margin-top: 10px
+    cursor: pointer
+    transition: opacity .3s
+    &:hover
+      background: url('../img/left-arrow-blue.png') no-repeat left center
+      background-size: contain
+      opacity: 1
 
-.modal
-  position: relative
-  top: 50%
-  width: 300px
-  margin: -200px auto 0
-  background-color: white
-  border-radius: 3px
-  padding: 10px 20px
-  box-shadow: 0 0 15px -5px black
-  z-index: 500
 
-.modal p:first-of-type
-  margin-top: 40px
-
-.modal p
-  margin: 10px auto 5px auto
+.add-contact-container
+  margin: 5px 0 0 5px
   color: gray
-  font-size: 13px
+  input
+    margin-top: 5px
+    width: 180px
+  .regular-btn
+    margin-top: 10px
+    padding: 2px 0
+    width: 192px
+    transition: all .2s
+    &:hover
+      background-color: $main-blue
+      color: white
 
-.modal input
-  margin-bottom: 15px
+.contacts-container
+  ul
+    margin: 10px auto 50px
+    li
+      position: relative
+      display: block
+      padding: 8px 5px
+      transition: transform 1s
+      cursor: pointer
+      &:hover > .contact-email
+        opacity: 1
+      div
+        display: inline-block
+  .contact-name
+    font-size: 13px
+    width: 110px
+  .contact-email
+    position: absolute
+    left: 35px
+    bottom: -2px
+    font-size: 11px
+    opacity: 0
+    color: #b5b5b5
+  .remove-contact
+    cursor: pointer
+    opacity: .7
+    display: none
+    &.show-contact
+      display: initial
 
-.modal input[type='submit']
-  width: 100%
-  margin: 10px auto
-  color: white
-  border-radius: 0
+  #add-contact-msg, #add-contact-error
+    text-align: center
+    color: white
+    font-size: 11px
+    width: 220px
 
-input.save-btn
-  background-color: #00ba6a
-  border: 0
-  border-bottom: 2px solid #009352
-  cursor: pointer
-  &:hover
-    background-color: #00a95c
+  #add-contact-msg
+    background-color: $confirm-green
 
+  #add-contact-error
+    background-color: $dark-warning-red
 
-input.delete-btn, input.red-btn
-  background-color: #f43753
-  border: 0
-  border-bottom: 2px solid #c3334d
-  cursor: pointer
-  &:hover
-     background-color: #d73350
+  p#no-contacts
+    color: gray
+    font-size: 12px
+    margin-left: 5px
+    width: 80%
 
 
-.regular-btn
-  background-color: rgba(160, 160, 160, 0.65)
-  cursor: pointer
-  width: 110px
-  height: 25px
-  padding: 0px
-  font-size: 13px
-  transition: background-color .3s
-  &:hover
-    background-color: rgba(208, 208, 208, 0.65)
-
-
-input[type='button']
-  color: white
-
-input
-  margin: 0
-
-/*** new list modal window ***/
-
-.new-list-modal table p
-  margin: 0
-
-.new-list-modal table input
-  width: 85%
-  float: left
-  text-align: left
-  height: 18px
-  padding: 3px 10px
-  font-size: 15px
-
-.new-list-modal table tr td input[type='text']
-  margin: 5px 0
-
-.new-list-modal table input.item-quantity
-  float: right
+.contact-img, .contact-img-lrg, .contact-img-pic, .contact-img-pic-lrg
+  background-color: #00d1d1
+  border: .5px solid gray
+  width: 25px
+  height: 22px
+  border-radius: 25px
+  padding-top: 4px
   text-align: center
-  width: 35px
-  margin-right: 0
+  font-size: 15px
+  font-weight: bold
+  color: white
+  font-family: sans-serif
+  overflow: hidden
+  vertical-align: middle
 
-.new-list-item
-  margin: 0
+.contact-img-lrg, .contact-img-pic-lrg
+  width: 40px
+  height: 37px
+  font-size: 25px
+  border: 1px solid white
+  font-weight: 100
 
-span.remove-item
-  color: #545454
-  font-family: open-sans
-  background-color: #ababab
-  margin-left: 10px
-  width: 100%
-  height: 25px
-  border-radius: 5px
+.contact-img-lrg
+  padding: 5px 0 0 0
+  height: 35px
 
-#permission-check
+.contact-img-pic
+  background: white
+  border: 0
+  padding: 0
+  height: 26px
+  width: 26px
+  img
+    height: inherit
+
+.contact-img-pic-lrg
+  background: white
+  padding: 0
   height: 40px
+  img
+    height: inherit
+
+.profile-pic
+  margin: 25px auto 0 auto
+
+/*** LIST STYLING ***/
+.lists-container
+  width: 460px
+  margin: 50px auto 50px
   text-align: left
-  div#text
+
+.list-wrapper
+  position: relative
+  margin: 20px auto
+  height: auto
+  background-color: white
+  border-radius: $border-radius
+  overflow: hidden
+  box-shadow: 0 0 3px -1px black
+
+
+/*** LIST HEADING STYLING ***/
+.list-heading
+  background-color: #1d1d1d
+  position: relative
+  height: 40px
+  padding: 10px 10px 0
+  color: white
+  .list-name
     display: inline-block
+    margin: 0 5px 0 0
+    font-weight: 100
+    cursor: pointer
+    font-family: variane
+    font-size: 30px
+    letter-spacing: 2px
+  .created-info
+    float: right
+    text-align: right
+
+
+/*** LIST BODY & LIST ITEMS STYLING ***/
+.item-wrapper
+  position: relative
+  border-top: 1px solid #e4e4e4
+  overflow: hidden
+  .bought-item-check
+    width: 10px
+    margin-left: 5px
+  input[type='checkbox'], .bought-item-check
     float: left
-    width: 250px
-    p
-      margin: 0
+    width: 13px
+    margin: 3px
+  .item-container
+    position: relative
+    padding: 5px 5px 0 25px
+    height: 100%
+    z-index: 4
+    transition: transform .5s ease
+    .container
+      position: relative
+      display: block
+      height: 20px
+      padding-top: 3px
+      .item-name-container
+        float: left
+        font-size: 13px
+        background-color: transparent
+        p
+          margin-right: 5px
+      .item-name, .item-name-edit
+        float: left
+        font-size: 13px
+        margin-left: 2px
+        font-family: open-sans
 
-/*** add items table ***/
 
+  .bought-item
+    text-decoration: line-through
+    color: $main-color
+
+  .quantity
+    color: gray
+    font-size: 11px
+
+  .notes
+    padding: 2px 0
+    display: block
+    font-size: 11px
+    font-family: open-sans-light
+    margin-left: 5px
+    color: gray
+
+
+/**** ITEM SETTINGS NAV ****/
+.item-wrapper .item-settings-wrapper
+  height: 10px
+  width: 15px
+  float: right
+  margin: -3px 3px
+  background: url('../img/item-settings-icon.png') no-repeat center
+  background-size: contain
+  cursor: pointer
+
+.item-settings-nav
+  width: 100%
+  height: 0
+  text-align: center
+  background-color: #181818
+  transition: height .3s
+  ul
+    margin: 5px 0
+    li
+      display: block
+      padding: 5px
+      font-family: open-sans-light
+      list-style-type: none
+      color: #ffffff
+      font-size: 11px
+      cursor: pointer
+      transition: background-color .3s
+      &:hover
+        background-color: #222222
+
+/*** ADD ITEMS FORM ***/
 .new-item-form
   border-top: 1px solid #e4e4e4
   padding: 10px 10px
-
-.new-item-form table tr td
-  font-size: 11px
-  color: #1a1a1a
+  table tr td
+    font-size: 11px
+  input[type='text']
+    width: 133px
+    margin: 0 5px 0 0
 
 .new-item-form input[type='text'], .new-note-input, .item-name-edit input[type='text'], input.edit-item-quantity, input#add-contact-input
   height: 15px
   padding: 2px 5px
   font-size: 12px
-  border: 1px solid #d6d6d6
-  color: #1a1a1a
   font-family: open-sans-light
-  border-radius: 1px
   text-align: left
 
-.new-item-form input[type='text']
-  float: left
-  width: 85%
-  margin: 0 5px 0 0
-
-.new-item-form input.item-quantity, input.edit-item-quantity
+.new-item-form input.new-item-quantity, input.edit-item-quantity
   width: 35px
   margin-right: 10px
   text-align: center
 
-.new-item-form input[type='submit'], .save-note-btn, .save-edit-name-btn
-  font-family: open-sans-light
-  height: 22px
-  width: 75px
-  font-size: 13px
-  color: #4b4b4b
-  background-color: #cacaca
-  padding: 1px 2px 2px
-  cursor: pointer
 
 
-
-// *********  EDIT LIST ITEMS ******//
-
-.item-name-edit input
-  width: 80px
-  padding: 2px 0
-  margin-right: 5px
+/***  EDIT LIST ITEMS FORM ***/
+.edit-item-name-form
+  .item-name-edit input
+    width: 80px
+    margin-right: 5px
 
 .item-container .container .edit
   display: none
@@ -583,17 +518,12 @@ span.remove-item
   display: none
 
 
-/*** new note styling ***/
-
-.new-note-input
-  width: 60%
-  display: inline-block
-
-input.save-note-btn
-  color: #4b4b4b
-  display: inline-block
-  height: 22px
-  margin-left: 5px
+/*** NEW NOTE FORM ***/
+.add-new-note-form
+  .new-note-input
+    width: 60%
+    margin: 10px 5px 0
+    display: inline-block
 
 .add-new-note-form .edit
   display: none
@@ -602,189 +532,217 @@ input.save-note-btn
   display: initial
 
 
-/*** EDIT ACCOUNT MODAL ***/
 
-.edit-account-modal input[type='text'], .edit-account-modal input[type='email'], .edit-account-modal input[type='password']
-  text-align: left
-  padding-left: 15px
-  width: 282px
-
-.edit-account-modal .modal
-  margin-top: -220px
-
-.modal form#change-password-form p:first-of-type
-  margin-top: 10px
-
-input#show-password-form
-  margin-bottom: 0
-
-label
-  margin-top: -10px
-
-
-/** contacts styling ***/
-
-.contacts-container
-  width: 250px
-  height: 100%
-  overflow-y: scroll
-
-.contacts-wrapper
-  position: fixed
-  left: 0
-  top: 0
-  height: 100%
-  width: 170px
-  padding-right: 50px
-  padding-top: 10px
-  padding-left: 5px
-  background: white
-  overflow: hidden
-  color: #212121
-  z-index: 100
-  transform: translateX(-260px)
-  transition: transform .3s ease-in-out
-  .go-back
-    color: #d6d6d6
-    width: 35px
-    text-align: center
-    padding-bottom: 5px 0 0 0
-    cursor: pointer
-    transition: all .2s
-    &:hover
-      color: rgba(0, 202, 202, 0.65)
-    p
-      font-size: 35px
-      font-weight: bold
-      line-height: 30px
-      font-family: source-sans-pro
-
-.contacts-wrapper.active
-  transform: translateX(0px)
-
-
-.add-contact-container
-  margin-top: 5px
-  margin-left: 5px
-  p
+/*** LIST FOOTER ***/
+.list-footer
+  border-top: 1px dashed #747474
+  margin: 5px 10px
+  padding: 10px 0
+  .shared-with
     font-size: 13px
+  .shared-with-names
+    font-size: 12px
     color: gray
+  .share-list-btn
+    width: 100px
+    margin: 5px 0
+    float: right
+
+.share-list-btn
+  padding: 3px 0
+  background-color: $main-blue
+  border-radius: $border-radius
+  color: white
+  transition: background-color .3s
+  cursor: pointer
+  &:hover
+    background-color: #00bdbd
+
+.top-heading, section, footer
+  transition: transform .6s ease
+
+
+
+/*** MODAL WINDOWS ***/
+.modal-wrapper
+  content: ""
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 200
+  background-color: rgba(0, 0, 0, 0.36)
+  visibility: hidden
+  opacity: 0
+  transition: all .3s
+
+.modal
+  position: relative
+  top: 50%
+  width: 300px
+  margin: -200px auto 0
+  background-color: white
+  border-radius: 3px
+  padding: 10px 15px 15px 15px
+  box-shadow: 0 0 5px -1px black
+  z-index: 500
+  &.active::after
+    content: " "
+    text-align: center
+    z-index: 100000
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.40), rgba(0, 0, 0, 0.40)) , url("../img/loading.gif") no-repeat center
+    background-size: 10%
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+  p:first-of-type
+    margin-top: 25px
+  p
+    margin: 5px 0
+    font-size: 13px
   input
-    margin-top: 5px
-  #add-contact-input
-    width: 75%
-  .regular-btn
-    width: 50%
-    margin-top: 10px
-    padding: 2px 0
-    transition: all .2s
+    margin-bottom: 10px
+    border-radius: $border-radius
+    transition: background-color .3s
+  input:last-of-type
+    margin-bottom: 0
+  .close-btn
+    float: right
+    cursor: pointer
+    width: 23px
+    height: 22px
+    border-radius: 100%
+    text-align: center
     &:hover
-      background-color: rgba(0, 202, 202, 0.65)
+      background-color: #e4e4e4
+    img
+      padding: 1px 4px 5px 5px
+      vertical-align: middle
+      width: 10px
+      height: 10px
+  input.green-btn
+    background-color: #0eba6f
+    border: 1px solid #0eba6f
+    cursor: pointer
+    color: white
+    &:hover
+      background-color: #0ed687
+  input.red-btn
+    background-color: #f43753
+    border: 1px solid #f43753
+    cursor: pointer
+    color: white
+    &:hover
+      background-color: rgba(255, 57, 86, 0.93)
+
+.edit-list-modal.active,
+.new-list-modal.active,
+.edit-account-modal.active,
+.delete-account-modal.active,
+.delete-contact-modal.active,
+.purchase-item-modal.active,
+.share-list-modal.active,
+.change-profile-pic-modal.active
+  visibility: visible
+  opacity: 1
+
+
+
+/*** INDIVIDUAL MODAL WINDOW STYLES ***/
+
+// NEW LIST MODAL
+.new-list-modal #permission-check
+  height: 40px
+  text-align: left
+  margin-bottom: 5px
+  div#text
+    display: inline-block
+    float: left
+    width: 250px
+    p
+      margin: 0
+  .slide-checkbox
+    float: right
+    margin-right: 17px
+
+
+// EDIT ACCOUNT MODAL
+.edit-account-modal
+  .modal
+    margin-top: -220px
+    input[type='text'], input[type='email'], input[type='password']
+      text-align: left
+      padding-left: 15px
+      width: 282px
+    form#change-password-form p:first-of-type
+      margin-top: 10px
+    #show-password-form
+      width: 120px
+      margin-top: 10px
       color: white
 
-.contacts-container
-  ul
-    margin: 10px auto 50px
-
-  ul li
-    position: relative
-    display: block
-    padding: 8px 5px
-    transition: transform 1s
-    &:hover > .contact-email
-      opacity: 1
-    &:hover > .remove-contact
-      opacity: .7
-  ul li div
-    display: inline-block
-
-  .contact-name
-    font-size: 13px
-    width: 110px
-
-  .contact-email
-    position: absolute
-    left: 35px
-    bottom: -2px
-    font-size: 11px
-    opacity: 0
-    color: #b5b5b5
-
-  .remove-contact
-    //background-color: rgba(223, 51, 82, 0.89)
-    border-radius: 100%
-    font-size: 13px
-    font-weight: bold
-    padding-bottom: 5px
-    width: 20px
-    height: 15px
-    color: white
-    text-align: center
-    cursor: pointer
-    text-shadow: 2px 2px 5px black
-    opacity: 0
-
-  #add-contact-msg, #add-contact-error
-    font-size: 11px
-    margin-top: 10px
-    margin-left: 5px
-
-  #add-contact-msg
-    color: $confirm-green
-
-  #add-contact-error
-    color: $dark-warning-red
-
-  p#no-contacts
-    color: gray
-    font-size: 12px
-    margin-left: 5px
-    width: 80%
-
-
-/** delete contact modal ***/
-
-.delete-contact-modal .modal
-  width: 250px
-  .save-btn, .red-btn
-    padding: 3px 0
-
-
-
-
-/*** share list modal ***/
-
+// SHARE LIST MODAL
 .share-list-modal
   #submit-shared-list
     padding: 8px 0
-  #select-contacts
-    width: 100%
-    border: 1px solid #a6a6a6
-    padding-top: 2px
-    font-size: 12px
-    option
-      padding: 0 5px
-      &:checked, &:hover
-        background: rgba(0, 201, 255, 0.39) repeat url('../img/option-selected.jpg')
-        color: #000000
+    border: 1px solid $main-blue
+  .select-contacts-wrapper
+    overflow: hidden
+    margin-bottom: 10px
+    #select-contacts
+      width: 400px
+      color: gray
+      border-top: 1px solid gray
+      border-bottom: 1px solid gray
+      padding: 2px 0
+      font-size: 12px
+      option
+        padding: 0 5px
+        &:checked, &:hover
+          background: rgba(0, 201, 255, 0.39) repeat url('../img/option-selected.jpg')
+          color: #000000
 
 
-/*** edit list modal ***/
+// EDIT LIST MODAL
 .edit-list-modal
   #list-permission-container
-    text-align: center
-    //border: 1px solid blue
-    position: relative
-    p
-      text-align: left
-      //border: 1px solid red
-      margin: 0
-      float: left
-    #checkbox-container
+    height: 40px
+    text-align: left
+    margin-bottom: 5px
+    div.text
       display: inline-block
-      text-align: center
-      padding-top: 5px
+      float: left
+      width: 250px
+      p
+        margin: 0
+    .slide-checkbox
+      float: right
+      margin-right: 17px
 
+.purchase-item-modal .modal
+  width: 250px
+
+// PROFILE PIC MODAL
+.change-profile-pic-modal
+  .modal
+    width: 220px
+  input[type='file']
+    background: transparent
+    font-size: 12px
+  label
+    padding-top: 3px
+
+
+
+// DELETE CONTACT MODAL
+.delete-contact-modal .modal
+  width: 225px
+
+
+/*** CUSTOM DESIGNS ***/
 .slide-checkbox
   width: 20px
   height: 20px
@@ -849,93 +807,123 @@ label
       background: linear-gradient(0deg, #d1d1d1 65%, #e1e1e1 100%)
 
 
+@media screen and (max-width: 1030px)
+  #new-shopping-list
+    width: 400px
+    input[type='text']
+      width: 75%
 
-//list type nav
+@media screen and (max-width: 937px)
+  #new-shopping-list
+    width: 350px
 
-div#choose-list
-  width: 100%
-  text-align: center
-  li
-    display: inline-block
-    letter-spacing: 1px
-    padding: 0 20px 5px
-    cursor: pointer
-    margin: 0 10px
-    color: #808080
-    transition: color .2s
-    &.active
-      border-bottom: 2px solid white
-      color: white
+@media screen and (max-width: 882px)
+  #logo
+    height: 45px
+    p
+      font-size: 35px
+  #new-shopping-list
+    width: 350px
 
+@media screen and (max-width: 816px)
+  #logo
+    width: 50px
+    p
+      font-size: 30px
+      line-height: 25px
+      margin-top: -5px
 
-.list-type-name
-  background-color: rgba(128, 128, 128, 0.51)
-  color: #ffffff
-  padding: 10px
-  text-align: center
-  font-weight: bold
+@media screen and (max-width: 650px)
+  section
+    padding-top: 145px
+  #logo
+    width: 100%
+    text-align: left
+    margin-left: 50px
+    p
+      font-size: 35px
+      margin-top: 10px
 
-.contact-img, .contact-img-lrg, .contact-img-pic, .contact-img-pic-lrg
-  background: url("../img/blue-blur.jpg") -50px 100px
-  border: 2px solid #c4c4c4
-  width: 25px
-  height: 22px
-  border-radius: 25px
-  padding-top: 4px
-  text-align: center
-  font-size: 15px
-  color: white
-  font-family: sans-serif
-  overflow: hidden
-  vertical-align: middle
+  #logo-link-container
+    border: 1px solid transparent
 
-.contact-img-lrg, .contact-img-pic-lrg
-  width: 40px
-  height: 37px
-  font-size: 25px
+  #menu-icon-wrapper
+    position: absolute
+    top: 30px
+    left: -16px
+    margin-left: 13px
 
-.contact-img-lrg
-  padding: 5px 0 0 0
-  height: 35px
+  #new-shopping-list
+    border: 1px solid transparent
+    display: block
+    margin-top: 52px
+    margin-bottom: 15px
+    width: 100%
+    form input[type='text']
+        width: 75%
 
-.contact-img-pic
-  background: white
-  padding: 0
-  height: 25px
-  img
-    height: inherit
+  div#choose-list
+    margin-top: 45px
 
-.contact-img-pic-lrg
-  background: white
-  padding: 0
-  height: 40px
-  img
-    height: inherit
+@media screen and (max-width: 460px)
+  .lists-container
+    width: 100%
 
+  .new-item-form input[type='text']
+    width: 95px
 
-.profile-pic
-  margin: 25px auto 0 auto
+  .new-item-form input.new-item-quantity, input.new-item-quantity
+    width: 25px
 
-/** profile pic modal ***/
+@media screen and (max-width: 350px)
+  #logo
+    margin-left: 2px
+    top: -10px
+    height: 25px
+    padding-left: 25px
+    width: 50%
+    p
+      margin: 0
+      font-size: 25px
 
-.change-profile-pic-modal
+  #menu-icon-wrapper
+    width: 50%
+    top: 37px
+
+  #new-shopping-list form input[type='text']
+      width: 65%
+
+  #top-right
+    top: -15px
+    ul, li
+      height: 30px
+      a
+        display: inline-block
+        padding: 2px 0px
+
+  .new-item-form input[type='text']
+    width: 55px
+
   .modal
+    width: 85%
+
+  .new-list-modal #permission-check div#text
     width: 220px
-    &.active::after
-      content: " "
-      text-align: center
-      z-index: 100000
-      background: url("../img/loading.gif") no-repeat center
-      background-size: 10%
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
-  input[type='file']
-    background: transparent
-    padding: 8px 0 0 0
-    font-size: 12px
-  label
-    padding-top: 3px
+
+  .edit-list-modal #list-permission-container div.text
+    width: 220px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
